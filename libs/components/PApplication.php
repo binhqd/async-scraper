@@ -2,6 +2,8 @@
 require_once (LIBS_PATH . "/components/CommonComponent.php");
 require_once (LIBS_PATH . "/components/PRequest.php");
 require_once (LIBS_PATH . "Round.php");
+require_once (LIBS_PATH . "connector/MySQLConnector.php");
+$config = require("protected/config/app.php");
 
 class PApplication extends CommonComponent
 {
@@ -11,7 +13,8 @@ class PApplication extends CommonComponent
     private $_requestObject;
 
     private $_helpers = array();
-
+    private $_db;
+    
     public function __construct()
     {}
 
@@ -75,6 +78,16 @@ class PApplication extends CommonComponent
         
         @mkdir($dir);
         @chmod($dir, 0777);
+    }
+    
+    public function getDb() {
+        if (!isset($this->_db)) {
+            $config = require("protected/config/app.php");
+            
+            $this->_db = new MySQLConnector($config['db']);
+        }
+        
+        return $this->_db;
     }
 }
 

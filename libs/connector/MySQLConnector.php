@@ -20,7 +20,7 @@ class MySQLConnector {
 	public function __construct($config = array()) {
 		if (!empty($config)) {
 			$this->host = !empty($config['host']) ? $config['host'] : 'localhost';
-			$this->port = !empty($config['port']) ? $config['port'] : '3306';
+			$this->port = !empty($config['port']) ? $config['port'] : 3306;
 			$this->user = !empty($config['username']) ? $config['username'] : '';
 			$this->password = !empty($config['password']) ? $config['password'] : '';
 			$this->dbName = !empty($config['db']) ? $config['db'] : '';
