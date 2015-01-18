@@ -1,0 +1,7 @@
+<div class='logContainer'>
+    <h3>{{log.title}}</h3>
+    <ul class='logs'>
+        <li ng-repeat="line in log.lines" ng-class="{'done': line.done}">{{line.content}}</li>
+    </ul>
+    <div class='finished' ng-show="log.finished">Done</div>
+</div>
