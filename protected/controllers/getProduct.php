@@ -85,13 +85,24 @@ $round->request(array(
             );
         }
         
+        $app = app();
+        $menu = $app->request->get('menu');
+        $submenu = $app->request->get('subMenu');
+        $subMenu_lv1 = $app->request->get('subMenu_lv1');
+        $productName = $app->request->get('productName');
+
         $product = array(
             "name" => $name,
             "serial" => $serial,
             "price" => $price,
             "selectAttributes"  => $selectAttributes,
             "fixedAttributes"   => $fixedAttribues,
-            "href"              => $url
+            "href"              => $url,
+            // category info
+            'menu'              => $menu,
+            'submenu'           => $submenu,
+            'subMenu_lv1'       => $subMenu_lv1
+
         );
         
         // $dir = TMP_DIR . "/{$menu}/{$submenu}/{$subMenu_lv1}/{$productName}";
@@ -99,17 +110,15 @@ $round->request(array(
         // @chmod($dir, 0777);
         
         // save product information
-        $app = app();
-        $menu = $app->request->get('menu');
-        $submenu = $app->request->get('subMenu');
-        $subMenu_lv1 = $app->request->get('subMenu_lv1');
-        $productName = $app->request->get('productName');
+        
         
         $dataDir = TMP_DIR . "/".md5($menu)."/".md5($submenu)."/".md5($subMenu_lv1)."/" . md5($productName) . "/";
         
         $dataFile = $dataDir . "product.txt";
         
         file_put_contents($dataFile, serialize($product));
+
+        file_put_contents(TMP_DIR . "/allproducts/" . md5(uniqid()) . ".txt", serialize($product))
         
         header("Content-type: application/json");
         echo json_encode($product);
