@@ -20,14 +20,14 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
     $scope.global = {
         logs : [],
         errors : [],
-        countries : [],
-        cachedCountries : [],
-        country : {}
+        categories : [],
+        cacheCategories : [],
+        category : {}
     };
     
     var req = {
         method : 'GET',
-        url : './api.php?round=round1'
+        url : './api.php?round=getCategories'
     }
 
     $scope.state = {
@@ -37,72 +37,74 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
     $scope.done = false;
 
     $scope.global.logs.push(new MiningLog({
-        "title" : "Getting list of countries"
+        "title" : "Getting list of categories"
     }));
     $http(req).success(function(res) {
         var log = $scope.global.logs[0];
-        log.title = 'List of countries';
+        log.title = 'List of categories';
         log.data = res.items;
-        log.lines.push({content: res.total + " countries found"});
+        log.lines.push({content: res.length + " categories found"});
         log.finish();
 
         // Processing round 2
-        var stateLog = new MiningLog({
-            "title" : "Crawling states"
+        // New log
+        log = new MiningLog({
+            "title" : "Indexing products of each category ..."
         });
         
         // save cache for later use
-        $scope.global.cachedCountries = angular.copy(res.items);
-        
-        $scope.global.countries = res.items;
-
-        $scope.global.logs.push(stateLog);
-        $scope.global.round2_remaining = $scope.global.countries.length;
-        
-        // Open 5 threads
-        $scope.crawlingState(stateLog);
-        $scope.crawlingState(stateLog);
-        $scope.crawlingState(stateLog);
-        $scope.crawlingState(stateLog);
-        $scope.crawlingState(stateLog);
+        $scope.global.cacheCategories = angular.copy(res);
+//        
+        $scope.global.categories = res;
+//
+        $scope.global.logs.push(log);
+        $scope.global.round2_remaining = $scope.global.categories.length;
+//        
+//        // Open 5 threads
+        $scope.indexProducts(log);
+        $scope.indexProducts(log);
+        $scope.indexProducts(log);
+        $scope.indexProducts(log);
+        $scope.indexProducts(log);
 
     }).error(function(xhr) {
         console.log(xhr);
     });
 
-    $scope.crawlingState = function(stateLog, callback) {
-        if ($scope.global.countries.length > 0) {
+    $scope.indexProducts = function(log, callback) {
+        if ($scope.global.categories.length > 0) {
             
-            var country = $scope.global.countries[0];
-            $scope.global.countries.shift();
+            var category = $scope.global.categories[0];
+            $scope.global.categories.shift();
             
             var req = {
                 method : 'GET',
-                url : './api.php?round=round2&countryID=' + country.value + '&countryName='+encodeURIComponent(country.text)
+                url : './api.php?round=getProducts&menu=' + category.menu.name + '&subMenu='+category.subMenu.name 
+                + '&subMenu_lv1='+category.subMenu_lv1.name + '&url=' + encodeURIComponent(category.subMenu_lv1.href)
             }
             
-            var line = {content: country.text + ': crawling ...', done : false};
-            stateLog.lines.push(line);
+            var line = {content: category.subMenu_lv1.name + ': indexing ...', done : false};
+            log.lines.push(line);
             $http(req).success(function(res) {
                 $scope.global.round2_remaining--;
                 
                 // continue crawling
-                line.content = country.text + ": crawled";
+                line.content = category.subMenu_lv1.name + ": INDEXED";
                 line.done = true;
                 
                 if ($scope.global.round2_remaining == 0) {
-                    stateLog.finish();
+                	log.finish();
                     
                     // processing parse states
-                    $scope.global.countries = angular.copy($scope.global.cachedCountries);
-                    $scope.prepareStateData();
+                    $scope.global.categories = angular.copy($scope.global.cacheCategories);
+                    $scope.prepareProductsListing();
                     
                 } else {
-                    $scope.crawlingState(stateLog);
+                    $scope.indexProducts(log);
                 }
             }).error(function(xhr) {
                 console.log(xhr);
-                stateLog.errors.push("Error crawling " + country.text);
+                log.errors.push("Error crawling " + category.subMenu_lv1.name);
             });
         } else {
             //stateLog.finish();
@@ -111,49 +113,50 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
         }
     }
 
-    $scope.prepareStateData = function() {
-        if ($scope.global.countries.length > 0) {
+    $scope.prepareProductsListing = function() {
+        if ($scope.global.categories.length > 0) {
             
-            var country = $scope.global.countries[0];
-            $scope.global.countries.shift();
+            var category = $scope.global.categories[0];
+            $scope.global.categories.shift();
             
             var log = new MiningLog({
-                "title" : "Crawling cities of " + country.text
+                "title" : "Crawling products of " + category.subMenu_lv1.name
             });
             $scope.global.logs.push(log);
             
-            var line = {content: 'Getting states of ' + country.text, done : false};
+            var line = {content: 'Getting product index', done : false};
             log.lines.push(line);
             
             var req = {
                 method : 'GET',
-                url : './api.php?round=getStates&country=' + encodeURIComponent(country.text)
+                url : './api.php?round=getProducts&menu=' + category.menu.name + '&subMenu='+category.subMenu.name 
+                + '&subMenu_lv1='+category.subMenu_lv1.name + '&url=' + encodeURIComponent(category.subMenu_lv1.href)
             }
             $http(req).success(function(res) {
                 
                 // continue crawling
-                line.content = 'Getting state of ' + country.text + ' : DONE';
+                line.content = 'Getting product index : DONE';
                 line.done = true;
                 
                 // assign to global variable
                 
-                $scope.global.country[country.value] = {
-                    states : res.states,
-                    country : country.text
+                $scope.global.category[category.subMenu_lv1.name] = {
+                    products : res,
+                    name : category.subMenu_lv1.name
                 };
                 
-                $scope.global.states_remaining = res.states.length;
+                $scope.global.products_remaining = res.length;
                 
                 // 5x running
-                $scope.getCities(log, country.value);
-                $scope.getCities(log, country.value);
-                $scope.getCities(log, country.value);
-                $scope.getCities(log, country.value);
-                $scope.getCities(log, country.value);
+                $scope.getProduct(log, category, category.subMenu_lv1.name);
+                $scope.getProduct(log, category, category.subMenu_lv1.name);
+                $scope.getProduct(log, category, category.subMenu_lv1.name);
+                $scope.getProduct(log, category, category.subMenu_lv1.name);
+                $scope.getProduct(log, category, category.subMenu_lv1.name);
                 
             }).error(function(xhr) {
                 console.log(xhr);
-                log.errors.push("Error preparing info for " + country.text);
+                log.errors.push("Error preparing info for " + category.subMenu_lv1.name);
             });
         } else {
             //stateLog.finish();
@@ -162,142 +165,47 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
         }
     }
     
-    $scope.getCities = function(log, countryID) {
-        if ($scope.global.country[countryID].states.length > 0) {
-            var country = $scope.global.country[countryID];
+    $scope.getProduct = function(log, info, categoryIndex) {
+        if ($scope.global.category[categoryIndex].products.length > 0) {
+            var category = $scope.global.category[categoryIndex];
             
-            var state = country.states[0];
+            var product = category.products[0];
             
-            country.states.shift();
+            category.products.shift();
             
-            var line = {content: 'Getting cities of ' + state.text, done : false};
+            var line = {content: 'Getting product information of ' + product.name, done : false};
             log.lines.push(line);
             
             var req = {
                 method : 'GET',
-                url : './api.php?round=getCities&country=' + encodeURIComponent(country.country)+'&state=' + encodeURIComponent(state.text)
-                + '&stateID=' + state.value
+                url : './api.php?round=getProduct&menu=' + info.menu.name + '&subMenu='+info.subMenu.name 
+                + '&subMenu_lv1='+info.subMenu_lv1.name + '&productName='+ product.name + '&url=' + encodeURIComponent(product.href)
             }
             
             $http(req).success(function(res) {
-                $scope.global.states_remaining--;
+                $scope.global.products_remaining--;
                 
                 // continue crawling
-                line.content = 'Getting cities of ' + state.text + ' : DONE';
+                line.content = 'Getting product information of ' + product.name + ' : DONE';
                 line.done = true;
                 
-                if ($scope.global.states_remaining == 0) {
+                if ($scope.global.products_remaining == 0) {
                     log.finish();
                     
                     // crawling cities of other countries
-                    $scope.prepareStateData();
+                    $scope.prepareProductsListing();
                     
                 } else {
                     //$scope.crawlingState(stateLog);
-                    $scope.getCities(log, countryID);
+                    $scope.getProduct(log, info, categoryIndex);
                 }
             }).error(function(xhr) {
                 console.log(xhr);
-                log.errors.push("Error preparing info for " + country.country);
+                log.errors.push("Error getting product information of " + product.name);
             });
             
         } else {
             console.log('State empty');
         }
-    }
-    
-    $scope.getBook = function(callback) {
-        var book = {};
-        if ($scope.global.books.length > 0) {
-            book = $scope.global.books[0];
-            $scope.global.currentBook = book;
-
-            $scope.getChapters(book, function() {
-                // get another books
-
-                if (!$scope.state.gettingChapter)
-                    $scope.getBook(callback);
-            });
-            $scope.global.books.shift();
-        } else {
-            callback();
-        }
-    }
-
-    $scope.getVerses = function(callback) {
-        // TODO: Check if chapters is empty
-        if ($scope.global.chapters.length == 0) {
-            callback();
-        } else {
-            var chapter = $scope.global.chapters[0];;
-            $scope.global.currentChapter = chapter;
-            $scope.global.chapters.shift();
-
-            var url = './book-content.php?url=' + bookUri
-                + encodeURIComponent(chapter.href);
-            var req = {
-                method : 'GET',
-                url : url
-            }
-
-            $http(req).success(function(res) {
-                $scope.getVerses(callback);
-            }).error(function(xhr) {
-                $scope.global.errors.push({
-                    book : $scope.global.currentBook,
-                    chapter : chapter,
-                    scenario : 'getVerses',
-                    url : url,
-                    originalUrl : bookUri + chapter.href
-                });
-
-                console.log("Can't get chapters of '" + chapter.text + "'");
-                console.log(xhr);
-
-                $scope.getVerses(callback);
-            });
-        }
-    }
-
-    $scope.getChapters = function(book, callback) {
-        var url = './chapters.php?url=' + bookUri
-            + encodeURIComponent(book.href);
-        var req = {
-            method : 'GET',
-            url : url
-        }
-        var chapter;
-
-        $scope.state.gettingChapter = true;
-        $http(req).success(function(res) {
-            $scope.global.chapters = res.chapters;
-
-            $scope.state.gettingChapter = false;
-            $scope.global.totalChapter = $scope.global.chapters.length;
-
-            $scope.getVerses(callback);
-
-            $scope.getVerses(callback);
-
-            $scope.getVerses(callback);
-
-            $scope.getVerses(callback);
-
-            $scope.getVerses(callback);
-
-        }).error(function() {
-            $scope.global.errors.push({
-                book : book,
-                // chapter => chapter,
-                scenario : 'getChapters',
-                url : url,
-                originalUrl : bookUri + book.href
-            });
-            console.log("Can't get chapters of '" + chapter.text + "'");
-            console.log(xhr);
-
-            // get another books
-            $scope.getBook();
-        });
     }
 });

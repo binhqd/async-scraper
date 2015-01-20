@@ -7,7 +7,7 @@
  */
 app.directive('log', function() {
     return {
-        templateUrl: '/mining/templates/log.html',
+        templateUrl: uri + '/templates/log.html',
         scope : false,
         restrict : 'E',
         link : function postLink(scope, element, attrs) {

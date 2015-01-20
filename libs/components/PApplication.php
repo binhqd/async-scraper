@@ -4,6 +4,7 @@ require_once (LIBS_PATH . "/components/PRequest.php");
 require_once (LIBS_PATH . "Round.php");
 require_once (LIBS_PATH . "connector/MySQLConnector.php");
 $config = require("protected/config/app.php");
+require_once (LIBS_PATH . "simple_html_dom.php");
 
 class PApplication extends CommonComponent
 {

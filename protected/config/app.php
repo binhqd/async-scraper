@@ -3,8 +3,8 @@ $config = [
     "applicationName"   => "Mining Script",
     "db"    => [
         "host"      => 'localhost',
-        'username'  => 'city-suggestion',
-        'db'        => 'city-suggestion',
+        'username'  => 'scrap-hebrew',
+        'db'        => 'scrap-hebrew',
         'password'  => '123456'
     ]
 ];

@@ -1,0 +1,665 @@
+
+<!DOCTYPE html>
+<html id="html" lang="he">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link href="/css/style_rtl.css" type="text/css" rel="stylesheet"/>
+<script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
+<script src="/js/noContextMenu.js" type="text/javascript"></script><script src="/js/jquery-1.11.0.min.js" type="text/javascript"></script><script src="/js/placeholders.min.js" type="text/javascript"></script><script src="/js/jquery.mousewheel-min.js" type="text/javascript"></script><script src="/js/jquery.dgMenu-min.js" type="text/javascript"></script><script src="/js/jquery.dgFormValidator-min.js" type="text/javascript"></script><script src="/js/jquery.fastdom-min.js" type="text/javascript"></script><script src="/js/jquery.fakebutton-min.js" type="text/javascript"></script><script src="/js/bitter.js" type="text/javascript"></script><script src="/js/dgTools.js" type="text/javascript"></script><script src="/js/jquery.cookie-min.js" type="text/javascript"></script><script src="/js/store/store-utilities.js" type="text/javascript"></script><script src="/js/customUI.js" type="text/javascript"></script><script src="http://fast.fonts.com/jsapi/1a290917-6d77-4df8-b7cd-b6ef3de8d92a.js" type="text/javascript"></script><meta name="google-site-verification" content="6_gRWdXbqMwevcrMeDWH5Yw7cKmwfXPPx0ftjtyOeqA" /><script language="javascript" type="text/javascript">// <![CDATA[
+
+    var DynamicPrice = {
+        actualPriceBase: null,
+        adjustments: [],
+        adjustmentsMap: {},
+        updatePriceWithAttribute: function (el) {
+            el = jQuery(el)[0];
+            var attrId = parseInt(el.getAttribute('data-attribute'), 10) + '';
+            var attrItemId = parseInt(el.getAttribute('data-attributeitem'), 10) + '';
+            var option = el.options[el.selectedIndex];
+            var adj = parseFloat(option.getAttribute('data-adjustment')) || 0;
+            this.adjustmentsMap[attrId+','+attrItemId] = adj;
+            if (!this.adjustments.contains(attrId+','+attrItemId)) this.adjustments.push(attrId+','+attrItemId);
+            this.updateDisplay();
+        }, updateDisplay: function () {
+            var price = this.actualPriceBase;
+            var priceSymbolPre = this.priceSymbolPre;
+            var priceSymbolPost = this.priceSymbolPost;
+            var pels = jQuery('#cphContent_cphContent_cphContent_dvActualPrice');
+            if (price === null) {
+              var txtPrice = pels[0].textContent || pels[0].innerText;
+              var len1=null,idx2=null;
+              for (var j=0; j<txtPrice.length; j++) {
+                if ((len1===null || idx2===null) && ((txtPrice[j] >= '0' && txtPrice[j] <= '9') || txtPrice[j] == '.' || txtPrice[j] == ',')) {
+                  if (len1===null) len1 = j;
+                }
+                else {
+                  if (idx2 !== null) break;
+                  if (len1 !== null && idx2 === null) idx2 = j;
+                }
+              }
+              priceSymbolPre = this.priceSymbolPre = (len1!==null)?txtPrice.substr(0, len1):'';
+              priceSymbolPost = this.priceSymbolPost = (idx2!==null)?txtPrice.substr(idx2):'';
+              price = this.actualPriceBase = (len1!==null)?parseFloat( txtPrice.substr(len1, (idx2===null)?(txtPrice.length-len1):(idx2-len1)) ):'';
+            }
+            for (var j = 0; j < this.adjustments.length; j++) {
+                price += this.adjustmentsMap[this.adjustments[j] + ''];
+            }; 
+            pels.each(function(){ $(this).text(priceSymbolPre + price + priceSymbolPost); });
+        }
+    };
+// ]]></script>
+<meta name="viewport" content="width=1000" />
+<script src="/js/chooseCurrency/chooseCurrency.js?culture=he-IL&LangId=1" type="text/javascript" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+    var $valSearch = new dgFormValidator('#frmSearch');
+    $valSearch.summaryMethod = $valSearch.SUMMARY_NONE;
+    $valSearch.addRequired('keywords');
+// ]]>
+</script>
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+    ProductComparison.init({
+        clearDifferentCategories: true,
+        allowDifferentCategories: false,
+        checkboxSelector: 'input.product-compare-checkbox',
+        compareButtonsSelector: 'a.product-compare-button',
+        productNameSelector: '#product-##-name',
+        productImageSelector: '#product-##-image',
+        productLinkSelector: '#product-##-link',
+        categoryId: 5,
+        maxItems: 3
+    });
+// ]]>
+</script>
+
+
+<meta property="og:title" content="כפתור פליז קבוע מעוטר דגם 870"/>
+<meta property="og:image" content="http://www.bitter.co.il//store_images/original/__43.jpg"/>
+<script language="javascript" src="/js/lightbox/lightbox.js?culture=he-IL" type="text/javascript"></script>
+<script src="/js/jquery.dgDynamicGallery-min.js" type="text/javascript" language="javascript"></script>
+<script src="/js/jquery.dgCarouselle-min.js" type="text/javascript" language="javascript"></script>
+<script src="/js/base64-min.js" type="text/javascript" language="javascript"></script>
+<script src="/js/color-min.js" type="text/javascript" language="javascript"></script>
+<script src="/js/jquery.speechbubble-min.js?culture=he-IL" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+    var $valProductContact = new formValidator('frmProductContact');
+    $valProductContact.summaryMethod = $valProductContact.SUMMARY_ALERT;
+    $valProductContact.addRequired('fullName', 'חובה להזין שם מלא');
+    $valProductContact.addRequired('phone', 'חובה להזין טלפון');
+    $valProductContact.addRegex('email', $valProductContact.emailValidationRegex, 'חובה להזין כתובת דוא"ל תקינה');
+// ]]>
+</script>
+    <script language="javascript" type="text/javascript">
+// <![CDATA[
+        speechbubble.DefaultOptions.padding = 5;
+        speechbubble.DefaultOptions.radius = 5;
+        speechbubble.DefaultOptions.borderWidth = 1;
+        speechbubble.DefaultOptions.arrowWidth = 10;
+        speechbubble.DefaultOptions.arrowLength = 10;
+        speechbubble.DefaultOptions.bubbleDistance = 100;
+// ]]>
+    </script>
+
+
+<meta name="Description" content="כפתור קבוע עשוי פליז תוצרת איטליה. לכפתור עיטור על היקפו. מתאים להתקנה דו צדדית." /><meta name="Keywords" content="כפתור, פליז, קבוע, מעוטר" /><meta name="Creation-Date" http-equiv="Creation-Date" scheme="ISO8601" content="2011-05-11T21:19:54Z" /><meta name="Last-Update" http-equiv="Last-Update" scheme="ISO8601" content="2014-05-16T08:03:45Z" /><title>
+	כפתור פליז קבוע מעוטר דגם 870
+</title></head>
+<body id="body">
+
+
+
+<div class="main-container" >
+    <div class="page-header"><div class="site-width">
+		<div class="part1">
+			<ul class="top-menu">
+				<li><a href="/page/2/אודות-אחים-ביטר-בעמ.aspx"  >אודות</a></li><li><a href="/product/category/121/מוצרים-חדשים.aspx"  >מוצרים חדשים</a></li><li><a href="/page/category/1/מאמרים-ומדריכים.aspx"  >מאמרים ומדריכים</a></li><li><a href="/faq/1/שאלות-ותשובות.aspx"  >שאלות ותשובות</a></li><li><a href="/page/10/יצרני-פרזול-מהעולם.aspx"  >פרזול מהעולם</a></li><li><a href="/page/41/מדיניות-משלוחים.aspx"  >משלוחים</a></li><li><a href="/form/1/צור-קשר.aspx"  >צור קשר</a></li><li><a href="/page/9/About-Bitter-Bros-Ltd.aspx"  >English</a></li>
+			</ul>
+            <form class="search" action="/ProductSearch.aspx" id="frmSearch" method="get" 
+                onsubmit="return $valSearch.validate();" onkeypress="dgFormValidator.submitOnEnter(this, event)">
+				<a class="submit" href="javascript:void(dgFormValidator.submit('frmSearch'))">חפש</a>
+				<div class="sep"></div>
+				<div class="search-box">
+					<input type="hidden" name="LangId" value="1" />
+					<input type="text" class="text" name="keywords" placeholder="חפש מוצר..." title="חפש מוצר..." value="" />
+				</div>
+            </form>
+		</div>
+		<div class="part2">
+            <a class="logo" href="http://www.bitter.co.il/"><img src="/images/logo.png" alt="אחים ביטר" /></a>
+			<ul class="menu" id="big-menu">
+                <li class="big-menu-6"><span class="image" style="background-image:url('/uploads/image/category-icon-door.png')"></span><span class="text">פרזול לדלתות</span></li><li class="big-menu-12"><span class="image" style="background-image:url('/uploads/image/category-icon-window.png')"></span><span class="text">פרזול לחלונות</span></li><li class="big-menu-13"><span class="image" style="background-image:url('/uploads/image/category-icon-furniture.png')"></span><span class="text">פרזול לריהוט</span></li><li class="big-menu-14"><span class="image" style="background-image:url('/uploads/image/category-icon-lock.png')"></span><span class="text">מוצרי נעילה חשמליים</span></li><li class="big-menu-15"><span class="image" style="background-image:url('/uploads/image/category-icon-misc.png')"></span><span class="text">מוצרים נוספים</span></li>
+				<li class="cart">
+					<a href="/Cart_Step1_heb.aspx" id="cphContent_hlCart">
+						<span class="text">עגלת קניות</span>
+						<span id="cphContent_dvCartCount" class="subtext">(0 פריטים)</span>
+					</a>
+				</li>
+            </ul>
+		</div>
+	</div></div>
+	<div class="sub-menus">
+        <div class="menu" id="big-sub-menu-6"><div class="level0"><ul><li><a href="/product/category/59/ידיות-לדלתות.aspx"  >ידיות לדלתות</a></li><li><a href="/product/category/54/מנעולים-וצילינדרים-לדלתות.aspx"  >מנעולים וצילינדרים לדלתות</a></li><li><a href="/product/category/57/צירים-ומחזירים-לדלתות-ושערים.aspx"  >צירים ומחזירים לדלתות ושערים</a></li><li><a href="/product/category/187/פרזול-לדלתות-ייעודיות.aspx"  >פרזול לדלתות ייעודיות</a></li><li><a href="/product/category/95/פרזול-משלים-לדלתות.aspx"  >פרזול משלים לדלתות</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/69/ידיות-הפעלה.aspx"  >ידיות הפעלה</a></li><li><a href="/product/category/116/ידיות-הפעלה-יוקרתיות.aspx"  >ידיות הפעלה יוקרתיות</a></li><li><a href="/product/category/71/ידיות--נירוסטה-לדלתות.aspx"  >ידיות נירוסטה לדלתות</a></li><li><a href="/product/category/72/ידיות-קבועות.aspx"  >ידיות קבועות</a></li><li><a href="/product/category/130/ידיות-כפתור.aspx"  >ידיות כפתור</a></li><li><a href="/product/category/30/ידיות-בהלה.aspx"  >ידיות בהלה</a></li><li><a href="/product/category/136/ידיות-לפלדלת-ושאר-דלתות-הפלדה.aspx"  >ידיות לפלדלת ושאר דלתות הפלדה</a></li></ul></li><li><ul><li><a href="/product/category/62/מנעולים-חבויים-לדלתות-כניסה-מעץ.aspx"  >מנעולים חבויים לדלתות כניסה מעץ</a></li><li><a href="/product/category/63/מנעולים-חבויים-לדלתות-אלומיניום-וברזל.aspx"  >מנעולים חבויים לדלתות אלומיניום וברזל</a></li><li><a href="/product/category/65/מנעולים-רב-בריחיים.aspx"  >מנעולים רב בריחיים</a></li><li><a href="/product/category/67/מנעולים-חיצוניים.aspx"  >מנעולים חיצוניים</a></li><li><a href="/product/category/87/מנעולי-פבלוק.aspx"  >מנעולי פבלוק</a></li><li><a href="/product/category/113/מנעולים-חבויים-לדלתות-פנים.aspx"  >מנעולים חבויים לדלתות פנים</a></li><li><a href="/product/category/182/מנעולי-ביטחון.aspx"  >מנעולי ביטחון</a></li><li><a href="/product/category/80/מקודדים-מכניים.aspx"  >מקודדים מכניים</a></li><li><a href="/product/category/107/צלינדרים-מכניים.aspx"  >צילינדרים מכניים</a></li></ul></li><li><ul><li><a href="/product/category/82/צירי-ספר-לדלתות.aspx"  >צירי ספר לדלתות</a></li><li><a href="/product/category/91/צירי-פיבוט-לדלתות-ושערים.aspx"  >צירי פיבוט לדלתות ושערים</a></li><li><a href="/product/category/92/צירים-פריקים.aspx"  >צירים פריקים</a></li><li><a href="/product/category/104/צירים-סמויים.aspx"  >צירים סמויים</a></li><li><a href="/product/category/81/צירים-לדלתות-פלדה-ושערי-ברזל.aspx"  >צירים לדלתות פלדה ושערי ברזל</a></li><li><a href="/product/category/84/צירים-קפיציים.aspx"  >צירים קפיציים</a></li><li><a href="/product/category/86/צירים-מושחרים.aspx"  >צירים מושחרים</a></li><li><a href="/product/category/152/צירים-כפולים.aspx"  >צירים כפולים</a></li><li><a href="/product/category/44/סוגרים-הידראולים-עליונים.aspx"  >סוגרים הידראולים עליונים</a></li><li><a href="/product/category/45/סוגרים-הידראולים-תחתונים.aspx"  >סוגרים הידראולים תחתונים</a></li><li><a href="/product/category/99/צירי-שער-הידראוליים.aspx"  >צירי שער הידראוליים</a></li><li><a href="/product/category/43/מחזירים-צידיים.aspx"  >מחזירים צידיים</a></li></ul></li><li><ul><li><a href="/product/category/31/פרזול-לדלתות-אש.aspx"  >פרזול לדלתות אש ומילוט</a></li><li><a href="/product/category/109/פרזול-לדלתות-זכוכית.aspx"  >פרזול לדלתות זכוכית</a></li><li><a href="/product/category/105/פרזול-לדלתות-ושערי-הזזה.aspx"  >פרזול לדלתות ושערי הזזה</a></li></ul></li><li><ul><li><a href="/product/category/89/בריחים-חבויים.aspx"  >בריחים וסגרים חבויים</a></li><li><a href="/product/category/90/בריחים-חיצוניים.aspx"  >בריחים וסגרים חיצוניים</a></li><li><a href="/product/category/100/מנגנוני-תפוס-פנוי.aspx"  >מנגנוני תפוס פנוי</a></li><li><a href="/product/category/94/מעצורים-לדלתות.aspx"  >מעצורים לדלתות</a></li><li><a href="/product/category/106/פעמונים-ונוקשים-לדלת.aspx"  >פעמונים ונוקשים לדלת</a></li><li><a href="/product/category/131/פרזול-נפחות-קישוטי.aspx"  >פרזול נפחות קישוטי</a></li><li><a href="/product/category/135/עיניות--וסגרי-ביטחון-לדלתות.aspx"  >עיניות וסגרי ביטחון לדלתות</a></li><li><a href="/product/category/96/ספי-דלת-וגומי-איטום.aspx"  >ספי דלת וגומי איטום</a></li><li><a href="/product/category/139/אביזרים-לידיות.aspx"  >אביזרים לידיות</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-12"><div class="level0"><ul><li><a href="/product/category/50/פרזול-חלונות-עץ-לשימור.aspx"  >פרזול חלונות עץ לשימור</a></li><li><a href="/product/category/76/פרזול-לחלונות-ברזל-בלגי.aspx"  >פרזול לחלונות ברזל</a></li><li><a href="/product/category/110/פרזול-לחלונות-אלומיניום.aspx"  >פרזול לחלונות אלומיניום</a></li><li><a href="/product/category/229/פרזול-משלים-לחלונות.aspx"  >פרזול משלים לחלונות</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/238/ידיות-לחלונות-עץ.aspx"  >ידיות לחלונות עץ</a></li><li><a href="/product/category/239/מנעולים-וסגרים-לעץ.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/170/צירים-לחלונות-עץ.aspx"  >צירים לחלונות עץ</a></li><li><a href="/product/category/240/צירי-מספרים-ומגבילי-פתיחה.aspx"  >צירי מספריים ומגבילי פתיחה</a></li><li><a href="/product/category/241/מעצורים-לחלונות-ותריסים.aspx"  >מעצורים לחלונות ותריסים</a></li><li><a href="/product/category/249/פרזול-חלונות-הזזה-מעץ.aspx"  >פרזול לחלונות הזזה מעץ</a></li></ul></li><li><ul><li><a href="/product/category/242/ידיות-לחלונות-ברזל.aspx"  >ידיות לחלונות ברזל</a></li><li><a href="/product/category/244/מנעולים-וסגרים-לחלונות-ברזל.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/243/צירים-לחלונות-ברזל.aspx"  >צירים לחלונות ברזל</a></li></ul></li><li><ul><li><a href="/product/category/245/ידיות-לחלונות-אלומיניום.aspx"  >ידיות לחלונות אלומיניום</a></li><li><a href="/product/category/274/צירים-לחלונות-אלומיניום.aspx"  >צירים לחלונות אלומיניום</a></li><li><a href="/product/category/246/מנעולים-וסגרים-לאלומיניום.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/247/פרזול-לחלונות-הזזה-מאלומיניום.aspx"  >פרזול לחלונות הזזה מאלומיניום</a></li></ul></li><li><ul><li><a href="/product/category/148/פרזול-לתריסי-גלילה.aspx"  >פרזול לתריסי גלילה</a></li><li><a href="/product/category/134/מוצרי-איטום-לחלונות.aspx"  >מוצרי איטום לחלונות</a></li><li><a href="/product/category/138/פרזול-לחלונות-הזזה.aspx"  >פרזול לחלונות הזזה</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-13"><div class="level0"><ul><li><a href="/product/category/47/ידיות-וכפתורים.aspx"  >ידיות וכפתורים</a></li><li><a href="/product/category/196/מנעולים-וסגרים.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/194/צירים-ומסילות.aspx"  >צירים ומסילות</a></li><li><a href="/product/category/201/פרזול-לריהוט-ייעודי.aspx"  >פרזול לריהוט ייעודי</a></li><li><a href="/product/category/203/אביזרים-לריהוט.aspx"  >אביזרים לריהוט</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/230/ידיות-מודרניות-לארונות.aspx"  >ידיות מודרניות לארונות</a></li><li><a href="/product/category/124/ידיות-קלאסיות-לארונות.aspx"  >ידיות קלאסיות לארונות</a></li><li><a href="/product/category/125/כפתורים-לארונות.aspx"  >כפתורים לארונות</a></li><li><a href="/product/category/231/ידיות-וכפתורים-קריסטל.aspx"  >ידיות וכפתורים מקריסטל</a></li><li><a href="/product/category/129/ידיות-וכפתורי-פורצלן-לארונות.aspx"  >ידיות וכפתורי פורצלן</a></li><li><a href="/product/category/279/ידיות-וכפתורי-נפחות-מושחרים.aspx"  >ידיות וכפתורי נפחות מושחרים</a></li><li><a href="/product/category/126/מסגרות-לשם.aspx"  >מסגרות לשם</a></li></ul></li><li><ul><li><a href="/product/category/23/מנעולים-לארונות-ומגירות-ממתכת-ועץ.aspx"  >מנעולים לארונות ממתכת ועץ</a></li><li><a href="/product/category/197/מנעולים-לארונות-זכוכית.aspx"  >מנעולים לארונות זכוכית</a></li><li><a href="/product/category/61/סגרים-לארונות.aspx"  >סגרים לארונות</a></li><li><a href="/product/category/198/סגרי-טפח-פתח.aspx"  >סגרי טפח פתח</a></li></ul></li><li><ul><li><a href="/product/category/200/צירים-קפיציים-לארון.aspx"  >צירים קפיציים לארון</a></li><li><a href="/product/category/48/צירים-לריהוט.aspx"  >צירים לריהוט</a></li><li><a href="/product/category/204/בוכנות-גז-וצירי-מספריים.aspx"  >בוכנות גז וצירי מספריים</a></li><li><a href="/product/category/202/מסילות-למגירות.aspx"  >מסילות למגירות</a></li><li><a href="/product/category/147/פלטות-סיבוב.aspx"  >פלטות סיבוב</a></li></ul></li><li><ul><li><a href="/product/category/103/פרזול-לארונות-פח--ארונות-חשמל-תקשורת-וגז.aspx"  >פרזול לארונות פח- ארונות חשמל תקשורת וגז</a></li><li><a href="/product/category/133/פרזול-לארונות-הזזה.aspx"  >פרזול לארונות הזזה</a></li><li><a href="/product/category/120/פרזול-לריהוט-זכוכית.aspx"  >פרזול לריהוט זכוכית</a></li></ul></li><li><ul><li><a href="/product/category/39/רגליים-לשולחנות.aspx"  >רגליים לשולחנות</a></li><li><a href="/product/category/205/רגליות-לריהוט.aspx"  >רגליות לריהוט</a></li><li><a href="/product/category/117/מחליקי-טפלון.aspx"  >מחליקי טפלון</a></li><li><a href="/product/category/206/אביזרי-בטיחות-לריהוט.aspx"  >אביזרי בטיחות לריהוט</a></li><li><a href="/product/category/276/פתחי-אוורור-לריהוט.aspx"  >פתחי אוורור לריהוט</a></li><li><a href="/product/category/207/סידור-וניהול-כבלים.aspx"  >סידור וניהול כבלים</a></li><li><a href="/product/category/46/מחזיקי-מדף-ומוטות-לתלייה.aspx"  >מחזיקי מדף ומוטות לתלייה</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-14"><div class="level0"><ul><li><a href="/product/category/208/מנעולים-חשמליים.aspx"  >מנעולים חשמליים</a></li><li><a href="/product/category/213/מנעולים-אלקטרו-מכניים.aspx"  >מנעולים אלקטרו מכניים</a></li><li><a href="/product/category/216/מנעולים-אלקטרו-מגנטים.aspx"  >מנעולים אלקטרו מגנטים</a></li><li><a href="/product/category/219/אביזרים-למנעולים-חשמליים-ואלקטרומגנטים.aspx"  >אביזרים למנעולים חשמליים ואלקטרומגנטים</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/21/מנעולים-חשמליים-חבויים-במשקוף.aspx"  >מנעולים חשמליים חבויים</a></li><li><a href="/product/category/211/מנעולים-חשמליים-חיצוניים.aspx"  >מנעולים חשמליים חיצוניים</a></li><li><a href="/product/category/212/מנעולים-חשמליים-לארונות.aspx"  >מנעולים חשמליים לארונות</a></li></ul></li><li><ul><li><a href="/product/category/214/בריחים-אלקטרו-מכניים.aspx"  >בריחים אלקטרו מכניים</a></li><li><a href="/product/category/22/מנעולים-אלקטרו-מכניים.aspx"  >מנעולים אלקטרו מכניים</a></li></ul></li><li><ul><li><a href="/product/category/27/מנעולים-אלקטרו-מגנטים-לתנאי-פנים.aspx"  >אלקטרו מגנטים לתנאי פנים</a></li><li><a href="/product/category/217/מנעולים-אלקטרו-מגנטים-לתנאי-חוץ.aspx"  >אלקטרו מגנטים לתנאי חוץ</a></li><li><a href="/product/category/218/מנעולים-אלקטרו-מגנטים-שקועיים.aspx"  >אלקטרו מגנטיים שקועים</a></li><li><a href="/product/category/97/זויות-למנעולים-אלקטרו-מגנטים.aspx"  >זויות למנעולים אלקטרו מגנטים</a></li></ul></li><li><ul><li><a href="/product/category/111/אביזרים-לדלתות-אינטרלוק.aspx"  >אביזרים לדלתות אינטרלוק</a></li><li><a href="/product/category/98/כרטיסים-אלקטרוניים-למנעולים-חשמליים-ומגנטים.aspx"  >כרטיסים אלקטרוניים למנעולים חשמליים ומגנטים</a></li><li><a href="/product/category/73/לחצנים--ומפסקים-למנעולים-חשמליים-ואלקטרו-מגנטים.aspx"  >לחצנים ומפסקים למנעולים חשמליים ואלקטרו מגנטים</a></li><li><a href="/product/category/85/מקודדים-דיגיטליים-לדלת.aspx"  >מקודדים דיגיטליים לדלת</a></li><li><a href="/product/category/75/מעבירי-מתח.aspx"  >מעבירי מתח</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-15"><div class="level0"><ul><li><a href="/product/category/220/תיבות-דואר-כספות-וקופות.aspx"  >תיבות דואר, כספות וקופות</a></li><li><a href="/product/category/221/מנעולי-תליה-רתקים-וריתוגים.aspx"  >מנעולי תליה, רתקים וריתוגים</a></li><li><a href="/product/category/37/פרזול-לקופסאות-וארגזים.aspx"  >פרזול לקופסאות וארגזים</a></li><li><a href="/product/category/222/פרזול-ייעודי.aspx"  >פרזול ייעודי</a></li><li><a href="/product/category/223/אביזרים-נוספים.aspx"  >אביזרים נוספים</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/40/תיבות-דואר.aspx"  >תיבות דואר</a></li><li><a href="/product/category/34/כספות.aspx"  >כספות</a></li><li><a href="/product/category/226/קופות-שולחן.aspx"  >קופות שולחן</a></li><li><a href="/product/category/227/ארונות-מפתחות.aspx"  >ארונות מפתחות</a></li></ul></li><li><ul><li><a href="/product/category/36/מנעולי-תליה.aspx"  >מנעולי תליה</a></li><li><a href="/product/category/277/מנעולי-מספרים.aspx"  >מנעולי מספרים</a></li><li><a href="/product/category/224/רתקים-וריתוגים.aspx"  >רתקים וריתוגים</a></li><li><a href="/product/category/225/נושאי-מנעול.aspx"  >נושאי מנעול</a></li></ul></li><li><ul><li><a href="/product/category/123/ידיות-לארגזים.aspx"  >ידיות לארגזים</a></li><li><a href="/product/category/280/פינות-לארגזים.aspx"  >פינות לארגזים</a></li><li><a href="/product/category/137/צירים-לארגזים.aspx"  >צירים לארגזים</a></li><li><a href="/product/category/88/סגרים-לארגזים.aspx"  >סגרים לארגזים</a></li><li><a href="/product/category/101/פרזול-לקופסאות.aspx"  >פרזול לקופסאות</a></li></ul></li><li><ul><li><a href="/product/category/127/אביזרי-בטיחות.aspx"  >אביזרי בטיחות</a></li><li><a href="/product/category/146/פרזול-לשירותי-נכים.aspx"  >פרזול לשירותי נכים</a></li><li><a href="/product/category/132/פרזול-נירוסטה.aspx"  >פרזול נירוסטה</a></li><li><a href="/product/category/254/פרזול-לזכוכית.aspx"  >פרזול לזכוכית</a></li><li><a href="/product/category/264/פרזול-למסגרים.aspx"  >פרזול למסגרים</a></li></ul></li><li><ul><li><a href="/product/category/33/גלגלים.aspx"  >גלגלים</a></li><li><a href="/product/category/282/מחזיקי-מעקה.aspx"  >מחזיקי מעקה</a></li><li><a href="/product/category/35/מחזיקי-מדף.aspx"  >מחזיקי מדף</a></li><li><a href="/product/category/281/מחזיקי-מדף-זכוכית.aspx"  >מחזיקי מדף לזכוכית</a></li><li><a href="/product/category/38/קולבים-ומתלים.aspx"  >קולבים ומתלים</a></li><li><a href="/product/category/278/קולבים-ומתלים-ללא-קידוח.aspx"  >קולבים ומתלים ללא קידוח</a></li><li><a href="/product/category/271/זוויות-וסרגלים.aspx"  >זוויות וסרגלים</a></li><li><a href="/product/category/270/מגנטים.aspx"  >מגנטים</a></li></ul></li><li class="fix-layout"></li></ul></div></div>
+	</div>
+	<div class="bridge">
+		<div class="shadow"></div>
+		<div class="site-width">
+
+
+	<div class="bread-crumbs">
+		<a href="/">דף הבית</a><b>&gt;</b><a href="/product/category/122/ידיות-לדלתות-ושערי-הזזה.aspx">ידיות לדלתות ושערי הזזה</a><b>&gt;</b><a class="last" href="/product/619/כפתור-פליז-קבוע-מעוטר-דגם-870.aspx">כפתור פליז קבוע מעוטר דגם 870</a>
+	</div>
+    
+    <h2 id="cphContent_cphBridge_Page_Main_Title" class="page-title">ידיות לדלתות ושערי הזזה</h2>
+    <a href="javascript:void(history.back());" id="cphContent_cphBridge_hlHistoryBack" class="history-back">חזרה</a>
+
+
+        </div>
+	</div>
+    <div class="body-container">
+        
+
+
+    <div class="body-content">
+
+	
+	<div class="product-page">
+		
+        <h1 id="cphContent_cphContent_cphContent_Page_Title" class="page-title">כפתור פליז קבוע מעוטר דגם 870</h1>
+		<div class="share-controls"></div>
+			
+		<div class="frame-wrapper">
+			<div class="part1">
+				
+				<div class="gallery">
+					<div class="big-image">
+						<div class="inner" id="dvBigImageContainer"><b></b></div>
+						<div class="enlarge" onclick="window.productGallery.startCurrentLightbox()"></div>
+					</div>
+					<div class="scroll-area">
+						<div class="scroll" id="dvGalleryThumbsContainer">
+							<ul>
+                                <li><a href="/store_images/original/__43.jpg" title="כפתור פליז קבוע מעוטר דגם 870"><img src="/store_images/0x77/__43.jpg" alt="כפתור פליז קבוע מעוטר דגם 870" /></a></li>
+							</ul>
+						</div>
+						<div class="prev" id="dvGalleryBackward"></div>
+						<div class="next" id="dvGalleryForward"></div>
+					</div>
+				</div>
+				<script type="text/javascript">
+				// <![CDATA[
+					window.productGallery = new dgDynamicGallery({
+					    effect: 'slide-horz',
+					    bigImageContainerElement: '#dvBigImageContainer',
+					    thumbsContainerElement: '#dvGalleryThumbsContainer',
+					    thumbSelectedClass: 'selected',
+					    disabledButtonClass: 'disabled',
+					    bigImageClass: 'big-frame',
+					    btnBackwardElement: '#dvGalleryBackward',
+					    btnForwardElement: '#dvGalleryForward',
+					    thumbForceHeight: 77,
+					    lightboxSupport: dgDynamicGallery.LIGHTBOX_SUPPORT_MODE.CLICK
+					});
+					//]]>
+				</script>
+				
+                <div class="specs-image"><div class="title">מידות לכפתור פליז קבוע מעוטר</div><div class="image"><a rel="lightbox" href="/uploads/image/כפתור פליז קבוע מעוטר סרטוט.jpg"><img src="/uploads/image/cache/275x0snnbctransparentb0bg/כפתור פליז קבוע מעוטר סרטוט.jpg" alt="מידות לכפתור פליז קבוע מעוטר" /></a><a rel="lightbox" class="enlarge" href="/uploads/image/כפתור פליז קבוע מעוטר סרטוט.jpg"></a></div></div>
+					
+			</div>
+			<div class="part2">
+
+                <div class="catalog"><b>מק&quot;ט:</b> IBF870P</div>
+
+				<div class="content">
+                    <div>
+	כפתור פליז קבוע מעוטר דגם 870 .</div>
+<div>
+	כפתור פליז תוצרת איטליה.</div>
+<div>
+	כפתור קבוע לדלתות הזזה או לדלתות משיכה.</div>
+<div>
+	לכפתור עיטור על היקפו.</div>
+<div>
+	הכפתור מתאים להתקנה דו צדדית</div>
+<div>
+	<div>
+		ניתן להזמין גימור ניקל או אוקסיד בתוספת 9 ש&quot;ח וגימור אוקסיד ב 12 ש&quot;ח</div>
+	<div>
+		&nbsp;</div>
+	<div>
+		מחיר ליחידה, הכפתור מגיע במגוון גדלים:</div>
+	<div>
+		50 מ&quot;מ - 93 ש&quot;ח, 60 מ&quot;מ - 100 ש&quot;ח, 70 מ&quot;מ - 118 ש&quot;ח</div>
+	<div>
+		יש לבחור את הגודל הרצוי מהרשימה בצד משאל.</div>
+</div>
+<div>
+	&nbsp;</div>
+
+                </div>
+                <div class="contents">
+                    
+                </div>
+					
+				<div class="links">
+                    
+				</div>
+					
+				<div class="categories">
+					<div class="title">תגיות</div>
+					<div class="items">
+						<a href="/product/category/164/פרזול-פליז.aspx">פרזול פליז</a>, <a href="/product/category/165/ידיות-פליז.aspx">ידיות פליז</a>
+					</div>
+				</div>
+					
+				<div class="static-content">
+					<div>
+	<img alt="" src="/uploads/image/stamp-1945.png" />&nbsp;&nbsp;&nbsp;<img alt="" src="/uploads/image/stamp-refund.png" />&nbsp;&nbsp;&nbsp;<img alt="" src="/uploads/image/stamp-best.png" />&nbsp;&nbsp;&nbsp;<img alt="" src="/uploads/image/stamp-shipping.png" /><br />
+	<br />
+	<div style="color:#5e5e5e;font-style:italic;font-size:12px;">
+		* הזיכוי אינו כולל את עלות המשלוח</div>
+</div>
+<div>
+	&nbsp;</div>
+
+				</div>
+					
+                <table class="specs"><tr><th>חומרי גלם:</th><td>פליז</td></tr><tr><th>קוטר הכפתור:</th><td>30, 40, 50, 60, 70</td></tr><tr><th>חיבור:</th><td>מאחור</td></tr><tr><th>תפקוד הכפתור:</th><td>קבוע</td></tr></table>
+			</div>
+			<div class="part3">
+
+                <form method="post" action="/product/619/כפתור-פליז-קבוע-מעוטר-דגם-870.aspx" id="Form1">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUINzY3NTUyNjQPZBYCZg9kFgJmD2QWAmYPZBYCAgEPFgIeBGxhbmcFAmhlFgICAw9kFgICAw9kFihmDxYCHgRUZXh0BbEFPGxpPjxhIGhyZWY9Ii9wYWdlLzIv15DXldeT15XXqi3XkNeX15nXnS3XkdeZ15jXqC3Xkdei154uYXNweCIgID7XkNeV15PXldeqPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEyMS/XnteV16bXqNeZ150t15fXk9ep15nXnS5hc3B4IiAgPtee15XXpteo15nXnSDXl9eT16nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wYWdlL2NhdGVnb3J5LzEv157XkNee16jXmdedLdeV157Xk9eo15nXm9eZ150uYXNweCIgID7XnteQ157XqNeZ150g15XXnteT16jXmdeb15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvZmFxLzEv16nXkNec15XXqi3Xldeq16nXldeR15XXqi5hc3B4IiAgPtep15DXnNeV16og15XXqtep15XXkdeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3BhZ2UvMTAv15nXpteo16DXmS3XpNeo15bXldecLdee15TXoteV15zXnS5hc3B4IiAgPtek16jXlteV15wg157XlNei15XXnNedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wYWdlLzQxL9ee15PXmdeg15nXldeqLdee16nXnNeV15fXmdedLmFzcHgiICA+157Xqdec15XXl9eZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL2Zvcm0vMS/XpteV16gt16fXqdeoLmFzcHgiICA+16bXldeoINen16nXqDwvYT48L2xpPjxsaT48YSBocmVmPSIvcGFnZS85L0Fib3V0LUJpdHRlci1Ccm9zLUx0ZC5hc3B4IiAgPkVuZ2xpc2g8L2E+PC9saT5kAgEPFgIfAQWCBzxsaSBjbGFzcz0iYmlnLW1lbnUtNiI+PHNwYW4gY2xhc3M9ImltYWdlIiBzdHlsZT0iYmFja2dyb3VuZC1pbWFnZTp1cmwoJy91cGxvYWRzL2ltYWdlL2NhdGVnb3J5LWljb24tZG9vci5wbmcnKSI+PC9zcGFuPjxzcGFuIGNsYXNzPSJ0ZXh0Ij7XpNeo15bXldecINec15PXnNeq15XXqjwvc3Bhbj48L2xpPjxsaSBjbGFzcz0iYmlnLW1lbnUtMTIiPjxzcGFuIGNsYXNzPSJpbWFnZSIgc3R5bGU9ImJhY2tncm91bmQtaW1hZ2U6dXJsKCcvdXBsb2Fkcy9pbWFnZS9jYXRlZ29yeS1pY29uLXdpbmRvdy5wbmcnKSI+PC9zcGFuPjxzcGFuIGNsYXNzPSJ0ZXh0Ij7XpNeo15bXldecINec15fXnNeV16DXldeqPC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJiaWctbWVudS0xMyI+PHNwYW4gY2xhc3M9ImltYWdlIiBzdHlsZT0iYmFja2dyb3VuZC1pbWFnZTp1cmwoJy91cGxvYWRzL2ltYWdlL2NhdGVnb3J5LWljb24tZnVybml0dXJlLnBuZycpIj48L3NwYW4+PHNwYW4gY2xhc3M9InRleHQiPtek16jXlteV15wg15zXqNeZ15TXldeYPC9zcGFuPjwvbGk+PGxpIGNsYXNzPSJiaWctbWVudS0xNCI+PHNwYW4gY2xhc3M9ImltYWdlIiBzdHlsZT0iYmFja2dyb3VuZC1pbWFnZTp1cmwoJy91cGxvYWRzL2ltYWdlL2NhdGVnb3J5LWljb24tbG9jay5wbmcnKSI+PC9zcGFuPjxzcGFuIGNsYXNzPSJ0ZXh0Ij7XnteV16bXqNeZINeg16LXmdec15Qg15fXqdee15zXmdeZ1508L3NwYW4+PC9saT48bGkgY2xhc3M9ImJpZy1tZW51LTE1Ij48c3BhbiBjbGFzcz0iaW1hZ2UiIHN0eWxlPSJiYWNrZ3JvdW5kLWltYWdlOnVybCgnL3VwbG9hZHMvaW1hZ2UvY2F0ZWdvcnktaWNvbi1taXNjLnBuZycpIj48L3NwYW4+PHNwYW4gY2xhc3M9InRleHQiPtee15XXpteo15nXnSDXoNeV16HXpNeZ1508L3NwYW4+PC9saT5kAgIPFgIeBGhyZWYFFC9DYXJ0X1N0ZXAxX2hlYi5hc3B4FgJmDxYCHglpbm5lcmh0bWwFECgwINek16jXmdeY15nXnSlkAgMPFgIfAQW1lQE8ZGl2IGNsYXNzPSJtZW51IiBpZD0iYmlnLXN1Yi1tZW51LTYiPjxkaXYgY2xhc3M9ImxldmVsMCI+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS81OS/XmdeT15nXldeqLdec15PXnNeq15XXqi5hc3B4IiAgPteZ15PXmdeV16og15zXk9ec16rXldeqPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzU0L9ee16DXoteV15zXmdedLdeV16bXmdec15nXoNeT16jXmdedLdec15PXnNeq15XXqi5hc3B4IiAgPtee16DXoteV15zXmdedINeV16bXmdec15nXoNeT16jXmdedINec15PXnNeq15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS81Ny/XpteZ16jXmdedLdeV157Xl9eW15nXqNeZ150t15zXk9ec16rXldeqLdeV16nXoteo15nXnS5hc3B4IiAgPtem15nXqNeZ150g15XXnteX15bXmdeo15nXnSDXnNeT15zXqteV16og15XXqdei16jXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzE4Ny/XpNeo15bXldecLdec15PXnNeq15XXqi3XmdeZ16LXldeT15nXldeqLmFzcHgiICA+16TXqNeW15XXnCDXnNeT15zXqteV16og15nXmdei15XXk9eZ15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS85NS/XpNeo15bXldecLdee16nXnNeZ150t15zXk9ec16rXldeqLmFzcHgiICA+16TXqNeW15XXnCDXntep15zXmdedINec15PXnNeq15XXqjwvYT48L2xpPjxsaSBjbGFzcz0iZml4LWxheW91dCI+PC9saT48L3VsPjwvZGl2PjxkaXYgY2xhc3M9ImxldmVsMSI+PHVsPjxsaT48dWw+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzY5L9eZ15PXmdeV16ot15TXpNei15zXlC5hc3B4IiAgPteZ15PXmdeV16og15TXpNei15zXlDwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMTYv15nXk9eZ15XXqi3XlNek16LXnNeULdeZ15XXp9eo16rXmdeV16ouYXNweCIgID7XmdeT15nXldeqINeU16TXotec15Qg15nXlden16jXqteZ15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS83MS/XmdeT15nXldeqLS3XoNeZ16jXldeh15jXlC3XnNeT15zXqteV16ouYXNweCIgID7XmdeT15nXldeqINeg15nXqNeV16HXmNeUINec15PXnNeq15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS83Mi/XmdeT15nXldeqLden15HXldei15XXqi5hc3B4IiAgPteZ15PXmdeV16og16fXkdeV16LXldeqPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEzMC/XmdeT15nXldeqLdeb16TXqteV16guYXNweCIgID7XmdeT15nXldeqINeb16TXqteV16g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMzAv15nXk9eZ15XXqi3XkdeU15zXlC5hc3B4IiAgPteZ15PXmdeV16og15HXlNec15Q8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTM2L9eZ15PXmdeV16ot15zXpNec15PXnNeqLdeV16nXkNeoLdeT15zXqteV16ot15TXpNec15PXlC5hc3B4IiAgPteZ15PXmdeV16og15zXpNec15PXnNeqINeV16nXkNeoINeT15zXqteV16og15TXpNec15PXlDwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS82Mi/Xnteg16LXldec15nXnS3Xl9eR15XXmdeZ150t15zXk9ec16rXldeqLdeb16DXmdeh15Qt157XotelLmFzcHgiICA+157XoNei15XXnNeZ150g15fXkdeV15nXmdedINec15PXnNeq15XXqiDXm9eg15nXodeUINee16LXpTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS82My/Xnteg16LXldec15nXnS3Xl9eR15XXmdeZ150t15zXk9ec16rXldeqLdeQ15zXldee15nXoNeZ15XXnS3XldeR16jXltecLmFzcHgiICA+157XoNei15XXnNeZ150g15fXkdeV15nXmdedINec15PXnNeq15XXqiDXkNec15XXnteZ16DXmdeV150g15XXkdeo15bXnDwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS82NS/Xnteg16LXldec15nXnS3XqNeRLdeR16jXmdeX15nXmdedLmFzcHgiICA+157XoNei15XXnNeZ150g16jXkSDXkdeo15nXl9eZ15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS82Ny/Xnteg16LXldec15nXnS3Xl9eZ16bXldeg15nXmdedLmFzcHgiICA+157XoNei15XXnNeZ150g15fXmdem15XXoNeZ15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS84Ny/Xnteg16LXldec15kt16TXkdec15XXpy5hc3B4IiAgPtee16DXoteV15zXmSDXpNeR15zXldenPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzExMy/Xnteg16LXldec15nXnS3Xl9eR15XXmdeZ150t15zXk9ec16rXldeqLdek16DXmdedLmFzcHgiICA+157XoNei15XXnNeZ150g15fXkdeV15nXmdedINec15PXnNeq15XXqiDXpNeg15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xODIv157XoNei15XXnNeZLdeR15nXmNeX15XXny5hc3B4IiAgPtee16DXoteV15zXmSDXkdeZ15jXl9eV1588L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODAv157Xp9eV15PXk9eZ150t157Xm9eg15nXmdedLmFzcHgiICA+157Xp9eV15PXk9eZ150g157Xm9eg15nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEwNy/Xptec15nXoNeT16jXmdedLdee15vXoNeZ15nXnS5hc3B4IiAgPtem15nXnNeZ16DXk9eo15nXnSDXnteb16DXmdeZ1508L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODIv16bXmdeo15kt16HXpNeoLdec15PXnNeq15XXqi5hc3B4IiAgPtem15nXqNeZINeh16TXqCDXnNeT15zXqteV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvOTEv16bXmdeo15kt16TXmdeR15XXmC3XnNeT15zXqteV16ot15XXqdei16jXmdedLmFzcHgiICA+16bXmdeo15kg16TXmdeR15XXmCDXnNeT15zXqteV16og15XXqdei16jXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzkyL9em15nXqNeZ150t16TXqNeZ16fXmdedLmFzcHgiICA+16bXmdeo15nXnSDXpNeo15nXp9eZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTA0L9em15nXqNeZ150t16HXnteV15nXmdedLmFzcHgiICA+16bXmdeo15nXnSDXodee15XXmdeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODEv16bXmdeo15nXnS3XnNeT15zXqteV16ot16TXnNeT15Qt15XXqdei16jXmS3Xkdeo15bXnC5hc3B4IiAgPtem15nXqNeZ150g15zXk9ec16rXldeqINek15zXk9eUINeV16nXoteo15kg15HXqNeW15w8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODQv16bXmdeo15nXnS3Xp9ek15nXpteZ15nXnS5hc3B4IiAgPtem15nXqNeZ150g16fXpNeZ16bXmdeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODYv16bXmdeo15nXnS3XnteV16nXl9eo15nXnS5hc3B4IiAgPtem15nXqNeZ150g157Xldep15fXqNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTUyL9em15nXqNeZ150t15vXpNeV15zXmdedLmFzcHgiICA+16bXmdeo15nXnSDXm9ek15XXnNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvNDQv16HXldeS16jXmdedLdeU15nXk9eo15DXldec15nXnS3Xotec15nXldeg15nXnS5hc3B4IiAgPteh15XXkteo15nXnSDXlNeZ15PXqNeQ15XXnNeZ150g16LXnNeZ15XXoNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvNDUv16HXldeS16jXmdedLdeU15nXk9eo15DXldec15nXnS3XqteX16rXldeg15nXnS5hc3B4IiAgPteh15XXkteo15nXnSDXlNeZ15PXqNeQ15XXnNeZ150g16rXl9eq15XXoNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvOTkv16bXmdeo15kt16nXoteoLdeU15nXk9eo15DXldec15nXmdedLmFzcHgiICA+16bXmdeo15kg16nXoteoINeU15nXk9eo15DXldec15nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzQzL9ee15fXlteZ16jXmdedLdem15nXk9eZ15nXnS5hc3B4IiAgPtee15fXlteZ16jXmdedINem15nXk9eZ15nXnTwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8zMS/XpNeo15bXldecLdec15PXnNeq15XXqi3XkNepLmFzcHgiICA+16TXqNeW15XXnCDXnNeT15zXqteV16og15DXqSDXldee15nXnNeV15g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTA5L9ek16jXlteV15wt15zXk9ec16rXldeqLdeW15vXldeb15nXqi5hc3B4IiAgPtek16jXlteV15wg15zXk9ec16rXldeqINeW15vXldeb15nXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMDUv16TXqNeW15XXnC3XnNeT15zXqteV16ot15XXqdei16jXmS3XlNeW15bXlC5hc3B4IiAgPtek16jXlteV15wg15zXk9ec16rXldeqINeV16nXoteo15kg15TXlteW15Q8L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODkv15HXqNeZ15fXmdedLdeX15HXldeZ15nXnS5hc3B4IiAgPteR16jXmdeX15nXnSDXldeh15LXqNeZ150g15fXkdeV15nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzkwL9eR16jXmdeX15nXnS3Xl9eZ16bXldeg15nXmdedLmFzcHgiICA+15HXqNeZ15fXmdedINeV16HXkteo15nXnSDXl9eZ16bXldeg15nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEwMC/Xnteg15LXoNeV16DXmS3Xqtek15XXoS3XpNeg15XXmS5hc3B4IiAgPtee16DXkteg15XXoNeZINeq16TXldehINek16DXldeZPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5Lzk0L9ee16LXpteV16jXmdedLdec15PXnNeq15XXqi5hc3B4IiAgPtee16LXpteV16jXmdedINec15PXnNeq15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMDYv16TXotee15XXoNeZ150t15XXoNeV16fXqdeZ150t15zXk9ec16ouYXNweCIgID7XpNei157Xldeg15nXnSDXldeg15XXp9ep15nXnSDXnNeT15zXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMzEv16TXqNeW15XXnC3XoNek15fXldeqLden15nXqdeV15jXmS5hc3B4IiAgPtek16jXlteV15wg16DXpNeX15XXqiDXp9eZ16nXldeY15k8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTM1L9ei15nXoNeZ15XXqi0t15XXodeS16jXmS3XkdeZ15jXl9eV158t15zXk9ec16rXldeqLmFzcHgiICA+16LXmdeg15nXldeqINeV16HXkteo15kg15HXmdeY15fXldefINec15PXnNeq15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS85Ni/Xodek15kt15PXnNeqLdeV15LXldee15kt15DXmdeY15XXnS5hc3B4IiAgPteh16TXmSDXk9ec16og15XXkteV157XmSDXkNeZ15jXldedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEzOS/XkNeR15nXlteo15nXnS3XnNeZ15PXmdeV16ouYXNweCIgID7XkNeR15nXlteo15nXnSDXnNeZ15PXmdeV16o8L2E+PC9saT48L3VsPjwvbGk+PGxpIGNsYXNzPSJmaXgtbGF5b3V0Ij48L2xpPjwvdWw+PC9kaXY+PC9kaXY+PGRpdiBjbGFzcz0ibWVudSIgaWQ9ImJpZy1zdWItbWVudS0xMiI+PGRpdiBjbGFzcz0ibGV2ZWwwIj48dWw+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzUwL9ek16jXlteV15wt15fXnNeV16DXldeqLdei16Ut15zXqdeZ157XldeoLmFzcHgiICA+16TXqNeW15XXnCDXl9ec15XXoNeV16og16LXpSDXnNep15nXnteV16g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvNzYv16TXqNeW15XXnC3XnNeX15zXldeg15XXqi3Xkdeo15bXnC3Xkdec15LXmS5hc3B4IiAgPtek16jXlteV15wg15zXl9ec15XXoNeV16og15HXqNeW15w8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTEwL9ek16jXlteV15wt15zXl9ec15XXoNeV16ot15DXnNeV157Xmdeg15nXldedLmFzcHgiICA+16TXqNeW15XXnCDXnNeX15zXldeg15XXqiDXkNec15XXnteZ16DXmdeV1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjI5L9ek16jXlteV15wt157Xqdec15nXnS3XnNeX15zXldeg15XXqi5hc3B4IiAgPtek16jXlteV15wg157Xqdec15nXnSDXnNeX15zXldeg15XXqjwvYT48L2xpPjxsaSBjbGFzcz0iZml4LWxheW91dCI+PC9saT48L3VsPjwvZGl2PjxkaXYgY2xhc3M9ImxldmVsMSI+PHVsPjxsaT48dWw+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIzOC/XmdeT15nXldeqLdec15fXnNeV16DXldeqLdei16UuYXNweCIgID7XmdeT15nXldeqINec15fXnNeV16DXldeqINei16U8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjM5L9ee16DXoteV15zXmdedLdeV16HXkteo15nXnS3XnNei16UuYXNweCIgID7Xnteg16LXldec15nXnSDXldeh15LXqNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTcwL9em15nXqNeZ150t15zXl9ec15XXoNeV16ot16LXpS5hc3B4IiAgPtem15nXqNeZ150g15zXl9ec15XXoNeV16og16LXpTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yNDAv16bXmdeo15kt157Xodek16jXmdedLdeV157XkteR15nXnNeZLdek16rXmdeX15QuYXNweCIgID7XpteZ16jXmSDXnteh16TXqNeZ15nXnSDXldee15LXkdeZ15zXmSDXpNeq15nXl9eUPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzI0MS/Xntei16bXldeo15nXnS3XnNeX15zXldeg15XXqi3Xldeq16jXmdeh15nXnS5hc3B4IiAgPtee16LXpteV16jXmdedINec15fXnNeV16DXldeqINeV16rXqNeZ16HXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzI0OS/XpNeo15bXldecLdeX15zXldeg15XXqi3XlNeW15bXlC3Xntei16UuYXNweCIgID7XpNeo15bXldecINec15fXnNeV16DXldeqINeU15bXlteUINee16LXpTwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yNDIv15nXk9eZ15XXqi3XnNeX15zXldeg15XXqi3Xkdeo15bXnC5hc3B4IiAgPteZ15PXmdeV16og15zXl9ec15XXoNeV16og15HXqNeW15w8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjQ0L9ee16DXoteV15zXmdedLdeV16HXkteo15nXnS3XnNeX15zXldeg15XXqi3Xkdeo15bXnC5hc3B4IiAgPtee16DXoteV15zXmdedINeV16HXkteo15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yNDMv16bXmdeo15nXnS3XnNeX15zXldeg15XXqi3Xkdeo15bXnC5hc3B4IiAgPtem15nXqNeZ150g15zXl9ec15XXoNeV16og15HXqNeW15w8L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjQ1L9eZ15PXmdeV16ot15zXl9ec15XXoNeV16ot15DXnNeV157Xmdeg15nXldedLmFzcHgiICA+15nXk9eZ15XXqiDXnNeX15zXldeg15XXqiDXkNec15XXnteZ16DXmdeV1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjc0L9em15nXqNeZ150t15zXl9ec15XXoNeV16ot15DXnNeV157Xmdeg15nXldedLmFzcHgiICA+16bXmdeo15nXnSDXnNeX15zXldeg15XXqiDXkNec15XXnteZ16DXmdeV1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjQ2L9ee16DXoteV15zXmdedLdeV16HXkteo15nXnS3XnNeQ15zXldee15nXoNeZ15XXnS5hc3B4IiAgPtee16DXoteV15zXmdedINeV16HXkteo15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yNDcv16TXqNeW15XXnC3XnNeX15zXldeg15XXqi3XlNeW15bXlC3XnteQ15zXldee15nXoNeZ15XXnS5hc3B4IiAgPtek16jXlteV15wg15zXl9ec15XXoNeV16og15TXlteW15Qg157XkNec15XXnteZ16DXmdeV1508L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTQ4L9ek16jXlteV15wt15zXqteo15nXodeZLdeS15zXmdec15QuYXNweCIgID7XpNeo15bXldecINec16rXqNeZ16HXmSDXktec15nXnNeUPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEzNC/XnteV16bXqNeZLdeQ15nXmNeV150t15zXl9ec15XXoNeV16ouYXNweCIgID7XnteV16bXqNeZINeQ15nXmNeV150g15zXl9ec15XXoNeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTM4L9ek16jXlteV15wt15zXl9ec15XXoNeV16ot15TXlteW15QuYXNweCIgID7XpNeo15bXldecINec15fXnNeV16DXldeqINeU15bXlteUPC9hPjwvbGk+PC91bD48L2xpPjxsaSBjbGFzcz0iZml4LWxheW91dCI+PC9saT48L3VsPjwvZGl2PjwvZGl2PjxkaXYgY2xhc3M9Im1lbnUiIGlkPSJiaWctc3ViLW1lbnUtMTMiPjxkaXYgY2xhc3M9ImxldmVsMCI+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS80Ny/XmdeT15nXldeqLdeV15vXpNeq15XXqNeZ150uYXNweCIgID7XmdeT15nXldeqINeV15vXpNeq15XXqNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTk2L9ee16DXoteV15zXmdedLdeV16HXkteo15nXnS5hc3B4IiAgPtee16DXoteV15zXmdedINeV16HXkteo15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xOTQv16bXmdeo15nXnS3Xldee16HXmdec15XXqi5hc3B4IiAgPtem15nXqNeZ150g15XXnteh15nXnNeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjAxL9ek16jXlteV15wt15zXqNeZ15TXldeYLdeZ15nXoteV15PXmS5hc3B4IiAgPtek16jXlteV15wg15zXqNeZ15TXldeYINeZ15nXoteV15PXmTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMDMv15DXkdeZ15bXqNeZ150t15zXqNeZ15TXldeYLmFzcHgiICA+15DXkdeZ15bXqNeZ150g15zXqNeZ15TXldeYPC9hPjwvbGk+PGxpIGNsYXNzPSJmaXgtbGF5b3V0Ij48L2xpPjwvdWw+PC9kaXY+PGRpdiBjbGFzcz0ibGV2ZWwxIj48dWw+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjMwL9eZ15PXmdeV16ot157XldeT16jXoNeZ15XXqi3XnNeQ16jXldeg15XXqi5hc3B4IiAgPteZ15PXmdeV16og157XldeT16jXoNeZ15XXqiDXnNeQ16jXldeg15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMjQv15nXk9eZ15XXqi3Xp9ec15DXodeZ15XXqi3XnNeQ16jXldeg15XXqi5hc3B4IiAgPteZ15PXmdeV16og16fXnNeQ16HXmdeV16og15zXkNeo15XXoNeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTI1L9eb16TXqteV16jXmdedLdec15DXqNeV16DXldeqLmFzcHgiICA+15vXpNeq15XXqNeZ150g15zXkNeo15XXoNeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjMxL9eZ15PXmdeV16ot15XXm9ek16rXldeo15nXnS3Xp9eo15nXodeY15wuYXNweCIgID7XmdeT15nXldeqINeV15vXpNeq15XXqNeZ150g157Xp9eo15nXodeY15w8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTI5L9eZ15PXmdeV16ot15XXm9ek16rXldeo15kt16TXldeo16bXnNefLdec15DXqNeV16DXldeqLmFzcHgiICA+15nXk9eZ15XXqiDXldeb16TXqteV16jXmSDXpNeV16jXptec1588L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjc5L9eZ15PXmdeV16ot15XXm9ek16rXldeo15kt16DXpNeX15XXqi3XnteV16nXl9eo15nXnS5hc3B4IiAgPteZ15PXmdeV16og15XXm9ek16rXldeo15kg16DXpNeX15XXqiDXnteV16nXl9eo15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMjYv157XodeS16jXldeqLdec16nXnS5hc3B4IiAgPtee16HXkteo15XXqiDXnNep1508L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjMv157XoNei15XXnNeZ150t15zXkNeo15XXoNeV16ot15XXnteS15nXqNeV16ot157Xnteq15vXqi3Xldei16UuYXNweCIgID7Xnteg16LXldec15nXnSDXnNeQ16jXldeg15XXqiDXntee16rXm9eqINeV16LXpTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xOTcv157XoNei15XXnNeZ150t15zXkNeo15XXoNeV16ot15bXm9eV15vXmdeqLmFzcHgiICA+157XoNei15XXnNeZ150g15zXkNeo15XXoNeV16og15bXm9eV15vXmdeqPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzYxL9eh15LXqNeZ150t15zXkNeo15XXoNeV16ouYXNweCIgID7XodeS16jXmdedINec15DXqNeV16DXldeqPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzE5OC/XodeS16jXmS3XmNek15ct16TXqteXLmFzcHgiICA+16HXkteo15kg15jXpNeXINek16rXlzwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMDAv16bXmdeo15nXnS3Xp9ek15nXpteZ15nXnS3XnNeQ16jXldefLmFzcHgiICA+16bXmdeo15nXnSDXp9ek15nXpteZ15nXnSDXnNeQ16jXldefPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzQ4L9em15nXqNeZ150t15zXqNeZ15TXldeYLmFzcHgiICA+16bXmdeo15nXnSDXnNeo15nXlNeV15g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjA0L9eR15XXm9eg15XXqi3XkteWLdeV16bXmdeo15kt157Xodek16jXmdeZ150uYXNweCIgID7XkdeV15vXoNeV16og15LXliDXldem15nXqNeZINee16HXpNeo15nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIwMi/Xnteh15nXnNeV16ot15zXnteS15nXqNeV16ouYXNweCIgID7Xnteh15nXnNeV16og15zXnteS15nXqNeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTQ3L9ek15zXmNeV16ot16HXmdeR15XXkS5hc3B4IiAgPtek15zXmNeV16og16HXmdeR15XXkTwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMDMv16TXqNeW15XXnC3XnNeQ16jXldeg15XXqi3XpNeXLS3XkNeo15XXoNeV16ot15fXqdee15wt16rXp9ep15XXqNeqLdeV15LXli5hc3B4IiAgPtek16jXlteV15wg15zXkNeo15XXoNeV16og16TXly0g15DXqNeV16DXldeqINeX16nXntecINeq16fXqdeV16jXqiDXldeS15Y8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTMzL9ek16jXlteV15wt15zXkNeo15XXoNeV16ot15TXlteW15QuYXNweCIgID7XpNeo15bXldecINec15DXqNeV16DXldeqINeU15bXlteUPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEyMC/XpNeo15bXldecLdec16jXmdeU15XXmC3Xlteb15XXm9eZ16ouYXNweCIgID7XpNeo15bXldecINec16jXmdeU15XXmCDXlteb15XXm9eZ16o8L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMzkv16jXktec15nXmdedLdec16nXldec15fXoNeV16ouYXNweCIgID7XqNeS15zXmdeZ150g15zXqdeV15zXl9eg15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMDUv16jXktec15nXldeqLdec16jXmdeU15XXmC5hc3B4IiAgPteo15LXnNeZ15XXqiDXnNeo15nXlNeV15g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTE3L9ee15fXnNeZ16fXmS3XmNek15zXldefLmFzcHgiICA+157Xl9ec15nXp9eZINeY16TXnNeV1588L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjA2L9eQ15HXmdeW16jXmS3XkdeY15nXl9eV16ot15zXqNeZ15TXldeYLmFzcHgiICA+15DXkdeZ15bXqNeZINeR15jXmdeX15XXqiDXnNeo15nXlNeV15g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjc2L9ek16rXl9eZLdeQ15XXldeo15XXqC3XnNeo15nXlNeV15guYXNweCIgID7XpNeq15fXmSDXkNeV15XXqNeV16gg15zXqNeZ15TXldeYPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIwNy/XodeZ15PXldeoLdeV16DXmdeU15XXnC3Xm9eR15zXmdedLmFzcHgiICA+16HXmdeT15XXqCDXldeg15nXlNeV15wg15vXkdec15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS80Ni/XnteX15bXmden15kt157Xk9ejLdeV157XldeY15XXqi3XnNeq15zXmdeZ15QuYXNweCIgID7XnteX15bXmden15kg157Xk9ejINeV157XldeY15XXqiDXnNeq15zXmdeZ15Q8L2E+PC9saT48L3VsPjwvbGk+PGxpIGNsYXNzPSJmaXgtbGF5b3V0Ij48L2xpPjwvdWw+PC9kaXY+PC9kaXY+PGRpdiBjbGFzcz0ibWVudSIgaWQ9ImJpZy1zdWItbWVudS0xNCI+PGRpdiBjbGFzcz0ibGV2ZWwwIj48dWw+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIwOC/Xnteg16LXldec15nXnS3Xl9ep157XnNeZ15nXnS5hc3B4IiAgPtee16DXoteV15zXmdedINeX16nXntec15nXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIxMy/Xnteg16LXldec15nXnS3XkNec16fXmNeo15Ut157Xm9eg15nXmdedLmFzcHgiICA+157XoNei15XXnNeZ150g15DXnNen15jXqNeVINee15vXoNeZ15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMTYv157XoNei15XXnNeZ150t15DXnNen15jXqNeVLdee15LXoNeY15nXnS5hc3B4IiAgPtee16DXoteV15zXmdedINeQ15zXp9eY16jXlSDXnteS16DXmNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjE5L9eQ15HXmdeW16jXmdedLdec157XoNei15XXnNeZ150t15fXqdee15zXmdeZ150t15XXkNec16fXmNeo15XXnteS16DXmNeZ150uYXNweCIgID7XkNeR15nXlteo15nXnSDXnNee16DXoteV15zXmdedINeX16nXntec15nXmdedINeV15DXnNen15jXqNeV157Xkteg15jXmdedPC9hPjwvbGk+PGxpIGNsYXNzPSJmaXgtbGF5b3V0Ij48L2xpPjwvdWw+PC9kaXY+PGRpdiBjbGFzcz0ibGV2ZWwxIj48dWw+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjEv157XoNei15XXnNeZ150t15fXqdee15zXmdeZ150t15fXkdeV15nXmdedLdeR157Xqden15XXoy5hc3B4IiAgPtee16DXoteV15zXmdedINeX16nXntec15nXmdedINeX15HXldeZ15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMTEv157XoNei15XXnNeZ150t15fXqdee15zXmdeZ150t15fXmdem15XXoNeZ15nXnS5hc3B4IiAgPtee16DXoteV15zXmdedINeX16nXntec15nXmdedINeX15nXpteV16DXmdeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjEyL9ee16DXoteV15zXmdedLdeX16nXntec15nXmdedLdec15DXqNeV16DXldeqLmFzcHgiICA+157XoNei15XXnNeZ150g15fXqdee15zXmdeZ150g15zXkNeo15XXoNeV16o8L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjE0L9eR16jXmdeX15nXnS3XkNec16fXmNeo15Ut157Xm9eg15nXmdedLmFzcHgiICA+15HXqNeZ15fXmdedINeQ15zXp9eY16jXlSDXnteb16DXmdeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjIv157XoNei15XXnNeZ150t15DXnNen15jXqNeVLdee15vXoNeZ15nXnS5hc3B4IiAgPtee16DXoteV15zXmdedINeQ15zXp9eY16jXlSDXnteb16DXmdeZ1508L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjcv157XoNei15XXnNeZ150t15DXnNen15jXqNeVLdee15LXoNeY15nXnS3XnNeq16DXkNeZLdek16DXmdedLmFzcHgiICA+15DXnNen15jXqNeVINee15LXoNeY15nXnSDXnNeq16DXkNeZINek16DXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIxNy/Xnteg16LXldec15nXnS3XkNec16fXmNeo15Ut157Xkteg15jXmdedLdec16rXoNeQ15kt15fXldelLmFzcHgiICA+15DXnNen15jXqNeVINee15LXoNeY15nXnSDXnNeq16DXkNeZINeX15XXpTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMTgv157XoNei15XXnNeZ150t15DXnNen15jXqNeVLdee15LXoNeY15nXnS3Xqden15XXoteZ15nXnS5hc3B4IiAgPteQ15zXp9eY16jXlSDXnteS16DXmNeZ15nXnSDXqden15XXoteZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvOTcv15bXldeZ15XXqi3XnNee16DXoteV15zXmdedLdeQ15zXp9eY16jXlS3XnteS16DXmNeZ150uYXNweCIgID7XlteV15nXldeqINec157XoNei15XXnNeZ150g15DXnNen15jXqNeVINee15LXoNeY15nXnTwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMTEv15DXkdeZ15bXqNeZ150t15zXk9ec16rXldeqLdeQ15nXoNeY16jXnNeV16cuYXNweCIgID7XkNeR15nXlteo15nXnSDXnNeT15zXqteV16og15DXmdeg15jXqNec15XXpzwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS85OC/Xm9eo15jXmdeh15nXnS3XkNec16fXmNeo15XXoNeZ15nXnS3XnNee16DXoteV15zXmdedLdeX16nXntec15nXmdedLdeV157Xkteg15jXmdedLmFzcHgiICA+15vXqNeY15nXodeZ150g15DXnNen15jXqNeV16DXmdeZ150g15zXnteg16LXldec15nXnSDXl9ep157XnNeZ15nXnSDXldee15LXoNeY15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS83My/XnNeX16bXoNeZ150tLdeV157XpNeh16fXmdedLdec157XoNei15XXnNeZ150t15fXqdee15zXmdeZ150t15XXkNec16fXmNeo15Ut157Xkteg15jXmdedLmFzcHgiICA+15zXl9em16DXmdedINeV157XpNeh16fXmdedINec157XoNei15XXnNeZ150g15fXqdee15zXmdeZ150g15XXkNec16fXmNeo15Ug157Xkteg15jXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5Lzg1L9ee16fXldeT15PXmdedLdeT15nXkteZ15jXnNeZ15nXnS3XnNeT15zXqi5hc3B4IiAgPtee16fXldeT15PXmdedINeT15nXkteZ15jXnNeZ15nXnSDXnNeT15zXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS83NS/Xntei15HXmdeo15kt157XqteXLmFzcHgiICA+157XoteR15nXqNeZINee16rXlzwvYT48L2xpPjwvdWw+PC9saT48bGkgY2xhc3M9ImZpeC1sYXlvdXQiPjwvbGk+PC91bD48L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJtZW51IiBpZD0iYmlnLXN1Yi1tZW51LTE1Ij48ZGl2IGNsYXNzPSJsZXZlbDAiPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjIwL9eq15nXkdeV16ot15PXldeQ16gt15vXodek15XXqi3Xlden15XXpNeV16ouYXNweCIgID7XqteZ15HXldeqINeT15XXkNeoLCDXm9eh16TXldeqINeV16fXldek15XXqjwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMjEv157XoNei15XXnNeZLdeq15zXmdeULdeo16rXp9eZ150t15XXqNeZ16rXldeS15nXnS5hc3B4IiAgPtee16DXoteV15zXmSDXqtec15nXlCwg16jXqten15nXnSDXldeo15nXqteV15LXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzM3L9ek16jXlteV15wt15zXp9eV16TXodeQ15XXqi3XldeQ16jXkteW15nXnS5hc3B4IiAgPtek16jXlteV15wg15zXp9eV16TXodeQ15XXqiDXldeQ16jXkteW15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMjIv16TXqNeW15XXnC3XmdeZ16LXldeT15kuYXNweCIgID7XpNeo15bXldecINeZ15nXoteV15PXmTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMjMv15DXkdeZ15bXqNeZ150t16DXldeh16TXmdedLmFzcHgiICA+15DXkdeZ15bXqNeZ150g16DXldeh16TXmdedPC9hPjwvbGk+PGxpIGNsYXNzPSJmaXgtbGF5b3V0Ij48L2xpPjwvdWw+PC9kaXY+PGRpdiBjbGFzcz0ibGV2ZWwxIj48dWw+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvNDAv16rXmdeR15XXqi3Xk9eV15DXqC5hc3B4IiAgPteq15nXkdeV16og15PXldeQ16g8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMzQv15vXodek15XXqi5hc3B4IiAgPteb16HXpNeV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjI2L9en15XXpNeV16ot16nXldec15fXny5hc3B4IiAgPten15XXpNeV16og16nXldec15fXnzwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMjcv15DXqNeV16DXldeqLdee16TXqteX15XXqi5hc3B4IiAgPteQ16jXldeg15XXqiDXntek16rXl9eV16o8L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMzYv157XoNei15XXnNeZLdeq15zXmdeULmFzcHgiICA+157XoNei15XXnNeZINeq15zXmdeUPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzI3Ny/Xnteg16LXldec15kt157Xodek16jXmdedLmFzcHgiICA+157XoNei15XXnNeZINee16HXpNeo15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yMjQv16jXqten15nXnS3Xldeo15nXqteV15LXmdedLmFzcHgiICA+16jXqten15nXnSDXldeo15nXqteV15LXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzIyNS/XoNeV16nXkNeZLdee16DXoteV15wuYXNweCIgID7XoNeV16nXkNeZINee16DXoteV15w8L2E+PC9saT48L3VsPjwvbGk+PGxpPjx1bD48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTIzL9eZ15PXmdeV16ot15zXkNeo15LXlteZ150uYXNweCIgID7XmdeT15nXldeqINec15DXqNeS15bXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzI4MC/XpNeZ16DXldeqLdec15DXqNeS15bXmdedLmFzcHgiICA+16TXmdeg15XXqiDXnNeQ16jXkteW15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMzcv16bXmdeo15nXnS3XnNeQ16jXkteW15nXnS5hc3B4IiAgPtem15nXqNeZ150g15zXkNeo15LXlteZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvODgv16HXkteo15nXnS3XnNeQ16jXkteW15nXnS5hc3B4IiAgPteh15LXqNeZ150g15zXkNeo15LXlteZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTAxL9ek16jXlteV15wt15zXp9eV16TXodeQ15XXqi5hc3B4IiAgPtek16jXlteV15wg15zXp9eV16TXodeQ15XXqjwvYT48L2xpPjwvdWw+PC9saT48bGk+PHVsPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMjcv15DXkdeZ15bXqNeZLdeR15jXmdeX15XXqi5hc3B4IiAgPteQ15HXmdeW16jXmSDXkdeY15nXl9eV16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTQ2L9ek16jXlteV15wt15zXqdeZ16jXldeq15kt16DXm9eZ150uYXNweCIgID7XpNeo15bXldecINec16nXmdeo15XXqteZINeg15vXmdedPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzEzMi/XpNeo15bXldecLdeg15nXqNeV16HXmNeULmFzcHgiICA+16TXqNeW15XXnCDXoNeZ16jXldeh15jXlDwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yNTQv16TXqNeW15XXnC3XnNeW15vXldeb15nXqi5hc3B4IiAgPtek16jXlteV15wg15zXlteb15XXm9eZ16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjY0L9ek16jXlteV15wt15zXnteh15LXqNeZ150uYXNweCIgID7XpNeo15bXldecINec157XodeS16jXmdedPC9hPjwvbGk+PC91bD48L2xpPjxsaT48dWw+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzMzL9eS15zXktec15nXnS5hc3B4IiAgPteS15zXktec15nXnTwvYT48L2xpPjxsaT48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yODIv157Xl9eW15nXp9eZLdee16LXp9eULmFzcHgiICA+157Xl9eW15nXp9eZINee16LXp9eUPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzM1L9ee15fXlteZ16fXmS3XnteT16MuYXNweCIgID7XnteX15bXmden15kg157Xk9ejPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzI4MS/XnteX15bXmden15kt157Xk9ejLdeW15vXldeb15nXqi5hc3B4IiAgPtee15fXlteZ16fXmSDXnteT16Mg15zXlteb15XXm9eZ16o8L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMzgv16fXldec15HXmdedLdeV157Xqtec15nXnS5hc3B4IiAgPten15XXnNeR15nXnSDXldee16rXnNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjc4L9en15XXnNeR15nXnS3Xldee16rXnNeZ150t15zXnNeQLden15nXk9eV15cuYXNweCIgID7Xp9eV15zXkdeZ150g15XXnteq15zXmdedINec15zXkCDXp9eZ15PXldeXPC9hPjwvbGk+PGxpPjxhIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzI3MS/XlteV15XXmdeV16ot15XXodeo15LXnNeZ150uYXNweCIgID7XlteV15XXmdeV16og15XXodeo15LXnNeZ1508L2E+PC9saT48bGk+PGEgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMjcwL9ee15LXoNeY15nXnS5hc3B4IiAgPtee15LXoNeY15nXnTwvYT48L2xpPjwvdWw+PC9saT48bGkgY2xhc3M9ImZpeC1sYXlvdXQiPjwvbGk+PC91bD48L2Rpdj48L2Rpdj5kAgQPZBYEAgEPFgIfAQXFAjxhIGhyZWY9Ii8iPteT16Mg15TXkdeZ16o8L2E+PGI+Jmd0OzwvYj48YSBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8xMjIv15nXk9eZ15XXqi3XnNeT15zXqteV16ot15XXqdei16jXmS3XlNeW15bXlC5hc3B4Ij7XmdeT15nXldeqINec15PXnNeq15XXqiDXldep16LXqNeZINeU15bXlteUPC9hPjxiPiZndDs8L2I+PGEgY2xhc3M9Imxhc3QiIGhyZWY9Ii9wcm9kdWN0LzYxOS/Xm9ek16rXldeoLdek15zXmdeWLden15HXldeiLdee16LXldeY16gt15PXktedLTg3MC5hc3B4Ij7Xm9ek16rXldeoINek15zXmdeWINen15HXldeiINee16LXldeY16gg15PXktedIDg3MDwvYT5kAgUPFgQfAwUr15nXk9eZ15XXqiDXnNeT15zXqteV16og15XXqdei16jXmSDXlNeW15bXlB4HVmlzaWJsZWdkAgUPZBYCAgEPZBYIZg8WAh8DBTLXm9ek16rXldeoINek15zXmdeWINen15HXldeiINee16LXldeY16gg15PXktedIDg3MGQCAQ8WAh8BZWQCAg8WAh8BBdQBPGxpPjxhIGhyZWY9Ii9zdG9yZV9pbWFnZXMvb3JpZ2luYWwvX180My5qcGciIHRpdGxlPSLXm9ek16rXldeoINek15zXmdeWINen15HXldeiINee16LXldeY16gg15PXktedIDg3MCI+PGltZyBzcmM9Ii9zdG9yZV9pbWFnZXMvMHg3Ny9fXzQzLmpwZyIgYWx0PSLXm9ek16rXldeoINek15zXmdeWINen15HXldeiINee16LXldeY16gg15PXktedIDg3MCIgLz48L2E+PC9saT5kAgsPFgIeBmFjdGlvbgVEL3Byb2R1Y3QvNjE5L9eb16TXqteV16gt16TXnNeZ15Yt16fXkdeV16It157XoteV15jXqC3Xk9eS150tODcwLmFzcHgWAgIEDxYCHwMFBjkzIOKCqmQCBg8WAh8BBaMDPHRhYmxlIGJvcmRlcj0iMCIgY2VsbHBhZGRpbmc9IjAiIGNlbGxzcGFjaW5nPSIxMiI+Cgk8dGJvZHk+CgkJPHRyPgoJCQk8dGQgdmFsaWduPSJ0b3AiPgoJCQkJPGltZyBhbHQ9IiIgc3JjPSIvdXBsb2Fkcy9pbWFnZS9zZXJ2aWNlLWljb24tY29udGFjdC5wbmciIC8+PC90ZD4KCQkJPHRkIHZhbGlnbj0idG9wIj4KCQkJCTxkaXYgc3R5bGU9ImNvbG9yOiNhNmE2YTY7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXNpemU6MTZweDsiPgoJCQkJCdep15nXqNeV16og15zXp9eV15fXldeqPC9kaXY+CgkJCQk8YnIgLz4KCQkJCTxhIGNsYXNzPSJidXR0b24iIGhyZWY9Ii9mb3JtLzEv16bXldeoLden16nXqC5hc3B4Ij7Xntec15Ag15jXldek16E8L2E+PC90ZD4KCQk8L3RyPgoJPC90Ym9keT4KPC90YWJsZT4KPGRpdj4KCSZuYnNwOzwvZGl2PgpkAgcPFgIfAQX1BTx0YWJsZSBib3JkZXI9IjAiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMTIiPgoJPHRib2R5PgoJCTx0cj4KCQkJPHRkIHZhbGlnbj0idG9wIj4KCQkJCTxpbWcgYWx0PSIiIHNyYz0iL3VwbG9hZHMvaW1hZ2Uvc2VydmljZS1pY29uLXBob25lLnBuZyIgLz48L3RkPgoJCQk8dGQgdmFsaWduPSJ0b3AiPgoJCQkJPGRpdiBzdHlsZT0iY29sb3I6I2E2YTZhNjtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxNnB4OyI+CgkJCQkJ15jXnNek15XXnyDXqNeRLden15XXldeZPC9kaXY+CgkJCQk8ZGl2IHN0eWxlPSJjb2xvcjojZDY0ZTI2O2ZvbnQtZmFtaWx5OidCcmF1biBXMjYgTWVkaXVtJywnQnJhdW5XMjYtTWVkaXVtJywnSGVsdmV0aWNhTmV1ZS1NZWRpdW0nLCdIZWx2ZXRpY2EgTmV1ZSBNZWRpdW0nLFRhaG9tYTtmb250LXNpemU6MzJweDtsaW5lLWhlaWdodDozM3B4OyI+CgkJCQkJPGEgaHJlZj0idGVsOjk3MjM1NjA5OTI2IiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5vbmU7Y29sb3I6I2Q2NGUyNjtmb250LWZhbWlseTonQnJhdW4gVzI2IE1lZGl1bScsJ0JyYXVuVzI2LU1lZGl1bScsJ0hlbHZldGljYU5ldWUtTWVkaXVtJywnSGVsdmV0aWNhIE5ldWUgTWVkaXVtJyxUYWhvbWE7Zm9udC1zaXplOjMycHg7Ij4wMy01NjA5OTI2PC9hPjwvZGl2PgoJCQkJPGRpdj4KCQkJCQnXpNen16E6IDAzLTU2NjAzMzY8L2Rpdj4KCQkJPC90ZD4KCQk8L3RyPgoJPC90Ym9keT4KPC90YWJsZT4KPGRpdj4KCSZuYnNwOzwvZGl2PgpkAggPFgIfAQWDBjx0YWJsZSBib3JkZXI9IjAiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMTIiPgoJPHRib2R5PgoJCTx0cj4KCQkJPHRkIHZhbGlnbj0idG9wIj4KCQkJCTxpbWcgYWx0PSIiIHNyYz0iL3VwbG9hZHMvaW1hZ2Uvc2VydmljZS1pY29uLWVtYWlsLnBuZyIgLz48L3RkPgoJCQk8dGQgdmFsaWduPSJ0b3AiPgoJCQkJPGRpdiBzdHlsZT0iY29sb3I6I2E2YTZhNjtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZToxNnB4OyI+CgkJCQkJ15PXldeQ16gg15DXnNen15jXqNeV16DXmTwvZGl2PgoJCQkJPGRpdiBzdHlsZT0iY29sb3I6I2Q2NGUyNjtmb250LWZhbWlseTonSGVsdmV0aWNhTmV1ZS1NZWRpdW0nLFZlcmRhbmEsVGFob21hO2ZvbnQtc2l6ZToxOHB4OyI+CgkJCQkJPGEgaHJlZj0ibWFpbHRvOmluZm9AYml0dGVyLmNvLmlsIiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5vbmU7Y29sb3I6I2Q2NGUyNjtmb250LWZhbWlseTonSGVsdmV0aWNhTmV1ZS1NZWRpdW0nLFZlcmRhbmEsVGFob21hO2ZvbnQtc2l6ZToxOHB4OyI+PHN0cm9uZz5pbmZvQGJpdHRlci5jby5pbDwvc3Ryb25nPjwvYT48L2Rpdj4KCQkJCTxkaXY+CgkJCQkJPGEgZGF0YS1zd2w9IjEyMDoxIiBocmVmPSIvZm9ybS8xL9em15XXqC3Xp9ep16guYXNweCIgc3R5bGU9ImNvbG9yOiM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XnNeZ16bXmdeo16og16fXqdeoPC9hPjwvZGl2PgoJCQk8L3RkPgoJCTwvdHI+Cgk8L3Rib2R5Pgo8L3RhYmxlPgo8ZGl2PgoJJm5ic3A7PC9kaXY+CmQCCQ8WAh8BBcIEPHRhYmxlIGJvcmRlcj0iMCIgY2VsbHBhZGRpbmc9IjAiIGNlbGxzcGFjaW5nPSIxMiI+Cgk8dGJvZHk+CgkJPHRyPgoJCQk8dGQgdmFsaWduPSJ0b3AiPgoJCQkJPGltZyBhbHQ9IiIgc3JjPSIvdXBsb2Fkcy9pbWFnZS9zZXJ2aWNlLWljb24taG91cnMucG5nIiAvPjwvdGQ+CgkJCTx0ZCB2YWxpZ249InRvcCI+CgkJCQk8ZGl2IHN0eWxlPSJjb2xvcjojYTZhNmE2O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE2cHg7Ij4KCQkJCQnXqdei15XXqiDXpNei15nXnNeV16o8L2Rpdj4KCQkJCTxkaXYgc3R5bGU9ImNvbG9yOiNhNmE2YTY7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LXNpemU6MTZweDsiPgoJCQkJCTxzcGFuIHN0eWxlPSJjb2xvcjogcmdiKDk0LCA5NCwgOTQpOyBmb250LXNpemU6IDEycHg7IGxpbmUtaGVpZ2h0OiAxLjU7Ij7Xmdee15nXnSDXkCzXkSzXkyzXlCAtIDg6MDAtMTc6MDA8L3NwYW4+PC9kaXY+CgkJCQnXmdeV150g15IgLSA4OjAwLTE0OjAwPGJyIC8+CgkJCQnXmdeV150g15UgLSA4OjAwLTEzOjAwPC90ZD4KCQk8L3RyPgoJPC90Ym9keT4KPC90YWJsZT4KPGRpdj4KCSZuYnNwOzwvZGl2PgpkAgoPFgQfAwUz157Xk9eo15nXmiDXlteZ15TXldeZINec157XoNei15XXnNeZ150g15zXk9ec16rXldeqHwIFQS9wYWdlLzMwL9ee15PXqNeZ15ot15bXmdeU15XXmS3XnNee16DXoteV15zXmdedLdec15PXnNeq15XXqi5hc3B4ZAILDxYCHwEFuQc8YSBocmVmPSIvcGFnZS8zMC/XnteT16jXmdeaLdeW15nXlNeV15kt15zXnteg16LXldec15nXnS3XnNeT15zXqteV16ouYXNweCI+INeQ15nXmiDXnteV15PXk9eZ150g157XoNei15XXnCDXnNeT15zXqj8g15zXp9eY15LXldeo15nXlCDXnteg16LXldec15nXnSDXnNeT15zXqteV16og157XoNei15XXnCDXlNeT15zXqiDXlNeq16fXnNen15wg15XXkNeq150g16jXldem15nXnSDXnNen16DXldeqINeQ15fXkyDXl9eT16ksINeU15zXm9eq150g15zXl9eg15XXqiDXldeR15nXp9ep16rXnSDXnteg16LXldecINec15PXnNeqLCDXldep150g16nXldeQ15zXmdedINeQ15nXlteUINee16DXoteV15wg15nXqSDXnNeb150g15HXk9ec16og15DXmdeaINeZ15XXk9ei15nXnSDXkNeZ15bXlCDXnteg16LXldecINee16rXkNeZ150/INeT15HXqCDXqNeQ16nXldefINeg15HXk9eV16cg15DXqiDXkNeqINeq16TXp9eV15Mg15TXnteg16LXldecINep15nXmNeqINeU16TXotec16og15TXnteg16LXldecINec15DXl9eoINee15vXnyDXoNee15PXldeTINeQ16og15TXnteg16LXldecINeV15zXkdeh15XXoyDXoNeX16TXqSDXqNee15bXmdedINeg15XXodek15nXnS4g16rXpNen15XXkyDXlNee16DXoteV15wg15DXpNep16gg15zXl9ec16cg15DXqiDXlNee16DXoteV15zXmdedINec16nXoNeZINeh15XXkteZ150g157XoNei15XXnNeZ150g16jXkNep15nXmdedINeV157XoNei15XXnNeZINeR15nXmNeX15XXny4g157XoNei15XXnCDXqNeQ16nXmSDXlNeV15Ag15TXnteg16LXldecINeU16DXntem15Ag15HXnteo15vXliDXlNeT15zXqiDXldeR16jXldeRINeU16TXotee15nXnSDXlNeV15Ag15nXlNeZ15Qg15TXnteg16LXldecINeU15nXl9eZ15Mg15HXk9ec16ouINeU157XoNei15XXnCDXlNeW15Qg157Xm9eZ15wg15zXqdeV16DXmdeqINen16TXmdem15nXqiDXkNeVLi4uPC9hPmQCDA8WAh8CBUEvcGFnZS8zMC/XnteT16jXmdeaLdeW15nXlNeV15kt15zXnteg16LXldec15nXnS3XnNeT15zXqteV16ouYXNweGQCDQ8WAh8CBTMvcGFnZS9jYXRlZ29yeS8xL9ee15DXnteo15nXnS3Xldee15PXqNeZ15vXmdedLmFzcHhkAg4PFgQfAwUp16bXnNeZ16DXk9eoINeV157XoNei15XXnCDXnteZINeW15Qg157XmT8fAgUqL2ZhcS8xL9ep15DXnNeV16ot15XXqtep15XXkdeV16ouYXNweCNmYXEyZAIPDxYCHwEFyAM8YSBocmVmPSIvZmFxLzEv16nXkNec15XXqi3Xldeq16nXldeR15XXqi5hc3B4I2ZhcTIiPten15nXmdedINeR15zXkdeV15wg16jXkSDXkdeZ158g15TXnteV16nXkteZ150g16bXnNeZ16DXk9eoINeV157XoNei15XXnCwg15XXkNeg16nXmdedINeo15HXmdedINee16rXkdec15HXnNeZ150g15HXmdeg15nXlNedLiDXkdek16nXmNeV16og16bXnNeZ16DXk9eoINeW15Ug15TXmdeX15nXk9eUINep15DXnNeZ15Qg16DXm9eg16HXmdedINeU157XpNeq15fXldeqLiDXlNee15nXnNeZ16DXk9eoINee16TXoteZ15wg15DXqiDXlNee16DXoteV15wuINee16DXoteV15wg15bXlNeVINeU15LXldejINep15DXnNeZ15Ug16DXm9eg16Eg15TXptec15nXoNeT16gsINeV15TXldeQINee15XXpteZ15Ag15DXqiDXnNep15XXoNeZ16og15TXoNei15nXnNeULNeY16jXmden15Qg15DXlSDXqdeq15nXlNefLjwvYT5kAhAPFgIfAgUqL2ZhcS8xL9ep15DXnNeV16ot15XXqtep15XXkdeV16ouYXNweCNmYXEyZAIRDxYCHwIFJS9mYXEvMS/XqdeQ15zXldeqLdeV16rXqdeV15HXldeqLmFzcHhkAhIPFgIfAQWIBDxoMiBzdHlsZT0idGV4dC1hbGlnbjogY2VudGVyOyI+Cgk8c3BhbiBzdHlsZT0iZm9udC1zaXplOjE4cHg7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE2cHg7Ij48c3BhbiBzdHlsZT0iY29sb3I6IzU3YjhkMTsiPteb16rXldeR16og15TXl9eg15XXqjo8L3NwYW4+PC9zcGFuPjxiciAvPgoJJm5ic3A7PHNwYW4gc3R5bGU9ImNvbG9yOiNmZmZmZmY7Ij7XkNec16DXkdeZIDExOSwg16rXnCDXkNeR15nXkTwvc3Bhbj48L3NwYW4+PC9oMj4KPGg0IHN0eWxlPSJ0ZXh0LWFsaWduOiBjZW50ZXI7Ij4KCTxhIGhyZWY9Imh0dHBzOi8vd3d3LndhemUuY29tL2xpdmVtYXA/em9vbT0xNyZhbXA7bGF0PTMyLjA2MjgxJmFtcDtsb249MzQuNzczODIiIHRhcmdldD0iX2JsYW5rIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjE4cHg7Ij48c3BhbiBzdHlsZT0iY29sb3I6I2ZmZmZmZjsiPteb16rXldeR16og15wgR1BTOiZuYnNwO9ec15HXldeg15jXmdefIDEsINeq15wg15DXkdeZ15E8L3NwYW4+PC9zcGFuPjwvYT48L2g0PgpkAhMPFgIfAQXlITx0YWJsZSBib3JkZXI9IjAiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMCI+Cgk8dGJvZHk+CgkJPHRyPgoJCQk8dGQgdmFsaWduPSJ0b3AiIHdpZHRoPSI0OSUiPgoJCQkJPGRpdiBzdHlsZT0iY29sb3I6IzU3YjhkMTtmb250LXNpemU6MTRweDsiPgoJCQkJCdeQ15fXmdedINeR15nXmNeoINek16jXlteV15wg15XXnteg16LXldec15nXnTwvZGl2PgoJCQkJ15fXkdeo16og15DXl9eZ150g15HXmdeY16gg15HXoiZxdW90O9eeINeg15XXodeT15Qg15HXqdeg16ogMTk0NSDXldeU15nXkCDXnteX15HXqNeV16og15TXpNeo15bXldecINeU157XldeR15nXnNeV16og15HXmdep16jXkNecLiDXlNeX15HXqNeUINeT15XXktec16og15HXqdeZ16jXldeqINee16fXpteV16LXmSDXldeQ15PXmdeRINeV15nXk9eV16LXlCDXkdee15LXldeV158g15TXqNeX15Eg16nXnCDXpNeq16jXldeg15XXqteZ15Qg15XXkdeQ15nXm9eV16og157Xldem16jXmdeULjxiciAvPgoJCQkJPGJyIC8+CgkJCQnXl9eR16jXqiDXkNeX15nXnSDXkdeZ15jXqCDXoNeV16HXk9eUINei15wg15nXk9eZINeQ15HXqNeU150g15HXmdeY16gg15XXl9eq16DXlSDXmdeX15nXkNecINeQ15zXmNee158g15HXqdeg16ogMTk0NS4g15TXl9eR16jXlCDXlNeZ16rXlCDXnteR16rXmSDXlNei16HXpyDXlNeo15DXqdeV16DXmdedINeQ16nXqCDXoteh16fXlSDXkdek15nXqNeW15XXnCDXkdeQ16jXpSDXldeR157XlNeo15Qg15TXpNeb15Qg15zXkNeR158g16nXldeQ15HXqiDXnNeR16LXnNeZINee16fXpteV16Ig15XXnNen15XXl9eV16og16TXqNeY15nXmdedLiDXnteZ15nXodeT15kg15TXl9eR16jXlCDXk9eS15zXlSDXkdec157Xm9eV16gg15DXqiDXlNee15XXpteo15nXnSDXlNeQ15nXm9eV16rXmdeZ150g15HXmdeV16rXqCDXldeR157XqtefINeU16nXmdeo15XXqiDXlNeY15XXkSDXkdeZ15XXqteoLiDXldeb15og15DXl9eZ150g15HXmdeY16gg15TXmdeq15Qg15TXl9eR16jXlCDXlNeo15DXqdeV16DXlCDXkNep16gg15nXmdeR15DXlCDXnteV16rXkteZ150g15HXmdeg15zXkNeV157XmdeZ150g16jXkdeZ150uPC90ZD4KCQkJPHRkIHdpZHRoPSIyJSI+CgkJCQkmbmJzcDs8L3RkPgoJCQk8dGQgdmFsaWduPSJ0b3AiIHdpZHRoPSIxNSUiPgoJCQkJPGRpdiBzdHlsZT0iY29sb3I6IzU3YjhkMTtmb250LXNpemU6MTRweDsiPgoJCQkJCden15jXkteV16jXmdeV16og15TXkNeq16g8L2Rpdj4KCQkJCTxhIGRhdGEtc3dsPSI1OjE0OSIgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTQ5L9ek16jXlteV15wt15zXk9ec16rXldeqLmFzcHgiIHN0eWxlPSJjb2xvcjogIzVlNWU1ZTt0ZXh0LWRlY29yYXRpb246bm9uZTsiPtek16jXlteV15wg15zXk9ec16rXldeqPC9hPjxiciAvPgoJCQkJPGEgZGF0YS1zd2w9IjU6NjAiIGhyZWY9Ii9wcm9kdWN0L2NhdGVnb3J5LzYwL9ek16jXlteV15wt15zXl9ec15XXoNeV16ouYXNweCIgc3R5bGU9ImNvbG9yOiAjNWU1ZTVlO3RleHQtZGVjb3JhdGlvbjpub25lOyI+16TXqNeW15XXnCDXnNeX15zXldeg15XXqjwvYT48YnIgLz4KCQkJCTxhIGRhdGEtc3dsPSI1OjI1IiBocmVmPSIvcHJvZHVjdC9jYXRlZ29yeS8yNS/XpNeo15bXldecLdec16jXmdeU15XXmC5hc3B4IiBzdHlsZT0iY29sb3I6ICM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XpNeo15bXldecINec16jXmdeU15XXmDwvYT48YnIgLz4KCQkJCTxhIGRhdGEtc3dsPSI1OjE1MCIgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTUwL9ee15XXpteo15kt16DXoteZ15zXlC3Xl9ep157XnNeZ15nXnS5hc3B4IiBzdHlsZT0iY29sb3I6ICM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XnteV16bXqNeZINeg16LXmdec15Qg15fXqdee15zXmdeZ1508L2E+PGJyIC8+CgkJCQk8YSBkYXRhLXN3bD0iNTozMiIgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMzIv16nXldeg15XXqi5hc3B4IiBzdHlsZT0iY29sb3I6ICM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XqdeV16DXldeqPC9hPjwvdGQ+CgkJCTx0ZCB3aWR0aD0iMiUiPgoJCQkJJm5ic3A7PC90ZD4KCQkJPHRkIHZhbGlnbj0idG9wIiB3aWR0aD0iMTUlIj4KCQkJCTxkaXYgc3R5bGU9ImNvbG9yOiM1N2I4ZDE7Zm9udC1zaXplOjE0cHg7Ij4KCQkJCQnXoNeZ15XXldeYINee15TXmdeoPC9kaXY+CgkJCQk8ZGl2PgoJCQkJCTxhIGRhdGEtc3dsPSIwOiIgaHJlZj0iLyIgc3R5bGU9ImNvbG9yOiAjNWU1ZTVlO3RleHQtZGVjb3JhdGlvbjpub25lOyI+15PXoyDXkdeZ16o8L2E+PGJyIC8+CgkJCQkJPGEgZGF0YS1zd2w9IjI6MiIgaHJlZj0iL3BhZ2UvMi/XkNeV15PXldeqLdeQ15fXmdedLdeR15nXmNeoLdeR16LXni5hc3B4IiBzdHlsZT0iY29sb3I6ICM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XkNeV15PXldeqPC9hPjxiciAvPgoJCQkJCTxhIGRhdGEtc3dsPSI1OjEyMSIgaHJlZj0iL3Byb2R1Y3QvY2F0ZWdvcnkvMTIxL9ee15XXpteo15nXnS3Xl9eT16nXmdedLmFzcHgiIHN0eWxlPSJjb2xvcjogIzVlNWU1ZTt0ZXh0LWRlY29yYXRpb246bm9uZTsiPtee15XXpteo15nXnSDXl9eT16nXmdedPC9hPjxiciAvPgoJCQkJCTxhIGRhdGEtc3dsPSIxMDI6MSIgaHJlZj0iL3BhZ2UvY2F0ZWdvcnkvMS/XnteQ157XqNeZ150t15XXnteT16jXmdeb15nXnS5hc3B4IiBzdHlsZT0iY29sb3I6ICM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XnteT16jXmdeb15nXnSDXldee15DXnteo15nXnTwvYT48YnIgLz4KCQkJCQk8YSBkYXRhLXN3bD0iMTA6MSIgaHJlZj0iL2ZhcS8xL9ep15DXnNeV16ot15XXqtep15XXkdeV16ouYXNweCIgc3R5bGU9ImNvbG9yOiAjNWU1ZTVlO3RleHQtZGVjb3JhdGlvbjpub25lOyI+16nXkNec15XXqiDXldeq16nXldeR15XXqjwvYT48L2Rpdj4KCQkJCTxkaXY+CgkJCQkJPGEgZGF0YS1zd2w9IjI6NDEiIGhyZWY9Ii9wYWdlLzQxL9ee15PXmdeg15nXldeqLdee16nXnNeV15fXmdedLmFzcHgiIHN0eWxlPSJjb2xvcjogcmdiKDk0LCA5NCwgOTQpOyB0ZXh0LWRlY29yYXRpb246IG5vbmU7Ij7XnteT15nXoNeZ15XXqiDXntep15zXldeX15nXnTwvYT48YnIgLz4KCQkJCQk8YSBkYXRhLXN3bD0iMTIwOjEiIGhyZWY9Ii9mb3JtLzEv16bXldeoLden16nXqC5hc3B4IiBzdHlsZT0iY29sb3I6ICM1ZTVlNWU7dGV4dC1kZWNvcmF0aW9uOm5vbmU7Ij7XpteV16gg16fXqdeoPC9hPjxiciAvPgoJCQkJCTxhIGRhdGEtc3dsPSIxMDA6MSIgaHJlZj0iL9ee16TXqi3XkNeq16guYXNweCIgc3R5bGU9ImNvbG9yOiAjNWU1ZTVlO3RleHQtZGVjb3JhdGlvbjpub25lOyI+157XpNeqINeU15DXqteoPC9hPjxiciAvPgoJCQkJCTxhIGRhdGEtc3dsPSIyOjM4IiBocmVmPSIvcGFnZS8zOC/Xqteg15DXmS3XqdeZ157XldepLmFzcHgiIHN0eWxlPSJjb2xvcjogIzVlNWU1ZTt0ZXh0LWRlY29yYXRpb246bm9uZTsiPteq16DXkNeZINep15nXnteV16k8L2E+PC9kaXY+CgkJCTwvdGQ+CgkJCTx0ZCB3aWR0aD0iMiUiPgoJCQkJJm5ic3A7PC90ZD4KCQkJPHRkIHZhbGlnbj0idG9wIiB3aWR0aD0iMTUlIj4KCQkJCTxkaXYgc3R5bGU9ImNvbG9yOiM1N2I4ZDE7Zm9udC1zaXplOjE0cHg7Ij4KCQkJCQnXoten15HXlSDXkNeX16jXmdeg15U8L2Rpdj4KCQkJCTxkaXYgc3R5bGU9ImNvbG9yOiM1N2I4ZDE7Zm9udC1zaXplOjE0cHg7Ij4KCQkJCQk8YSBocmVmPSJodHRwczovL3d3dy5mYWNlYm9vay5jb20vcGFnZXMv15DXl9eZ150t15HXmdeY16gt16TXqNeW15XXnC3Xldee16DXoteV15zXmdedLzEyMzA2NDQ5NDM5MDg3MSIgdGFyZ2V0PSJfYmxhbmsiPjxpbWcgYWx0PSIiIHNyYz0iL3VwbG9hZHMvaW1hZ2UvbG9nb19mYWNlYm9vay5wbmciIHN0eWxlPSJ3aWR0aDogNDBweDsgaGVpZ2h0OiA0MHB4OyIgLz48L2E+Jm5ic3A7PGEgaHJlZj0iaHR0cHM6Ly9wbHVzLmdvb2dsZS5jb20vK0JpdHRlckNvSWxsb2Nrcy9wb3N0cyIgc3R5bGU9InRleHQtZGVjb3JhdGlvbjogbm9uZTsiIHRhcmdldD0iX2JsYW5rIj48aW1nIGFsdD0iIiBzcmM9Ii91cGxvYWRzL2ltYWdlL0dvb2dsZS1wbHVzLWljb24ucG5nIiBzdHlsZT0id2lkdGg6IDQwcHg7IGhlaWdodDogNDBweDsiIC8+PC9hPjwvZGl2PgoJCQkJPGRpdj4KCQkJCQkmbmJzcDs8L2Rpdj4KCQkJCTxkaXY+CgkJCQkJ15vXnCDXlNeW15vXldeZ15XXqiDXqdee15XXqNeV16ouPGJyIC8+CgkJCQkJ15DXl9eZ150g15HXmdeY16gg16TXqNeW15XXnCDXldee16DXoteV15zXmdedIDIwMTQuPC9kaXY+CgkJCTwvdGQ+CgkJPC90cj4KCTwvdGJvZHk+CjwvdGFibGU+CjxkaXY+CgkmbmJzcDs8L2Rpdj4KZBgBBR5fX0NvbnRyb2xzUmVxdWlyZVBvc3RCYWNrS2V5X18WAwVKY3RsMDAkY3RsMDAkY3RsMDAkY3BoQ29udGVudCRjcGhDb250ZW50JGNwaENvbnRlbnQkYXNBdHRyaWJ1dGVzJGRkbEF0dHIzJDAFSmN0bDAwJGN0bDAwJGN0bDAwJGNwaENvbnRlbnQkY3BoQ29udGVudCRjcGhDb250ZW50JGFzQXR0cmlidXRlcyRkZGxBdHRyMyQxBUpjdGwwMCRjdGwwMCRjdGwwMCRjcGhDb250ZW50JGNwaENvbnRlbnQkY3BoQ29udGVudCRhc0F0dHJpYnV0ZXMkZGRsQXR0cjMkMXcMVquhdYrm4ZG8S26tOCpwgdev" />
+
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C51AD4BA" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdAA+uRMwzZpaZ7FmG4zTesktiAT9fvM5J51Gh4E5fHyI96+d32BXFvbtxKe8RDsZxuRyXWvLujGXnbjUk9NxJ+tRyvULrtee5Pt5X3cz51m6+LRuvpuibxyWWcqKH5kmG8AKexl7MFrJ8yX4PvIq+Z283WaaHDX/Ajx8qdW9wPud1GJlH78oowdQCZipjQrP2JHvGGoRew43osSBN93xPezuLkXKfFKaBKwfKUTsx6n9Mdcr+hjcHqlCdy1cju/geBWIY3gXBXtm5e/V4gxaVDG8GvX21vQ6puvs7irx3xV7QRMasIHbi4z26ta4IDQqjPdwSTgYWtxNu5suoD9dn8/eeLUGayg==" />
+				<div class="controls">
+					
+					<div id="cphContent_cphContent_cphContent_dvColors" class="colors">
+						<div class="title">בחר גוון:</div>
+						<ul id="colors-list">
+                            <li style="background:#ffffff url('/uploads/image/cache/18x18fcsnnbctransparentb0bg/צבעים/brass texture2.jpg')" title="פליז טבעי" data-id="29" class="speechbubble{source:'data-bubble'}" data-bubble="&lt;img src=&quot;/uploads/image/צבעים/brass texture2.jpg&quot; /&gt;&lt;br /&gt;פליז טבעי"></li>
+							<li class="fix-layout"></li>
+						</ul>
+                        <input type="hidden" name="ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$txtColorNameId" id="cphContent_cphContent_cphContent_txtColorNameId" />
+                        <input type="hidden" name="color" id="color-input" />
+                        <script language="javascript" type="text/javascript">/*<![CDATA[*/ setupProductColors('#colors-list', '#cphContent_cphContent_cphContent_txtColorNameId'); /*]]>*/</script>
+					</div>
+
+                    <label for="cphContent_cphContent_cphContent_asAttributes_ddlAttr23"><span>קוטר כפתור<br /></span><select name="ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$asAttributes$ddlAttr23" id="cphContent_cphContent_cphContent_asAttributes_ddlAttr23" class="attribute-list" data-attribute="23" data-required="true" onchange="DynamicPrice.updatePriceWithAttribute(this)" onkeypress="DynamicPrice.updatePriceWithAttribute(this)">
+	<option value="">- בחר -</option>
+	<option value="69" data-adjustment="0.0000">50 ממ</option>
+	<option value="70" data-adjustment="7.0000">60 ממ - תוספת 7 ₪</option>
+	<option value="71" data-adjustment="25.0000">70 ממ - תוספת 25 ₪</option>
+
+</select></label><label for="cphContent_cphContent_cphContent_asAttributes_ddlAttr24"><span>גימור<br /></span><select name="ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$asAttributes$ddlAttr24" id="cphContent_cphContent_cphContent_asAttributes_ddlAttr24" class="attribute-list" data-attribute="24" data-required="false" onchange="DynamicPrice.updatePriceWithAttribute(this)" onkeypress="DynamicPrice.updatePriceWithAttribute(this)">
+	<option value="">- בחר -</option>
+	<option value="73" data-adjustment="9.0000">ניקל - תוספת 9 ₪</option>
+	<option value="74" data-adjustment="9.0000">אוקסיד צהוב - תוספת 9 ₪</option>
+	<option value="75" data-adjustment="12.0000">כסף עתיק - תוספת 12 ₪</option>
+	<option value="76" data-adjustment="0.0000">פליז טבעי</option>
+
+</select></label><span id="cphContent_cphContent_cphContent_asAttributes_ddlAttr3" class="attribute-list" data-attribute="3" onchange="DynamicPrice.updatePriceWithAttribute(this)" onkeypress="DynamicPrice.updatePriceWithAttribute(this)"><span data-attribute="3" data-attributeitem="4" data-adjustment="16.0000" onchange="DynamicPrice.updatePriceWithAttribute(this)" onkeypress="DynamicPrice.updatePriceWithAttribute(this)"><input id="cphContent_cphContent_cphContent_asAttributes_ddlAttr3_0" type="checkbox" name="ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$asAttributes$ddlAttr3$0" value="4" /><label for="cphContent_cphContent_cphContent_asAttributes_ddlAttr3_0">רוזטה לצלינדר - תוספת 16 ₪</label></span><br /><span data-attribute="3" data-attributeitem="5" data-adjustment="16.0000" onchange="DynamicPrice.updatePriceWithAttribute(this)" onkeypress="DynamicPrice.updatePriceWithAttribute(this)"><input id="cphContent_cphContent_cphContent_asAttributes_ddlAttr3_1" type="checkbox" name="ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$asAttributes$ddlAttr3$1" value="5" /><label for="cphContent_cphContent_cphContent_asAttributes_ddlAttr3_1">רוזטה למפתח - תוספת 16 ₪</label></span></span>
+                    
+
+                    <div class="quantity">
+                        <span class="label">כמות:</span> <span class="minus" onclick="var el = dgTools.$('cphContent_cphContent_cphContent_txtQuantity'); el.value = Math.max(el.value-1, 1)"></span>
+                        <input name="ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$txtQuantity" type="text" value="1" id="cphContent_cphContent_cphContent_txtQuantity" class="text" />
+                        <span class="plus" onclick="dgTools.$('cphContent_cphContent_cphContent_txtQuantity').value++"></span>
+                    </div>
+
+					<div class="prices">
+						<div id="cphContent_cphContent_cphContent_dvActualPrice" class="price">93 ₪</div>
+                        <a id="cphContent_cphContent_cphContent_lbAddToCart" class="add-to-cart" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl00$ctl00$cphContent$cphContent$cphContent$lbAddToCart&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">לרכישה</a>
+					</div>                    				
+						
+				</div>
+                </form>
+					
+				<div class="contact">
+					<div class="corner"></div>
+					<div class="title">לקבלת פרטים נוספים</div>
+					<div class="subtitle">אנא הזן פרטים אישיים:</div>
+					<form method="post" id="frmProductContact" onsubmit="javascript: this['_human'].value='yes'; return $valProductContact.validate()" onkeypress="return dgFormValidator.submitOnEnter(this, event)">
+						<input type="hidden" name="_formType" value="formWizard.Compatible" />
+						<input type="hidden" name="_human" value="" />
+						<input type="hidden" name="_formName" value="עמוד מוצר" />
+						<input type="hidden" name="_fields" value="productId:מס' מוצר,subject:שם המוצר,fullName:שם מלא,phone:טלפון,email:אימייל,message:הערות" />
+						<input type="hidden" name="_culture" value="he-IL" />
+						<input type="hidden" name="_sendEmail" value="true" />
+						<input type="hidden" name="_alertSummary" value="true" />
+						<input type="hidden" name="_generateOutputScripts" value="true" />
+						<input type="hidden" name="_validation.type_fullName" value="isNotEmpty" />
+						<input type="hidden" name="_validation.type_phone" value="isNotEmpty" />
+						<input type="hidden" name="_validation.type_email" value="validEmail" />
+						<input type="hidden" name="_success" value="redirect:/page/8/תודה-על-פנייתך.aspx" />
+						<input type="hidden" name="productId" value="619" />
+						<input type="hidden" name="subject" value="כפתור פליז קבוע מעוטר דגם 870" />
+						<div class="line name"><input class="text" type="text" name="fullName" placeholder="שם מלא" title="שם מלא" /></div>
+						<div class="line email"><input class="text" type="text" name="email" placeholder="דואר אלקטרוני" title="דואר אלקטרוני" onkeypress="dgFormValidator.setDirAttr(this)" onchange="dgFormValidator.setDirAttr(this)" /></div>
+						<div class="line phone"><input class="text" type="text" name="phone" placeholder="מספר טלפון" title="מספר טלפון" onkeypress="dgFormValidator.setDirAttr(this)" onchange="dgFormValidator.setDirAttr(this)" /></div>
+						<div class="line message"><textarea class="text" name="message" placeholder="הודעה" title="הודעה"></textarea></div>
+						<a class="submit" href="javascript:void(0)" onclick="dgFormValidator.submit('#frmProductContact')">שלח</a>
+					</form>
+				</div>
+					
+			</div>
+			<div class="fix-layout"></div>
+		</div>			
+			
+	</div>
+    <div id="cphContent_cphContent_cphContent_dvWndMore" class="more-products">
+		<div class="title">מוצרים נוספים</div>
+		<div class="wrapper">
+			<div class="prev" id="more-products-carouselle-prev"></div><div class="next" id="more-products-carouselle-next"></div>
+			<div class="carouselle">
+                
+
+<form action="" method="post" id="cphContent_cphContent_cphContent_pcMoreProducts_frmAddToCart" onsubmit="if (this['ProductId'].value=='') return false;" style="display:none">
+<input type="hidden" name="_formType" value="AddToCart" />
+<input type="hidden" name="ProductId" value="" />
+<input type="hidden" name="Quantity" value="1" />
+</form>
+<ul id="more-products-carouselle">
+
+	<li class="product-box">
+        <a class="image" href="/product/1662/מעצור-תריס-פליז-רועה-קטנה.aspx"><img src="/store_images/185x110/מעצור תריס רועה קטנה.JPG" alt="מעצור תריס פליז רועה קטנה" /></a>
+        <a class="name" href="/product/1662/מעצור-תריס-פליז-רועה-קטנה.aspx">מעצור תריס פליז רועה קטנה</a>
+		<div class="controls">
+            <div class="price">80 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=document.getElementById('cphContent_cphContent_cphContent_pcMoreProducts_frmAddToCart');frm['ProductId'].value=1662;dgFormValidator.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1670/ידית-פתיחה-איטלקית-ונציה.aspx"><img src="/store_images/185x110/ידית ונציה זהב מבריק.jpg" alt="ידית פתיחה איטלקית &quot;ונציה&quot;" /></a>
+        <a class="name" href="/product/1670/ידית-פתיחה-איטלקית-ונציה.aspx">ידית פתיחה איטלקית &quot;ונציה&quot;</a>
+		<div class="controls">
+            <div class="price">280 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=document.getElementById('cphContent_cphContent_cphContent_pcMoreProducts_frmAddToCart');frm['ProductId'].value=1670;dgFormValidator.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/378/נגדי-קפיצי-לבריח-475.aspx"><img src="/store_images/185x110/2010_09_06_03_12_24___.jpg" alt="נגדי קפיצי לבריח 475" /></a>
+        <a class="name" href="/product/378/נגדי-קפיצי-לבריח-475.aspx">נגדי קפיצי לבריח 475</a>
+		<div class="controls">
+            <div class="price">18 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=document.getElementById('cphContent_cphContent_cphContent_pcMoreProducts_frmAddToCart');frm['ProductId'].value=378;dgFormValidator.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1124/כפתור-קבוע-על-שלט-DM414.aspx"><img src="/store_images/185x110/ImageGen.jpg" alt="כפתור קבוע על שלט DM414" /></a>
+        <a class="name" href="/product/1124/כפתור-קבוע-על-שלט-DM414.aspx">כפתור קבוע על שלט DM414</a>
+		<div class="controls">
+            <div class="price">90 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=document.getElementById('cphContent_cphContent_cphContent_pcMoreProducts_frmAddToCart');frm['ProductId'].value=1124;dgFormValidator.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+</ul>
+			</div>
+			<script type="text/javascript">
+				// <![CDATA[
+				new dgCarouselle({
+					container: '#more-products-carouselle',
+					content: '>LI',
+					btnPrev: '#more-products-carouselle-prev',
+					btnNext: '#more-products-carouselle-next',
+					animate: true,
+					autoStart: true,
+					visibleItems: 4,
+					scrollAmount: 1,
+					mouseWheel: true,
+					transition: dgCarouselle.TransitionType.SLIDE,
+					buttonStopsAnimation: true,
+					circular: true
+				});
+				// ]]>
+			</script>
+		</div>
+				
+	</div>	
+
+
+    </div>
+
+
+	
+		<div class="footer-service">
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-contact.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					שירות לקוחות</div>
+				<br />
+				<a class="button" href="/form/1/צור-קשר.aspx">מלא טופס</a></td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-phone.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					טלפון רב-קווי</div>
+				<div style="color:#d64e26;font-family:'Braun W26 Medium','BraunW26-Medium','HelveticaNeue-Medium','Helvetica Neue Medium',Tahoma;font-size:32px;line-height:33px;">
+					<a href="tel:97235609926" style="text-decoration:none;color:#d64e26;font-family:'Braun W26 Medium','BraunW26-Medium','HelveticaNeue-Medium','Helvetica Neue Medium',Tahoma;font-size:32px;">03-5609926</a></div>
+				<div>
+					פקס: 03-5660336</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-email.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					דואר אלקטרוני</div>
+				<div style="color:#d64e26;font-family:'HelveticaNeue-Medium',Verdana,Tahoma;font-size:18px;">
+					<a href="mailto:info@bitter.co.il" style="text-decoration:none;color:#d64e26;font-family:'HelveticaNeue-Medium',Verdana,Tahoma;font-size:18px;"><strong>info@bitter.co.il</strong></a></div>
+				<div>
+					<a data-swl="120:1" href="/form/1/צור-קשר.aspx" style="color:#5e5e5e;text-decoration:none;">ליצירת קשר</a></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-hours.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					שעות פעילות</div>
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					<span style="color: rgb(94, 94, 94); font-size: 12px; line-height: 1.5;">ימים א,ב,ד,ה - 8:00-17:00</span></div>
+				יום ג - 8:00-14:00<br />
+				יום ו - 8:00-13:00</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+		</div>
+		<div class="footer-articles">
+			<div class="frame">
+				<div class="icon"></div>
+				<div class="main-title">מאמרים ומדריכים</div>
+				<div class="content">
+					<a href="/page/30/מדריך-זיהוי-למנעולים-לדלתות.aspx" id="cphContent_hlArticleTitle" class="title">מדריך זיהוי למנעולים לדלתות</a>
+					<a href="/page/30/מדריך-זיהוי-למנעולים-לדלתות.aspx"> איך מודדים מנעול לדלת? לקטגוריה מנעולים לדלתות מנעול הדלת התקלקל ואתם רוצים לקנות אחד חדש, הלכתם לחנות וביקשתם מנעול לדלת, ושם שואלים איזה מנעול יש לכם בדלת איך יודעים איזה מנעול מתאים? דבר ראשון נבדוק את את תפקוד המנעול שיטת הפעלת המנעול לאחר מכן נמדוד את המנעול ולבסוף נחפש רמזים נוספים. תפקוד המנעול אפשר לחלק את המנעולים לשני סוגים מנעולים ראשיים ומנעולי ביטחון. מנעול ראשי הוא המנעול הנמצא במרכז הדלת וברוב הפעמים הוא יהיה המנעול היחיד בדלת. המנעול הזה מכיל לשונית קפיצית או...</a>
+				</div>
+				<a href="/page/30/מדריך-זיהוי-למנעולים-לדלתות.aspx" id="cphContent_hlArticleLink" class="more">להמשך קריאה</a>
+				<a href="/page/category/1/מאמרים-ומדריכים.aspx" id="cphContent_hlArticleList" class="all">לרשימת המדריכים</a>
+			</div>
+			<div class="frame">
+				<div class="icon faq"></div>
+				<div class="main-title">שאלות ותשובות</div>
+				<div class="content">
+					<a href="/faq/1/שאלות-ותשובות.aspx#faq2" id="cphContent_hlFaqTitle" class="title">צלינדר ומנעול מי זה מי?</a>
+					<a href="/faq/1/שאלות-ותשובות.aspx#faq2">קיים בלבול רב בין המושגים צלינדר ומנעול, ואנשים רבים מתבלבלים ביניהם. בפשטות צלינדר זו היחידה שאליה נכנסים המפתחות. המילינדר מפעיל את המנעול. מנעול זהו הגוף שאליו נכנס הצלינדר, והוא מוציא את לשונית הנעילה,טריקה או שתיהן.</a>
+				</div>
+				<a href="/faq/1/שאלות-ותשובות.aspx#faq2" id="cphContent_hlFaqLink" class="more">להמשך קריאה</a>
+				<a href="/faq/1/שאלות-ותשובות.aspx" id="cphContent_hlFaqList" class="all">לרשימת השאלות</a>
+			</div>
+			<div class="fix-layout"></div>
+		</div>
+
+    </div>
+    <div class="fix-layout"></div>
+    <div class="footer-push"></div>
+</div>
+<div class="footer-container">
+    <div class="footer-logos"><div class="site-width">
+        <h2 style="text-align: center;">
+	<span style="font-size:18px;"><span style="font-size:16px;"><span style="color:#57b8d1;">כתובת החנות:</span></span><br />
+	&nbsp;<span style="color:#ffffff;">אלנבי 119, תל אביב</span></span></h2>
+<h4 style="text-align: center;">
+	<a href="https://www.waze.com/livemap?zoom=17&amp;lat=32.06281&amp;lon=34.77382" target="_blank"><span style="font-size:18px;"><span style="color:#ffffff;">כתובת ל GPS:&nbsp;לבונטין 1, תל אביב</span></span></a></h4>
+
+	</div></div>
+    <div class="footer-inner">
+        <table border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td valign="top" width="49%">
+				<div style="color:#57b8d1;font-size:14px;">
+					אחים ביטר פרזול ומנעולים</div>
+				חברת אחים ביטר בע&quot;מ נוסדה בשנת 1945 והיא מחברות הפרזול המובילות בישראל. החברה דוגלת בשירות מקצועי ואדיב וידועה במגוון הרחב של פתרונותיה ובאיכות מוצריה.<br />
+				<br />
+				חברת אחים ביטר נוסדה על ידי אברהם ביטר וחתנו יחיאל אלטמן בשנת 1945. החברה היתה מבתי העסק הראשונים אשר עסקו בפירזול בארץ ובמהרה הפכה לאבן שואבת לבעלי מקצוע ולקוחות פרטיים. מייסדי החברה דגלו בלמכור את המוצרים האיכותיים ביותר ובמתן השירות הטוב ביותר. וכך אחים ביטר היתה החברה הראשונה אשר ייבאה מותגים בינלאומיים רבים.</td>
+			<td width="2%">
+				&nbsp;</td>
+			<td valign="top" width="15%">
+				<div style="color:#57b8d1;font-size:14px;">
+					קטגוריות האתר</div>
+				<a data-swl="5:149" href="/product/category/149/פרזול-לדלתות.aspx" style="color: #5e5e5e;text-decoration:none;">פרזול לדלתות</a><br />
+				<a data-swl="5:60" href="/product/category/60/פרזול-לחלונות.aspx" style="color: #5e5e5e;text-decoration:none;">פרזול לחלונות</a><br />
+				<a data-swl="5:25" href="/product/category/25/פרזול-לריהוט.aspx" style="color: #5e5e5e;text-decoration:none;">פרזול לריהוט</a><br />
+				<a data-swl="5:150" href="/product/category/150/מוצרי-נעילה-חשמליים.aspx" style="color: #5e5e5e;text-decoration:none;">מוצרי נעילה חשמליים</a><br />
+				<a data-swl="5:32" href="/product/category/32/שונות.aspx" style="color: #5e5e5e;text-decoration:none;">שונות</a></td>
+			<td width="2%">
+				&nbsp;</td>
+			<td valign="top" width="15%">
+				<div style="color:#57b8d1;font-size:14px;">
+					ניווט מהיר</div>
+				<div>
+					<a data-swl="0:" href="/" style="color: #5e5e5e;text-decoration:none;">דף בית</a><br />
+					<a data-swl="2:2" href="/page/2/אודות-אחים-ביטר-בעמ.aspx" style="color: #5e5e5e;text-decoration:none;">אודות</a><br />
+					<a data-swl="5:121" href="/product/category/121/מוצרים-חדשים.aspx" style="color: #5e5e5e;text-decoration:none;">מוצרים חדשים</a><br />
+					<a data-swl="102:1" href="/page/category/1/מאמרים-ומדריכים.aspx" style="color: #5e5e5e;text-decoration:none;">מדריכים ומאמרים</a><br />
+					<a data-swl="10:1" href="/faq/1/שאלות-ותשובות.aspx" style="color: #5e5e5e;text-decoration:none;">שאלות ותשובות</a></div>
+				<div>
+					<a data-swl="2:41" href="/page/41/מדיניות-משלוחים.aspx" style="color: rgb(94, 94, 94); text-decoration: none;">מדיניות משלוחים</a><br />
+					<a data-swl="120:1" href="/form/1/צור-קשר.aspx" style="color: #5e5e5e;text-decoration:none;">צור קשר</a><br />
+					<a data-swl="100:1" href="/מפת-אתר.aspx" style="color: #5e5e5e;text-decoration:none;">מפת האתר</a><br />
+					<a data-swl="2:38" href="/page/38/תנאי-שימוש.aspx" style="color: #5e5e5e;text-decoration:none;">תנאי שימוש</a></div>
+			</td>
+			<td width="2%">
+				&nbsp;</td>
+			<td valign="top" width="15%">
+				<div style="color:#57b8d1;font-size:14px;">
+					עקבו אחרינו</div>
+				<div style="color:#57b8d1;font-size:14px;">
+					<a href="https://www.facebook.com/pages/אחים-ביטר-פרזול-ומנעולים/123064494390871" target="_blank"><img alt="" src="/uploads/image/logo_facebook.png" style="width: 40px; height: 40px;" /></a>&nbsp;<a href="https://plus.google.com/+BitterCoIllocks/posts" style="text-decoration: none;" target="_blank"><img alt="" src="/uploads/image/Google-plus-icon.png" style="width: 40px; height: 40px;" /></a></div>
+				<div>
+					&nbsp;</div>
+				<div>
+					כל הזכויות שמורות.<br />
+					אחים ביטר פרזול ומנעולים 2014.</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+        <div class="footer-links"><a href="http://www.webuildit.co.il" target="_blank">Webuildit</a></div>
+    </div>
+</div>
+
+
+<div id="modal-popup" class="modal-popup" style="display:none">
+	<div>
+		<a title="Close" class="close" href="javascript:void(hidePopup())">X</a>
+		
+	</div>
+</div>
+<script>
+    function showPopup() {
+        function dismissEvent(event) {
+            if (event.target !== this) return;
+            hidePopup();
+        }
+        $('#modal-popup').fadeIn().off()
+            .on('mousedown', dismissEvent)
+            .on('touchend', dismissEvent);
+    }
+    function hidePopup() {
+        $('#modal-popup').fadeOut();
+    }
+</script>
+
+
+
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1062940465;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1062940465/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W8F3BV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W8F3BV');</script>
+<!-- End Google Tag Manager -->
+
+</body>
+</html>

@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html id="html" lang="he">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link href="/css/style_rtl.css" type="text/css" rel="stylesheet"/>
+<script src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js" type="text/javascript"></script>
+<script src="/js/noContextMenu.js" type="text/javascript"></script><script src="/js/jquery-1.11.0.min.js" type="text/javascript"></script><script src="/js/placeholders.min.js" type="text/javascript"></script><script src="/js/jquery.mousewheel-min.js" type="text/javascript"></script><script src="/js/jquery.dgMenu-min.js" type="text/javascript"></script><script src="/js/jquery.dgFormValidator-min.js" type="text/javascript"></script><script src="/js/jquery.fastdom-min.js" type="text/javascript"></script><script src="/js/jquery.fakebutton-min.js" type="text/javascript"></script><script src="/js/bitter.js" type="text/javascript"></script><script src="/js/dgTools.js" type="text/javascript"></script><script src="/js/jquery.cookie-min.js" type="text/javascript"></script><script src="/js/store/store-utilities.js" type="text/javascript"></script><script src="/js/customUI.js" type="text/javascript"></script><script src="http://fast.fonts.com/jsapi/1a290917-6d77-4df8-b7cd-b6ef3de8d92a.js" type="text/javascript"></script><meta name="google-site-verification" content="6_gRWdXbqMwevcrMeDWH5Yw7cKmwfXPPx0ftjtyOeqA" />
+<meta name="viewport" content="width=1000" />
+<script src="/js/chooseCurrency/chooseCurrency.js?culture=he-IL&LangId=1" type="text/javascript" language="javascript"></script>
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+    var $valSearch = new dgFormValidator('#frmSearch');
+    $valSearch.summaryMethod = $valSearch.SUMMARY_NONE;
+    $valSearch.addRequired('keywords');
+// ]]>
+</script>
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+    ProductComparison.init({
+        clearDifferentCategories: true,
+        allowDifferentCategories: false,
+        checkboxSelector: 'input.product-compare-checkbox',
+        compareButtonsSelector: 'a.product-compare-button',
+        productNameSelector: '#product-##-name',
+        productImageSelector: '#product-##-image',
+        productLinkSelector: '#product-##-link',
+        categoryId: 5,
+        maxItems: 3
+    });
+// ]]>
+</script>
+
+<script language="javascript" src="/js/jquery.dgCarouselle-min.js" type="text/javascript"></script>
+
+<meta name="Description" content="אחים ביטר חברת הפרזול הוותיקה והמובילה בישראל. כאן ניתן למצוא מגוון פתרונות פרזול ומנעולים, לדלתות, חלונות וריהוט לבית ולבניין " /><meta name="Keywords" content="דף הבית, אחים ביטר, פתרונות, פרזול, מנעולים, מנעול, לדלתות, דלת, לחלונות, חלון, ריהוט, מוצרי נעילה חשמליים, " /><title>
+	אחים ביטר - פרזול ומנעולים
+</title></head>
+<body id="body">
+
+
+
+<div class="main-container" >
+    <div class="page-header"><div class="site-width">
+		<div class="part1">
+			<ul class="top-menu">
+				<li><a href="/page/2/אודות-אחים-ביטר-בעמ.aspx"  >אודות</a></li><li><a href="/product/category/121/מוצרים-חדשים.aspx"  >מוצרים חדשים</a></li><li><a href="/page/category/1/מאמרים-ומדריכים.aspx"  >מאמרים ומדריכים</a></li><li><a href="/faq/1/שאלות-ותשובות.aspx"  >שאלות ותשובות</a></li><li><a href="/page/10/יצרני-פרזול-מהעולם.aspx"  >פרזול מהעולם</a></li><li><a href="/page/41/מדיניות-משלוחים.aspx"  >משלוחים</a></li><li><a href="/form/1/צור-קשר.aspx"  >צור קשר</a></li><li><a href="/page/9/About-Bitter-Bros-Ltd.aspx"  >English</a></li>
+			</ul>
+            <form class="search" action="/ProductSearch.aspx" id="frmSearch" method="get" 
+                onsubmit="return $valSearch.validate();" onkeypress="dgFormValidator.submitOnEnter(this, event)">
+				<a class="submit" href="javascript:void(dgFormValidator.submit('frmSearch'))">חפש</a>
+				<div class="sep"></div>
+				<div class="search-box">
+					<input type="hidden" name="LangId" value="1" />
+					<input type="text" class="text" name="keywords" placeholder="חפש מוצר..." title="חפש מוצר..." value="" />
+				</div>
+            </form>
+		</div>
+		<div class="part2">
+            <a class="logo" href="http://www.bitter.co.il/"><img src="/images/logo.png" alt="אחים ביטר" /></a>
+			<ul class="menu" id="big-menu">
+                <li class="big-menu-6"><span class="image" style="background-image:url('/uploads/image/category-icon-door.png')"></span><span class="text">פרזול לדלתות</span></li><li class="big-menu-12"><span class="image" style="background-image:url('/uploads/image/category-icon-window.png')"></span><span class="text">פרזול לחלונות</span></li><li class="big-menu-13"><span class="image" style="background-image:url('/uploads/image/category-icon-furniture.png')"></span><span class="text">פרזול לריהוט</span></li><li class="big-menu-14"><span class="image" style="background-image:url('/uploads/image/category-icon-lock.png')"></span><span class="text">מוצרי נעילה חשמליים</span></li><li class="big-menu-15"><span class="image" style="background-image:url('/uploads/image/category-icon-misc.png')"></span><span class="text">מוצרים נוספים</span></li>
+				<li class="cart">
+					<a href="/Cart_Step1_heb.aspx" id="cphContent_hlCart">
+						<span class="text">עגלת קניות</span>
+						<span id="cphContent_dvCartCount" class="subtext">(0 פריטים)</span>
+					</a>
+				</li>
+            </ul>
+		</div>
+	</div></div>
+	<div class="sub-menus">
+        <div class="menu" id="big-sub-menu-6"><div class="level0"><ul><li><a href="/product/category/59/ידיות-לדלתות.aspx"  >ידיות לדלתות</a></li><li><a href="/product/category/54/מנעולים-וצילינדרים-לדלתות.aspx"  >מנעולים וצילינדרים לדלתות</a></li><li><a href="/product/category/57/צירים-ומחזירים-לדלתות-ושערים.aspx"  >צירים ומחזירים לדלתות ושערים</a></li><li><a href="/product/category/187/פרזול-לדלתות-ייעודיות.aspx"  >פרזול לדלתות ייעודיות</a></li><li><a href="/product/category/95/פרזול-משלים-לדלתות.aspx"  >פרזול משלים לדלתות</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/69/ידיות-הפעלה.aspx"  >ידיות הפעלה</a></li><li><a href="/product/category/116/ידיות-הפעלה-יוקרתיות.aspx"  >ידיות הפעלה יוקרתיות</a></li><li><a href="/product/category/71/ידיות--נירוסטה-לדלתות.aspx"  >ידיות נירוסטה לדלתות</a></li><li><a href="/product/category/72/ידיות-קבועות.aspx"  >ידיות קבועות</a></li><li><a href="/product/category/130/ידיות-כפתור.aspx"  >ידיות כפתור</a></li><li><a href="/product/category/30/ידיות-בהלה.aspx"  >ידיות בהלה</a></li><li><a href="/product/category/136/ידיות-לפלדלת-ושאר-דלתות-הפלדה.aspx"  >ידיות לפלדלת ושאר דלתות הפלדה</a></li></ul></li><li><ul><li><a href="/product/category/62/מנעולים-חבויים-לדלתות-כניסה-מעץ.aspx"  >מנעולים חבויים לדלתות כניסה מעץ</a></li><li><a href="/product/category/63/מנעולים-חבויים-לדלתות-אלומיניום-וברזל.aspx"  >מנעולים חבויים לדלתות אלומיניום וברזל</a></li><li><a href="/product/category/65/מנעולים-רב-בריחיים.aspx"  >מנעולים רב בריחיים</a></li><li><a href="/product/category/67/מנעולים-חיצוניים.aspx"  >מנעולים חיצוניים</a></li><li><a href="/product/category/87/מנעולי-פבלוק.aspx"  >מנעולי פבלוק</a></li><li><a href="/product/category/113/מנעולים-חבויים-לדלתות-פנים.aspx"  >מנעולים חבויים לדלתות פנים</a></li><li><a href="/product/category/182/מנעולי-ביטחון.aspx"  >מנעולי ביטחון</a></li><li><a href="/product/category/80/מקודדים-מכניים.aspx"  >מקודדים מכניים</a></li><li><a href="/product/category/107/צלינדרים-מכניים.aspx"  >צילינדרים מכניים</a></li></ul></li><li><ul><li><a href="/product/category/82/צירי-ספר-לדלתות.aspx"  >צירי ספר לדלתות</a></li><li><a href="/product/category/91/צירי-פיבוט-לדלתות-ושערים.aspx"  >צירי פיבוט לדלתות ושערים</a></li><li><a href="/product/category/92/צירים-פריקים.aspx"  >צירים פריקים</a></li><li><a href="/product/category/104/צירים-סמויים.aspx"  >צירים סמויים</a></li><li><a href="/product/category/81/צירים-לדלתות-פלדה-ושערי-ברזל.aspx"  >צירים לדלתות פלדה ושערי ברזל</a></li><li><a href="/product/category/84/צירים-קפיציים.aspx"  >צירים קפיציים</a></li><li><a href="/product/category/86/צירים-מושחרים.aspx"  >צירים מושחרים</a></li><li><a href="/product/category/152/צירים-כפולים.aspx"  >צירים כפולים</a></li><li><a href="/product/category/44/סוגרים-הידראולים-עליונים.aspx"  >סוגרים הידראולים עליונים</a></li><li><a href="/product/category/45/סוגרים-הידראולים-תחתונים.aspx"  >סוגרים הידראולים תחתונים</a></li><li><a href="/product/category/99/צירי-שער-הידראוליים.aspx"  >צירי שער הידראוליים</a></li><li><a href="/product/category/43/מחזירים-צידיים.aspx"  >מחזירים צידיים</a></li></ul></li><li><ul><li><a href="/product/category/31/פרזול-לדלתות-אש.aspx"  >פרזול לדלתות אש ומילוט</a></li><li><a href="/product/category/109/פרזול-לדלתות-זכוכית.aspx"  >פרזול לדלתות זכוכית</a></li><li><a href="/product/category/105/פרזול-לדלתות-ושערי-הזזה.aspx"  >פרזול לדלתות ושערי הזזה</a></li></ul></li><li><ul><li><a href="/product/category/89/בריחים-חבויים.aspx"  >בריחים וסגרים חבויים</a></li><li><a href="/product/category/90/בריחים-חיצוניים.aspx"  >בריחים וסגרים חיצוניים</a></li><li><a href="/product/category/100/מנגנוני-תפוס-פנוי.aspx"  >מנגנוני תפוס פנוי</a></li><li><a href="/product/category/94/מעצורים-לדלתות.aspx"  >מעצורים לדלתות</a></li><li><a href="/product/category/106/פעמונים-ונוקשים-לדלת.aspx"  >פעמונים ונוקשים לדלת</a></li><li><a href="/product/category/131/פרזול-נפחות-קישוטי.aspx"  >פרזול נפחות קישוטי</a></li><li><a href="/product/category/135/עיניות--וסגרי-ביטחון-לדלתות.aspx"  >עיניות וסגרי ביטחון לדלתות</a></li><li><a href="/product/category/96/ספי-דלת-וגומי-איטום.aspx"  >ספי דלת וגומי איטום</a></li><li><a href="/product/category/139/אביזרים-לידיות.aspx"  >אביזרים לידיות</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-12"><div class="level0"><ul><li><a href="/product/category/50/פרזול-חלונות-עץ-לשימור.aspx"  >פרזול חלונות עץ לשימור</a></li><li><a href="/product/category/76/פרזול-לחלונות-ברזל-בלגי.aspx"  >פרזול לחלונות ברזל</a></li><li><a href="/product/category/110/פרזול-לחלונות-אלומיניום.aspx"  >פרזול לחלונות אלומיניום</a></li><li><a href="/product/category/229/פרזול-משלים-לחלונות.aspx"  >פרזול משלים לחלונות</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/238/ידיות-לחלונות-עץ.aspx"  >ידיות לחלונות עץ</a></li><li><a href="/product/category/239/מנעולים-וסגרים-לעץ.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/170/צירים-לחלונות-עץ.aspx"  >צירים לחלונות עץ</a></li><li><a href="/product/category/240/צירי-מספרים-ומגבילי-פתיחה.aspx"  >צירי מספריים ומגבילי פתיחה</a></li><li><a href="/product/category/241/מעצורים-לחלונות-ותריסים.aspx"  >מעצורים לחלונות ותריסים</a></li><li><a href="/product/category/249/פרזול-חלונות-הזזה-מעץ.aspx"  >פרזול לחלונות הזזה מעץ</a></li></ul></li><li><ul><li><a href="/product/category/242/ידיות-לחלונות-ברזל.aspx"  >ידיות לחלונות ברזל</a></li><li><a href="/product/category/244/מנעולים-וסגרים-לחלונות-ברזל.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/243/צירים-לחלונות-ברזל.aspx"  >צירים לחלונות ברזל</a></li></ul></li><li><ul><li><a href="/product/category/245/ידיות-לחלונות-אלומיניום.aspx"  >ידיות לחלונות אלומיניום</a></li><li><a href="/product/category/274/צירים-לחלונות-אלומיניום.aspx"  >צירים לחלונות אלומיניום</a></li><li><a href="/product/category/246/מנעולים-וסגרים-לאלומיניום.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/247/פרזול-לחלונות-הזזה-מאלומיניום.aspx"  >פרזול לחלונות הזזה מאלומיניום</a></li></ul></li><li><ul><li><a href="/product/category/148/פרזול-לתריסי-גלילה.aspx"  >פרזול לתריסי גלילה</a></li><li><a href="/product/category/134/מוצרי-איטום-לחלונות.aspx"  >מוצרי איטום לחלונות</a></li><li><a href="/product/category/138/פרזול-לחלונות-הזזה.aspx"  >פרזול לחלונות הזזה</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-13"><div class="level0"><ul><li><a href="/product/category/47/ידיות-וכפתורים.aspx"  >ידיות וכפתורים</a></li><li><a href="/product/category/196/מנעולים-וסגרים.aspx"  >מנעולים וסגרים</a></li><li><a href="/product/category/194/צירים-ומסילות.aspx"  >צירים ומסילות</a></li><li><a href="/product/category/201/פרזול-לריהוט-ייעודי.aspx"  >פרזול לריהוט ייעודי</a></li><li><a href="/product/category/203/אביזרים-לריהוט.aspx"  >אביזרים לריהוט</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/230/ידיות-מודרניות-לארונות.aspx"  >ידיות מודרניות לארונות</a></li><li><a href="/product/category/124/ידיות-קלאסיות-לארונות.aspx"  >ידיות קלאסיות לארונות</a></li><li><a href="/product/category/125/כפתורים-לארונות.aspx"  >כפתורים לארונות</a></li><li><a href="/product/category/231/ידיות-וכפתורים-קריסטל.aspx"  >ידיות וכפתורים מקריסטל</a></li><li><a href="/product/category/129/ידיות-וכפתורי-פורצלן-לארונות.aspx"  >ידיות וכפתורי פורצלן</a></li><li><a href="/product/category/279/ידיות-וכפתורי-נפחות-מושחרים.aspx"  >ידיות וכפתורי נפחות מושחרים</a></li><li><a href="/product/category/126/מסגרות-לשם.aspx"  >מסגרות לשם</a></li></ul></li><li><ul><li><a href="/product/category/23/מנעולים-לארונות-ומגירות-ממתכת-ועץ.aspx"  >מנעולים לארונות ממתכת ועץ</a></li><li><a href="/product/category/197/מנעולים-לארונות-זכוכית.aspx"  >מנעולים לארונות זכוכית</a></li><li><a href="/product/category/61/סגרים-לארונות.aspx"  >סגרים לארונות</a></li><li><a href="/product/category/198/סגרי-טפח-פתח.aspx"  >סגרי טפח פתח</a></li></ul></li><li><ul><li><a href="/product/category/200/צירים-קפיציים-לארון.aspx"  >צירים קפיציים לארון</a></li><li><a href="/product/category/48/צירים-לריהוט.aspx"  >צירים לריהוט</a></li><li><a href="/product/category/204/בוכנות-גז-וצירי-מספריים.aspx"  >בוכנות גז וצירי מספריים</a></li><li><a href="/product/category/202/מסילות-למגירות.aspx"  >מסילות למגירות</a></li><li><a href="/product/category/147/פלטות-סיבוב.aspx"  >פלטות סיבוב</a></li></ul></li><li><ul><li><a href="/product/category/103/פרזול-לארונות-פח--ארונות-חשמל-תקשורת-וגז.aspx"  >פרזול לארונות פח- ארונות חשמל תקשורת וגז</a></li><li><a href="/product/category/133/פרזול-לארונות-הזזה.aspx"  >פרזול לארונות הזזה</a></li><li><a href="/product/category/120/פרזול-לריהוט-זכוכית.aspx"  >פרזול לריהוט זכוכית</a></li></ul></li><li><ul><li><a href="/product/category/39/רגליים-לשולחנות.aspx"  >רגליים לשולחנות</a></li><li><a href="/product/category/205/רגליות-לריהוט.aspx"  >רגליות לריהוט</a></li><li><a href="/product/category/117/מחליקי-טפלון.aspx"  >מחליקי טפלון</a></li><li><a href="/product/category/206/אביזרי-בטיחות-לריהוט.aspx"  >אביזרי בטיחות לריהוט</a></li><li><a href="/product/category/276/פתחי-אוורור-לריהוט.aspx"  >פתחי אוורור לריהוט</a></li><li><a href="/product/category/207/סידור-וניהול-כבלים.aspx"  >סידור וניהול כבלים</a></li><li><a href="/product/category/46/מחזיקי-מדף-ומוטות-לתלייה.aspx"  >מחזיקי מדף ומוטות לתלייה</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-14"><div class="level0"><ul><li><a href="/product/category/208/מנעולים-חשמליים.aspx"  >מנעולים חשמליים</a></li><li><a href="/product/category/213/מנעולים-אלקטרו-מכניים.aspx"  >מנעולים אלקטרו מכניים</a></li><li><a href="/product/category/216/מנעולים-אלקטרו-מגנטים.aspx"  >מנעולים אלקטרו מגנטים</a></li><li><a href="/product/category/219/אביזרים-למנעולים-חשמליים-ואלקטרומגנטים.aspx"  >אביזרים למנעולים חשמליים ואלקטרומגנטים</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/21/מנעולים-חשמליים-חבויים-במשקוף.aspx"  >מנעולים חשמליים חבויים</a></li><li><a href="/product/category/211/מנעולים-חשמליים-חיצוניים.aspx"  >מנעולים חשמליים חיצוניים</a></li><li><a href="/product/category/212/מנעולים-חשמליים-לארונות.aspx"  >מנעולים חשמליים לארונות</a></li></ul></li><li><ul><li><a href="/product/category/214/בריחים-אלקטרו-מכניים.aspx"  >בריחים אלקטרו מכניים</a></li><li><a href="/product/category/22/מנעולים-אלקטרו-מכניים.aspx"  >מנעולים אלקטרו מכניים</a></li></ul></li><li><ul><li><a href="/product/category/27/מנעולים-אלקטרו-מגנטים-לתנאי-פנים.aspx"  >אלקטרו מגנטים לתנאי פנים</a></li><li><a href="/product/category/217/מנעולים-אלקטרו-מגנטים-לתנאי-חוץ.aspx"  >אלקטרו מגנטים לתנאי חוץ</a></li><li><a href="/product/category/218/מנעולים-אלקטרו-מגנטים-שקועיים.aspx"  >אלקטרו מגנטיים שקועים</a></li><li><a href="/product/category/97/זויות-למנעולים-אלקטרו-מגנטים.aspx"  >זויות למנעולים אלקטרו מגנטים</a></li></ul></li><li><ul><li><a href="/product/category/111/אביזרים-לדלתות-אינטרלוק.aspx"  >אביזרים לדלתות אינטרלוק</a></li><li><a href="/product/category/98/כרטיסים-אלקטרוניים-למנעולים-חשמליים-ומגנטים.aspx"  >כרטיסים אלקטרוניים למנעולים חשמליים ומגנטים</a></li><li><a href="/product/category/73/לחצנים--ומפסקים-למנעולים-חשמליים-ואלקטרו-מגנטים.aspx"  >לחצנים ומפסקים למנעולים חשמליים ואלקטרו מגנטים</a></li><li><a href="/product/category/85/מקודדים-דיגיטליים-לדלת.aspx"  >מקודדים דיגיטליים לדלת</a></li><li><a href="/product/category/75/מעבירי-מתח.aspx"  >מעבירי מתח</a></li></ul></li><li class="fix-layout"></li></ul></div></div><div class="menu" id="big-sub-menu-15"><div class="level0"><ul><li><a href="/product/category/220/תיבות-דואר-כספות-וקופות.aspx"  >תיבות דואר, כספות וקופות</a></li><li><a href="/product/category/221/מנעולי-תליה-רתקים-וריתוגים.aspx"  >מנעולי תליה, רתקים וריתוגים</a></li><li><a href="/product/category/37/פרזול-לקופסאות-וארגזים.aspx"  >פרזול לקופסאות וארגזים</a></li><li><a href="/product/category/222/פרזול-ייעודי.aspx"  >פרזול ייעודי</a></li><li><a href="/product/category/223/אביזרים-נוספים.aspx"  >אביזרים נוספים</a></li><li class="fix-layout"></li></ul></div><div class="level1"><ul><li><ul><li><a href="/product/category/40/תיבות-דואר.aspx"  >תיבות דואר</a></li><li><a href="/product/category/34/כספות.aspx"  >כספות</a></li><li><a href="/product/category/226/קופות-שולחן.aspx"  >קופות שולחן</a></li><li><a href="/product/category/227/ארונות-מפתחות.aspx"  >ארונות מפתחות</a></li></ul></li><li><ul><li><a href="/product/category/36/מנעולי-תליה.aspx"  >מנעולי תליה</a></li><li><a href="/product/category/277/מנעולי-מספרים.aspx"  >מנעולי מספרים</a></li><li><a href="/product/category/224/רתקים-וריתוגים.aspx"  >רתקים וריתוגים</a></li><li><a href="/product/category/225/נושאי-מנעול.aspx"  >נושאי מנעול</a></li></ul></li><li><ul><li><a href="/product/category/123/ידיות-לארגזים.aspx"  >ידיות לארגזים</a></li><li><a href="/product/category/280/פינות-לארגזים.aspx"  >פינות לארגזים</a></li><li><a href="/product/category/137/צירים-לארגזים.aspx"  >צירים לארגזים</a></li><li><a href="/product/category/88/סגרים-לארגזים.aspx"  >סגרים לארגזים</a></li><li><a href="/product/category/101/פרזול-לקופסאות.aspx"  >פרזול לקופסאות</a></li></ul></li><li><ul><li><a href="/product/category/127/אביזרי-בטיחות.aspx"  >אביזרי בטיחות</a></li><li><a href="/product/category/146/פרזול-לשירותי-נכים.aspx"  >פרזול לשירותי נכים</a></li><li><a href="/product/category/132/פרזול-נירוסטה.aspx"  >פרזול נירוסטה</a></li><li><a href="/product/category/254/פרזול-לזכוכית.aspx"  >פרזול לזכוכית</a></li><li><a href="/product/category/264/פרזול-למסגרים.aspx"  >פרזול למסגרים</a></li></ul></li><li><ul><li><a href="/product/category/33/גלגלים.aspx"  >גלגלים</a></li><li><a href="/product/category/282/מחזיקי-מעקה.aspx"  >מחזיקי מעקה</a></li><li><a href="/product/category/35/מחזיקי-מדף.aspx"  >מחזיקי מדף</a></li><li><a href="/product/category/281/מחזיקי-מדף-זכוכית.aspx"  >מחזיקי מדף לזכוכית</a></li><li><a href="/product/category/38/קולבים-ומתלים.aspx"  >קולבים ומתלים</a></li><li><a href="/product/category/278/קולבים-ומתלים-ללא-קידוח.aspx"  >קולבים ומתלים ללא קידוח</a></li><li><a href="/product/category/271/זוויות-וסרגלים.aspx"  >זוויות וסרגלים</a></li><li><a href="/product/category/270/מגנטים.aspx"  >מגנטים</a></li></ul></li><li class="fix-layout"></li></ul></div></div>
+	</div>
+	<div class="bridge">
+		<div class="shadow"></div>
+		<div class="site-width">
+
+
+	<div class="banner">
+		<ul class="items" id="home-banner-buttons">
+			<li class="active"><div class="image"><img src="/uploads/image/cache/84x84snnbctransparentb0bg/CCEBUMPER.JPG" alt="משאירים את החורף בחוץ" /></div><div class="title">משאירים את החורף בחוץ</div><div class="subtitle">מגוון ספי דלת וגומי איטום למניעת חדירת מים וקור</div></li><li class="active"><div class="image"><img src="/uploads/image/cache/84x84snnbctransparentb0bg/מנשלך מוזהב.JPG" alt="פתרונות למבנים לשימור" /></div><div class="title">פתרונות למבנים לשימור</div><div class="subtitle">מגוון מוצרי פרזול המותאמים לדרישות ולעיצוב של מבנים לשימור</div></li><li class="active"><div class="image"><img src="/uploads/image/cache/84x84snnbctransparentb0bg/קורא טביעת אצבעות 6061.jpg" alt="נעילה אלקטרו מכנית" /></div><div class="title">נעילה אלקטרו מכנית</div><div class="subtitle">בריחים ומנעולים המשלבים נעילה חשמלית ומכנית</div></li>
+		</ul>
+		<ul class="contents" id="home-banner-contents">
+			<li style="background-image:url('/uploads/image/cache/624x329snnbctransparentb0bg/באנר חורף.jpg')"><h2>משאירים את החורף בחוץ</h2><div>
+	<div>
+		<strong style="font-size: 16px; line-height: 1.2;">ימי גשם ראשונים מבשרים לנו שהגיע הזמן להתכונן לחורף.</strong><br />
+		<b style="line-height: 19.2000007629395px; font-size: medium;">אטימה של הדלתות והחלונות תאפשר להשאיר את&nbsp;הרטיבות</b><br />
+		<b style="line-height: 19.2000007629395px; font-size: medium;">והטמפרטורה הקרה מחוץ לבית ולהנות מבית חמים ונעים.</b></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<span style="font-size: 16px; line-height: 1.2;">כאן תוכלו למצוא גומי גמיש הנמעך כאשר החלון נסגר&nbsp;<br />
+		ומונע מעבר אויר ומים בין החלון למסגרת</span><br />
+		<br />
+		<span style="font-size: 16px; line-height: 1.2;">ומגוון ספי דלת המותקנים בתחתית הדלת</span></div>
+	<div>
+		<span style="font-size: 16px; line-height: 1.2;">ואוטמים את הרווח בין הדלת לריצפה.</span></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<a class="button" href="http://www.bitter.co.il/product/category/96/%D7%A1%D7%A4%D7%99-%D7%93%D7%9C%D7%AA-%D7%95%D7%92%D7%95%D7%9E%D7%99-%D7%90%D7%99%D7%98%D7%95%D7%9D.aspx">מוצרי איטום</a></div>
+	<div>
+		&nbsp;</div>
+</div>
+<div>
+	&nbsp;</div>
+</li><li style="background-image:url('/uploads/image/cache/624x329snnbctransparentb0bg/בניין לשימור.jpg')"><h2>פתרונות למבנים לשימור</h2><div>
+	<span style="font-size:16px;line-height: 1.2"><strong>כיום מבנים רבים בישראל מוגדרים כמבנים לשימור</strong></span><br />
+	<strong style="font-size: 16px;line-height: 1.2; ;">וככאלו התקנה&nbsp;ושיפוץ כל אלמנט בהם מחייב דיוק רב</strong></div>
+<div>
+	<strong style="font-size: 16px; line-height: 1.2;">ולהתבצע בהתאם למפרט מדויק.&nbsp;</strong></div>
+<div>
+	&nbsp;</div>
+<div>
+	<span style="font-size:16px;line-height: 1.2;">כאן תוכלו למצוא ידיות, מנעולים, סגרים, צירים, מגבילי פתיחה</span></div>
+<div>
+	<span style="font-size:16px;line-height: 1.2;">וכמובן מעצור ה&#39;מנשלך&#39; שחזר לאופנה היישר משנות הארבעים.</span></div>
+<div>
+	<span style="font-size:16px; line-height: 1.2;">הכל מותאם, מעוצב ועומד בתקנים המחמירים של&nbsp;</span></div>
+<div>
+	<span style="font-size:16px;line-height: 1.2;">בניינים לשימור.</span></div>
+<div>
+	&nbsp;</div>
+<div>
+	&nbsp;</div>
+<div>
+	<a class="button" href="/product/category/50/%D7%A4%D7%A8%D7%96%D7%95%D7%9C-%D7%97%D7%9C%D7%95%D7%A0%D7%95%D7%AA-%D7%A2%D7%A5-%D7%9C%D7%A9%D7%99%D7%9E%D7%95%D7%A8.aspx">פרזול לשימור</a></div>
+<div>
+	&nbsp;</div>
+</li><li style="background-image:url('/uploads/image/cache/624x329snnbctransparentb0bg/באנר הייטק3.jpg')"><h2>נעילה אלקטרו מכנית</h2><div>
+	<div>
+		<strong style="font-size: 16px; line-height: 1.3;">פתרון אידאלי למי שמחפש שילוב מנצח של נוחות&nbsp;וביטחון.</strong><br />
+		<strong style="font-size: 16px; line-height: 1.3;">מנעולים אלקטרו מכנים מספקים ביטחון מוגבר&nbsp;</strong><strong style="font-size: 16px; line-height: 1.3;">בנעילה מכנית<br />
+		ושליטה מלאה באמצעות פתיחה חשמלית.&nbsp;</strong></div>
+	<div>
+		&nbsp;</div>
+	<div>
+		<div dir="RTL">
+			<span style="font-size:16px;line-height: 1.3">מנעולים אלקטרו מכנים מתאימים לבתים חכמים, למשרדים<br />
+			ולמוסדות&nbsp;ומאפשרים פתיחה ע&quot;י כל אמצעי הבקרה&nbsp;כגון:<br />
+			קודנים,&nbsp;קורא כרטיסים,&nbsp;טלפונים סלולרים וטביעות אצבע.<br />
+			מנעולים אלקטרו מכנים דורשים הכנה מיוחדת&nbsp;ולכן<br />
+			יש להזמינם עוד בשלב ייצור הדלת.</span></div>
+		<div dir="RTL">
+			&nbsp;</div>
+	</div>
+	<div>
+		<a class="button" href="product/category/213/מנעולים-אלקטרו-מכניים.aspx">לצפייה במנעולים</a></div>
+</div>
+<div>
+	&nbsp;</div>
+</li>
+		</ul>
+		<script type="text/javascript">
+			// <![CDATA[
+			new dgCarouselle({
+				container: '#home-banner-contents',
+				buttons: '#home-banner-buttons>LI',
+				content: '>LI',
+				buttonSelectedClass: 'active',
+				animate: true,
+				autoStart: true,
+				transition: dgCarouselle.TransitionType.FADE,
+				buttonStopsAnimation: true,
+				circular: false
+			});
+			// ]]>
+		</script>
+	</div>
+
+
+        </div>
+	</div>
+    <div class="body-container">
+        
+
+
+<div class="home-page">
+		
+    
+    
+	    <div class="product-carouselle">
+		    <div class="title">מוצרים חדשים</div>
+		    <div class="carouselle">
+                
+
+<form action="" method="post" id="cphContent_cphContent_rpCategories_ctl00_0_frmAddToCart" onsubmit="if (this['ProductId'].value=='') return false;" style="display:none">
+<input type="hidden" name="_formType" value="AddToCart" />
+<input type="hidden" name="ProductId" value="" />
+<input type="hidden" name="Quantity" value="1" />
+</form>
+<ul class="product-cubes " id="home-products-0-contents">
+
+	<li class="product-box">
+        <a class="image" href="/product/1651/קורא-טביעת-אצבעות-6061.aspx" id="product-1651-link"><img id="product-1651-image" src="/store_images/271x162/קורא טביעת אצבעות 6061.jpg" alt="קורא טביעת אצבעות 6061" /></a>
+        <div class="desc">
+            <a class="name" href="/product/1651/קורא-טביעת-אצבעות-6061.aspx" id="product-1651-name" title="קורא טביעת אצבעות 6061">קורא טביעת אצבעות 6061</a>
+        </div>
+		<div class="controls">
+            <div class="price">1100 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_0_frmAddToCart');frm['ProductId'].value=1651;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1587/סוגר-הידראולי-עליון-מעוצב-F6803.aspx" id="product-1587-link"><img id="product-1587-image" src="/store_images/271x162/סוגר הידראולי  F6803.jpg" alt="סוגר הידראולי עליון מעוצב F6803" /></a>
+        <div class="desc">
+            <a class="name" href="/product/1587/סוגר-הידראולי-עליון-מעוצב-F6803.aspx" id="product-1587-name" title="סוגר הידראולי עליון מעוצב F6803">סוגר הידראולי עליון מעוצב F6803</a>
+        </div>
+		<div class="controls">
+            <div class="price">280 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_0_frmAddToCart');frm['ProductId'].value=1587;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1670/ידית-פתיחה-איטלקית-ונציה.aspx" id="product-1670-link"><img id="product-1670-image" src="/store_images/271x162/ידית ונציה זהב מבריק.jpg" alt="ידית פתיחה איטלקית &quot;ונציה&quot;" /></a>
+        <div class="desc">
+            <a class="name" href="/product/1670/ידית-פתיחה-איטלקית-ונציה.aspx" id="product-1670-name" title="ידית פתיחה איטלקית &quot;ונציה&quot;">ידית פתיחה איטלקית &quot;ונציה&quot;</a>
+        </div>
+		<div class="controls">
+            <div class="price">280 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_0_frmAddToCart');frm['ProductId'].value=1670;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1049/סט-צירים-לשערים-וסורגים-עם-אבטחה.aspx" id="product-1049-link"><img id="product-1049-image" src="/store_images/271x162/___116.JPG" alt="סט צירים לשערים וסורגים עם אבטחה" /></a>
+        <div class="desc">
+            <a class="name" href="/product/1049/סט-צירים-לשערים-וסורגים-עם-אבטחה.aspx" id="product-1049-name" title="סט צירים לשערים וסורגים עם אבטחה">סט צירים לשערים וסורגים עם אבטחה</a>
+        </div>
+		<div class="controls">
+            <div class="price"></div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_0_frmAddToCart');frm['ProductId'].value=1049;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1626/בולם-טריקה-סמוי-עד-50-קג.aspx" id="product-1626-link"><img id="product-1626-image" src="/store_images/271x162/בולם טריקה סמוי.jpg" alt="בולם טריקה סמוי עד 50 ק&quot;ג" /></a>
+        <div class="desc">
+            <a class="name" href="/product/1626/בולם-טריקה-סמוי-עד-50-קג.aspx" id="product-1626-name" title="בולם טריקה סמוי עד 50 ק&quot;ג">בולם טריקה סמוי עד 50 ק&quot;ג</a>
+        </div>
+		<div class="controls">
+            <div class="price">180 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_0_frmAddToCart');frm['ProductId'].value=1626;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+    <li class="fix-layout"></li>
+</ul>
+		    </div>
+		    <div class="indicator" id="home-products-0-buttons">
+                <i class="active"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i>
+		    </div>
+		    <script type="text/javascript">
+			    // <![CDATA[
+		        new dgCarouselle({
+		            container: '#home-products-0-contents',
+		            buttons: '#home-products-0-buttons>I',
+		            content: '>LI.product-box',
+		            buttonSelectedClass: 'active',
+		            animate: true,
+		            autoStart: true,
+		            transition: dgCarouselle.TransitionType.SLIDE,
+		            buttonStopsAnimation: true,
+		            circular: true
+		        });
+			    // ]]>
+		    </script>
+	    </div>
+    
+	    <div class="product-carouselle">
+		    <div class="title">מוצרים מומלצים</div>
+		    <div class="carouselle">
+                
+
+<form action="" method="post" id="cphContent_cphContent_rpCategories_ctl00_1_frmAddToCart" onsubmit="if (this['ProductId'].value=='') return false;" style="display:none">
+<input type="hidden" name="_formType" value="AddToCart" />
+<input type="hidden" name="ProductId" value="" />
+<input type="hidden" name="Quantity" value="1" />
+</form>
+<ul class="product-cubes " id="home-products-1-contents">
+
+	<li class="product-box">
+        <a class="image" href="/product/120/מנעול-JIS-ארבעה-פינים.aspx" id="product-120-link"><img id="product-120-image" src="/store_images/271x162/JIS 4 פינים.JPG" alt="מנעול JIS ארבעה פינים" /></a>
+        <div class="desc">
+            <a class="name" href="/product/120/מנעול-JIS-ארבעה-פינים.aspx" id="product-120-name" title="מנעול JIS ארבעה פינים">מנעול JIS ארבעה פינים</a>
+        </div>
+		<div class="controls">
+            <div class="price">140 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_1_frmAddToCart');frm['ProductId'].value=120;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/807/קרמון-חיצוני-פליז-עם-בסיס-מלבני.aspx" id="product-807-link"><img id="product-807-image" src="/store_images/271x162/IMG_0647_[Desktop_Resolution].JPG" alt="קרמון חיצוני פליז עם בסיס מלבני" /></a>
+        <div class="desc">
+            <a class="name" href="/product/807/קרמון-חיצוני-פליז-עם-בסיס-מלבני.aspx" id="product-807-name" title="קרמון חיצוני פליז עם בסיס מלבני">קרמון חיצוני פליז עם בסיס מלבני</a>
+        </div>
+		<div class="controls">
+            <div class="price">350 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_1_frmAddToCart');frm['ProductId'].value=807;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/146/אלקטרו-מגנט-300-קג-BHL2501S.aspx" id="product-146-link"><img id="product-146-image" src="/store_images/271x162/2010_04_08_01_47_31_300__.JPG" alt="אלקטרו מגנט 300 ק&quot;ג BHL2501S" /></a>
+        <div class="desc">
+            <a class="name" href="/product/146/אלקטרו-מגנט-300-קג-BHL2501S.aspx" id="product-146-name" title="אלקטרו מגנט 300 ק&quot;ג BHL2501S">אלקטרו מגנט 300 ק&quot;ג BHL2501S</a>
+        </div>
+		<div class="controls">
+            <div class="price">320 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_1_frmAddToCart');frm['ProductId'].value=146;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/1347/סף-דלת-אוטומטי-חיצוני-APPLIQUE.aspx" id="product-1347-link"><img id="product-1347-image" src="/store_images/271x162/CCE APPLIQUE.JPG" alt="סף דלת אוטומטי חיצוני APPLIQUE" /></a>
+        <div class="desc">
+            <a class="name" href="/product/1347/סף-דלת-אוטומטי-חיצוני-APPLIQUE.aspx" id="product-1347-name" title="סף דלת אוטומטי חיצוני APPLIQUE">סף דלת אוטומטי חיצוני APPLIQUE</a>
+        </div>
+		<div class="controls">
+            <div class="price">250 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_1_frmAddToCart');frm['ProductId'].value=1347;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/173/ידית-בהלה-ייל-מיני-סטאר.aspx" id="product-173-link"><img id="product-173-image" src="/store_images/271x162/2010_04_16_11_10_49____.JPG" alt="ידית בהלה ייל מיני סטאר" /></a>
+        <div class="desc">
+            <a class="name" href="/product/173/ידית-בהלה-ייל-מיני-סטאר.aspx" id="product-173-name" title="ידית בהלה ייל מיני סטאר">ידית בהלה ייל מיני סטאר</a>
+        </div>
+		<div class="controls">
+            <div class="price">400 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_1_frmAddToCart');frm['ProductId'].value=173;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+    <li class="fix-layout"></li>
+</ul>
+		    </div>
+		    <div class="indicator" id="home-products-1-buttons">
+                <i class="active"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i>
+		    </div>
+		    <script type="text/javascript">
+			    // <![CDATA[
+		        new dgCarouselle({
+		            container: '#home-products-1-contents',
+		            buttons: '#home-products-1-buttons>I',
+		            content: '>LI.product-box',
+		            buttonSelectedClass: 'active',
+		            animate: true,
+		            autoStart: true,
+		            transition: dgCarouselle.TransitionType.SLIDE,
+		            buttonStopsAnimation: true,
+		            circular: true
+		        });
+			    // ]]>
+		    </script>
+	    </div>
+    
+	    <div class="product-carouselle">
+		    <div class="title">הנרכשים ביותר</div>
+		    <div class="carouselle">
+                
+
+<form action="" method="post" id="cphContent_cphContent_rpCategories_ctl00_2_frmAddToCart" onsubmit="if (this['ProductId'].value=='') return false;" style="display:none">
+<input type="hidden" name="_formType" value="AddToCart" />
+<input type="hidden" name="ProductId" value="" />
+<input type="hidden" name="Quantity" value="1" />
+</form>
+<ul class="product-cubes " id="home-products-2-contents">
+
+	<li class="product-box">
+        <a class="image" href="/product/377/תיבת-דואר-מסוגננת.aspx" id="product-377-link"><img id="product-377-image" src="/store_images/271x162/_72.JPG" alt="תיבת דואר מסוגננת" /></a>
+        <div class="desc">
+            <a class="name" href="/product/377/תיבת-דואר-מסוגננת.aspx" id="product-377-name" title="תיבת דואר מסוגננת">תיבת דואר מסוגננת</a>
+        </div>
+		<div class="controls">
+            <div class="price">220 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_2_frmAddToCart');frm['ProductId'].value=377;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/528/צילינדר-ייל-מפתח-משונן.aspx" id="product-528-link"><img id="product-528-image" src="/store_images/271x162/_6.JPG" alt="צילינדר ייל מפתח משונן" /></a>
+        <div class="desc">
+            <a class="name" href="/product/528/צילינדר-ייל-מפתח-משונן.aspx" id="product-528-name" title="צילינדר ייל מפתח משונן">צילינדר ייל מפתח משונן</a>
+        </div>
+		<div class="controls">
+            <div class="price">48 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_2_frmAddToCart');frm['ProductId'].value=528;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/11/מנעול-חשמלי-אסימטרי-822.aspx" id="product-11-link"><img id="product-11-image" src="/store_images/271x162/2010_04_11_04_24_25_IMG_3158_[Desktop_Resolution].JPG" alt="מנעול חשמלי אסימטרי 822" /></a>
+        <div class="desc">
+            <a class="name" href="/product/11/מנעול-חשמלי-אסימטרי-822.aspx" id="product-11-name" title="מנעול חשמלי אסימטרי 822">מנעול חשמלי אסימטרי 822</a>
+        </div>
+		<div class="controls">
+            <div class="price">90 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_2_frmAddToCart');frm['ProductId'].value=11;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/332/מנעול-כפתור-פבלוק-עגול-587.aspx" id="product-332-link"><img id="product-332-image" src="/store_images/271x162/578.jpg" alt="מנעול כפתור (פבלוק) עגול 587" /></a>
+        <div class="desc">
+            <a class="name" href="/product/332/מנעול-כפתור-פבלוק-עגול-587.aspx" id="product-332-name" title="מנעול כפתור (פבלוק) עגול 587">מנעול כפתור (פבלוק) עגול 587</a>
+        </div>
+		<div class="controls">
+            <div class="price">68 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_2_frmAddToCart');frm['ProductId'].value=332;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+	<li class="product-box">
+        <a class="image" href="/product/742/סוגר-דלת-הידראולי-דגם-503.aspx" id="product-742-link"><img id="product-742-image" src="/store_images/271x162/__5031.JPG" alt="סוגר דלת הידראולי דגם 503" /></a>
+        <div class="desc">
+            <a class="name" href="/product/742/סוגר-דלת-הידראולי-דגם-503.aspx" id="product-742-name" title="סוגר דלת הידראולי דגם 503">סוגר דלת הידראולי דגם 503</a>
+        </div>
+		<div class="controls">
+            <div class="price">148 ₪</div>
+            <a class="add-to-cart" href="javascript:void(0)" onclick="var frm=dgTools.$('cphContent_cphContent_rpCategories_ctl00_2_frmAddToCart');frm['ProductId'].value=742;dgTools.Form.submit(frm);">הוסף לעגלה</a>
+		</div>
+        
+	</li>
+
+    <li class="fix-layout"></li>
+</ul>
+		    </div>
+		    <div class="indicator" id="home-products-2-buttons">
+                <i class="active"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i>
+		    </div>
+		    <script type="text/javascript">
+			    // <![CDATA[
+		        new dgCarouselle({
+		            container: '#home-products-2-contents',
+		            buttons: '#home-products-2-buttons>I',
+		            content: '>LI.product-box',
+		            buttonSelectedClass: 'active',
+		            animate: true,
+		            autoStart: true,
+		            transition: dgCarouselle.TransitionType.SLIDE,
+		            buttonStopsAnimation: true,
+		            circular: true
+		        });
+			    // ]]>
+		    </script>
+	    </div>
+    
+            
+    
+			
+	<div class="fix-layout"></div>
+			
+</div>
+
+
+	
+		<div class="footer-service">
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-contact.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					שירות לקוחות</div>
+				<br />
+				<a class="button" href="/form/1/צור-קשר.aspx">מלא טופס</a></td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-phone.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					טלפון רב-קווי</div>
+				<div style="color:#d64e26;font-family:'Braun W26 Medium','BraunW26-Medium','HelveticaNeue-Medium','Helvetica Neue Medium',Tahoma;font-size:32px;line-height:33px;">
+					<a href="tel:97235609926" style="text-decoration:none;color:#d64e26;font-family:'Braun W26 Medium','BraunW26-Medium','HelveticaNeue-Medium','Helvetica Neue Medium',Tahoma;font-size:32px;">03-5609926</a></div>
+				<div>
+					פקס: 03-5660336</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-email.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					דואר אלקטרוני</div>
+				<div style="color:#d64e26;font-family:'HelveticaNeue-Medium',Verdana,Tahoma;font-size:18px;">
+					<a href="mailto:info@bitter.co.il" style="text-decoration:none;color:#d64e26;font-family:'HelveticaNeue-Medium',Verdana,Tahoma;font-size:18px;"><strong>info@bitter.co.il</strong></a></div>
+				<div>
+					<a data-swl="120:1" href="/form/1/צור-קשר.aspx" style="color:#5e5e5e;text-decoration:none;">ליצירת קשר</a></div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+			<div class="section">
+                <table border="0" cellpadding="0" cellspacing="12">
+	<tbody>
+		<tr>
+			<td valign="top">
+				<img alt="" src="/uploads/image/service-icon-hours.png" /></td>
+			<td valign="top">
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					שעות פעילות</div>
+				<div style="color:#a6a6a6;font-weight:bold;font-size:16px;">
+					<span style="color: rgb(94, 94, 94); font-size: 12px; line-height: 1.5;">ימים א,ב,ד,ה - 8:00-17:00</span></div>
+				יום ג - 8:00-14:00<br />
+				יום ו - 8:00-13:00</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+			</div>
+		</div>
+		<div class="footer-articles">
+			<div class="frame">
+				<div class="icon"></div>
+				<div class="main-title">מאמרים ומדריכים</div>
+				<div class="content">
+					<a href="/page/17/איטום-הבית.aspx" id="cphContent_hlArticleTitle" class="title">איטום הבית</a>
+					<a href="/page/17/איטום-הבית.aspx"> מתכוננים לחורף: פיתרונות לאיטום חלונות ודלתות הבית מאת: צוות אחים ביטר בידוד הבית הוא דבר חשוב מאוד, הוא משפר את איכות החיים, חוסך בהוצאות המיזוג ומקטין את הפגיעה באיכות הסביבה. נוסף על כך בידוד טוב משאיר בחוץ את רעשי הסביבה ומאפשר חלל מגוורים שקט ונינוח יותר. בעוד שלאיטום היסודות המבניים של הבית דרושים אנשי מקצוע וחומרים מיוחדים, הרי ששיפור איטום נקודות התורפה של הבית, הדלתות והחלונות, יכול לעשות על ידכם ובהשקעה לא גדולה . בתמונה: החורף כבר כאן נקודות התורפה של הבית הפתחים, בדרך כלל החלונות והדלתות, מהווים נקודת תורפה עיקרית היות והם עשויים בדרך כלל...</a>
+				</div>
+				<a href="/page/17/איטום-הבית.aspx" id="cphContent_hlArticleLink" class="more">להמשך קריאה</a>
+				<a href="/page/category/1/מאמרים-ומדריכים.aspx" id="cphContent_hlArticleList" class="all">לרשימת המדריכים</a>
+			</div>
+			<div class="frame">
+				<div class="icon faq"></div>
+				<div class="main-title">שאלות ותשובות</div>
+				<div class="content">
+					<a href="/faq/1/שאלות-ותשובות.aspx#faq4" id="cphContent_hlFaqTitle" class="title">מה המשמעות של TUV EN וUL שאני רואה על הרבה מוצרים</a>
+					<a href="/faq/1/שאלות-ותשובות.aspx#faq4"> EN זה התקן האירפאי European Norm אם הוא נמצא על מוצר או על עטיפת מוצר סימן שהוא עמד בתקן האירופאי הרלוונטי. UL משמעו Underwriter Laboratories מעבדה שמושבה בארה"ב ומאז המאה 19 מבצעת ניסויי בטיחות ותקינה. מוצרים המסומנים בUL נחשבים לעומדים בתקנים המחימירים ביותר TUV זהו מכון התקנים הגרמני. בשנים האחרונות התקן הזה החל להיות יותר נפוץ. </a>
+				</div>
+				<a href="/faq/1/שאלות-ותשובות.aspx#faq4" id="cphContent_hlFaqLink" class="more">להמשך קריאה</a>
+				<a href="/faq/1/שאלות-ותשובות.aspx" id="cphContent_hlFaqList" class="all">לרשימת השאלות</a>
+			</div>
+			<div class="fix-layout"></div>
+		</div>
+
+    </div>
+    <div class="fix-layout"></div>
+    <div class="footer-push"></div>
+</div>
+<div class="footer-container">
+    <div class="footer-logos"><div class="site-width">
+        <h2 style="text-align: center;">
+	<span style="font-size:18px;"><span style="font-size:16px;"><span style="color:#57b8d1;">כתובת החנות:</span></span><br />
+	&nbsp;<span style="color:#ffffff;">אלנבי 119, תל אביב</span></span></h2>
+<h4 style="text-align: center;">
+	<a href="https://www.waze.com/livemap?zoom=17&amp;lat=32.06281&amp;lon=34.77382" target="_blank"><span style="font-size:18px;"><span style="color:#ffffff;">כתובת ל GPS:&nbsp;לבונטין 1, תל אביב</span></span></a></h4>
+
+	</div></div>
+    <div class="footer-inner">
+        <table border="0" cellpadding="0" cellspacing="0">
+	<tbody>
+		<tr>
+			<td valign="top" width="49%">
+				<h1 style="font-weight:normal;color:#57b8d1;font-size:14px;padding:0px;margin:0px;">
+					אחים ביטר פרזול ומנעולים</h1>
+				חברת אחים ביטר בע&quot;מ נוסדה בשנת 1945 והיא מחברות הפרזול המובילות בישראל. החברה דוגלת בשירות מקצועי ואדיב וידועה במגוון הרחב של פתרונותיה ובאיכות מוצריה.<br />
+				<br />
+				חברת אחים ביטר נוסדה על ידי אברהם ביטר וחתנו יחיאל אלטמן בשנת 1945. החברה היתה מבתי העסק הראשונים אשר עסקו בפירזול בארץ ובמהרה הפכה לאבן שואבת לבעלי מקצוע ולקוחות פרטיים. מייסדי החברה דגלו בלמכור את המוצרים האיכותיים ביותר ובמתן השירות הטוב ביותר. וכך אחים ביטר היתה החברה הראשונה אשר ייבאה מותגים בינלאומיים רבים.</td>
+			<td width="2%">
+				&nbsp;</td>
+			<td valign="top" width="15%">
+				<div style="color:#57b8d1;font-size:14px;">
+					קטגוריות האתר</div>
+				<a data-swl="5:149" href="/product/category/149/פרזול-לדלתות.aspx" style="color: #5e5e5e;text-decoration:none;">פרזול לדלתות</a><br />
+				<a data-swl="5:60" href="/product/category/60/פרזול-לחלונות.aspx" style="color: #5e5e5e;text-decoration:none;">פרזול לחלונות</a><br />
+				<a data-swl="5:25" href="/product/category/25/פרזול-לריהוט.aspx" style="color: #5e5e5e;text-decoration:none;">פרזול לריהוט</a><br />
+				<a data-swl="5:150" href="/product/category/150/מוצרי-נעילה-חשמליים.aspx" style="color: #5e5e5e;text-decoration:none;">מוצרי נעילה חשמליים</a><br />
+				<a data-swl="5:32" href="/product/category/32/שונות.aspx" style="color: #5e5e5e;text-decoration:none;">שונות</a></td>
+			<td width="2%">
+				&nbsp;</td>
+			<td valign="top" width="15%">
+				<div style="color:#57b8d1;font-size:14px;">
+					ניווט מהיר</div>
+				<div>
+					<a data-swl="0:" href="/" style="color: #5e5e5e;text-decoration:none;">דף בית</a><br />
+					<a data-swl="2:2" href="/page/2/אודות-אחים-ביטר-בעמ.aspx" style="color: #5e5e5e;text-decoration:none;">אודות</a><br />
+					<a data-swl="5:121" href="/product/category/121/מוצרים-חדשים.aspx" style="color: #5e5e5e;text-decoration:none;">מוצרים חדשים</a><br />
+					<a data-swl="102:1" href="/page/category/1/מאמרים-ומדריכים.aspx" style="color: #5e5e5e;text-decoration:none;">מדריכים ומאמרים</a><br />
+					<a data-swl="10:1" href="/faq/1/שאלות-ותשובות.aspx" style="color: #5e5e5e;text-decoration:none;">שאלות ותשובות</a></div>
+				<div>
+					<a data-swl="2:41" href="/page/41/מדיניות-משלוחים.aspx" style="color: #5e5e5e;text-decoration:none;">מדיניות משלוחים</a><br />
+					<a data-swl="120:1" href="/form/1/צור-קשר.aspx" style="color: #5e5e5e;text-decoration:none;">צור קשר</a><br />
+					<a data-swl="100:1" href="/מפת-אתר.aspx" style="color: #5e5e5e;text-decoration:none;">מפת האתר</a><br />
+					<a data-swl="2:38" href="/page/38/תנאי-שימוש.aspx" style="color: #5e5e5e;text-decoration:none;">תנאי שימוש</a></div>
+			</td>
+			<td width="2%">
+				&nbsp;</td>
+			<td valign="top" width="15%">
+				<div style="color:#57b8d1;font-size:14px;">
+					עקבו אחרינו</div>
+				<div style="color:#57b8d1;font-size:14px;">
+					<a href="https://www.facebook.com/pages/אחים-ביטר-פרזול-ומנעולים/123064494390871" target="_blank"><img alt="" src="/uploads/image/logo_facebook.png" style="width: 40px; height: 40px;" /></a>&nbsp;&nbsp;<a href="https://plus.google.com/+BitterCoIllocks/posts" target="_blank"><img alt="" src="/uploads/image/Google-plus-icon.png" style="width: 40px; height: 40px;" /></a></div>
+				<div style="color:#57b8d1;font-size:14px;">
+					&nbsp;</div>
+				כל הזכויות שמורות.<br />
+				אחים ביטר פרזול ומנעולים 2014.</td>
+		</tr>
+	</tbody>
+</table>
+<div>
+	&nbsp;</div>
+
+        <div class="footer-links"><a href="http://www.webuildit.co.il" target="_blank">Webuildit</a></div>
+    </div>
+</div>
+
+
+<div id="modal-popup" class="modal-popup" style="display:none">
+	<div>
+		<a title="Close" class="close" href="javascript:void(hidePopup())">X</a>
+		
+	</div>
+</div>
+<script>
+    function showPopup() {
+        function dismissEvent(event) {
+            if (event.target !== this) return;
+            hidePopup();
+        }
+        $('#modal-popup').fadeIn().off()
+            .on('mousedown', dismissEvent)
+            .on('touchend', dismissEvent);
+    }
+    function hidePopup() {
+        $('#modal-popup').fadeOut();
+    }
+</script>
+
+
+
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 1062940465;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1062940465/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W8F3BV"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W8F3BV');</script>
+<!-- End Google Tag Manager -->
+
+</body>
+</html>
