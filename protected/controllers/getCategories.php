@@ -47,7 +47,7 @@ if (! empty($refresh) || ! file_exists($dataFile)) {
                 
                 $menuName = $menu->plaintext;
                 // TODO: Check menu name
-                $menuName = base64_encode($menuName);
+                $menuName = $menuName;
                 
                 // Create menu folder
                 // TODO: Need to check
@@ -60,7 +60,7 @@ if (! empty($refresh) || ! file_exists($dataFile)) {
                 
                 foreach ($html->find("#big-sub-menu-{$menuID} .level0 ul li a") as $subMenu) {
                     $subMenuName = $subMenu->plaintext;
-                    $subMenuName = base64_encode($subMenuName);
+                    $subMenuName = $subMenuName;
                     
                     $subMenuDir = $menuDir . "/" . md5($subMenuName);
                     mkdir($subMenuDir);
@@ -71,7 +71,7 @@ if (! empty($refresh) || ! file_exists($dataFile)) {
                     
                     foreach ($subMenu_lv1_container->find("li a") as $subMenu_lv1) {
                         $subMenu_lv1_name = $subMenu_lv1->plaintext;
-                        $subMenu_lv1_name = base64_encode($subMenu_lv1_name);
+                        $subMenu_lv1_name = $subMenu_lv1_name;
                         
                         $href = $subMenu_lv1->getAttribute('href');
                         

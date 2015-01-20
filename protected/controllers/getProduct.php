@@ -15,7 +15,7 @@ $round->request(array(
     'data' => array(),
     "success" => function ($response, &$round)
     {
-        global $dir, $dataDir, $dataFile, $products;
+        global $dir, $dataDir, $dataFile, $products, $url;
         
         $parser = app()->helper("Parser");
         
@@ -89,8 +89,9 @@ $round->request(array(
             "name" => $name,
             "serial" => $serial,
             "price" => $price,
-            "selectAttributes" => $selectAttributes,
-            "fixedAttributes" => $fixedAttribues
+            "selectAttributes"  => $selectAttributes,
+            "fixedAttributes"   => $fixedAttribues,
+            "href"              => $url
         );
         
         // $dir = TMP_DIR . "/{$menu}/{$submenu}/{$subMenu_lv1}/{$productName}";
@@ -106,7 +107,7 @@ $round->request(array(
         
         $dataDir = TMP_DIR . "/".md5($menu)."/".md5($submenu)."/".md5($subMenu_lv1)."/" . md5($productName) . "/";
         
-        $dataFile = $dataDir . "index.txt";
+        $dataFile = $dataDir . "product.txt";
         
         file_put_contents($dataFile, serialize($product));
         

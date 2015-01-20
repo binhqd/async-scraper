@@ -36,40 +36,38 @@ $submenu_lv1_id = $dataSubmenu_lv1['id'];
 function importProduct($dataFile)
 {
     global $app, $submenu_lv1_id;
-    if (!file_exists($dataFile)) {
+    
+    $rows = array();
+    if (! file_exists($dataFile)) {
         header("HTTP/1.0 404 Not Found");
         exit();
     }
-    //exit('here');
+    // exit('here');
     $product = file_get_contents($dataFile);
     $product = unserialize($product);
     
-    // insert product
-    $sql = "INSERT into products (name,serial,price,submenu_lv1_id) VALUES (:name,:serial,:price,:submenu_lv1_id)";
     
-    $app->db->exec($sql, array(
-        ':name' => $product['name'],
-        ':serial' => $product['serial'],
-        ':price' => $product['price'],
-        ':submenu_lv1_id'   => $submenu_lv1_id
-    ));
     
-    $productID = $app->db->getConnection()->lastInsertId();
+    $fixedAttributes = $product['fixedAttributes'];
+    $selectAttributes = $product['selectAttributes'];
     
+    unset($product['fixedAttributes']);
+    unset($product['selectAttributes']);
+    $rows[] = implode(",", $product);
     // insert fix attributes
-    foreach ($product['fixedAttributes'] as $fixAttribute) {
-        $sql = "INSERT into attributes (name,adjustment,is_fix,product_id) VALUES (:name,:adjustment,:is_fix,:product_id)";
-        
-        $app->db->exec($sql, array(
-            ':name' => $fixAttribute['name'],
-            ':adjustment' => $fixAttribute['adjustment'],
-            ':is_fix' => 1,
-            ':product_id' => $productID
-        ));
+    foreach ($fixedAttributes as $fixAttribute) {
+        $columns = array(
+            '',
+            '',
+            '',
+            $fixAttribute['name'],
+            $fixAttribute['adjustment']
+        );
+        $rows[] = implode(",", $columns);
     }
-    
     // insert option attributes
-    foreach ($product['selectAttributes'] as $selectAttribute) {
+    foreach ($selectAttributes as $selectAttribute) {
+        
         $sql = "INSERT into attributes (name,adjustment,is_fix,product_id) VALUES (:name,:adjustment,:is_fix,:product_id)";
         
         $app->db->exec($sql, array(
@@ -82,14 +80,19 @@ function importProduct($dataFile)
         $attributeID = $app->db->getConnection()->lastInsertId();
         
         foreach ($selectAttribute['options'] as $option) {
-            $sql = "INSERT into sub_attributes (name,adjustment,attribute_id) VALUES (:name,:adjustment,:attribute_id)";
-            
-            $app->db->exec($sql, array(
-                ':name' => $option['name'],
-                ':adjustment' => $option['adjustment'],
-                ':attribute_id' => $attributeID
-            ));
+            $columns = array(
+                '',
+                '',
+                '',
+                $option['name'],
+                $option['adjustment']
+            );
+            $rows[] = implode(",", $columns);
         }
+    }
+    
+    foreach ($rows as $item) {
+        file_put_contents(TMP_DIR . "/output.csv", $item . "\n", FILE_APPEND);
     }
 }
 

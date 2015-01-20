@@ -36,7 +36,7 @@ if (! empty($refresh) || ! file_exists($dataFile)) {
             foreach ($html->find('.product-box') as $product) {
                 $info = $product->find('a', 0);
                 
-                $productName = base64_encode($info->plaintext);
+                $productName = $info->plaintext;
                 $href = $info->getAttribute('href');
                 
                 // $img = $product->find('a img', 0)->getAttribute('src');
