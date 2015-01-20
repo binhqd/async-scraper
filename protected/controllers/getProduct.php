@@ -118,7 +118,7 @@ $round->request(array(
         
         file_put_contents($dataFile, serialize($product));
 
-        file_put_contents(TMP_DIR . "/allproducts/" . md5(uniqid()) . ".txt", serialize($product))
+        file_put_contents(TMP_DIR . "/allproducts/" . md5(uniqid()) . ".txt", serialize($product));
         
         header("Content-type: application/json");
         echo json_encode($product);
