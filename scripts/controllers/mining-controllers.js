@@ -148,11 +148,21 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
                 $scope.global.products_remaining = res.length;
                 
                 // 5x running
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
+                if (res.length == 0) {
+                	$scope.prepareProductsListing();
+                } else if (res.length >= 5) {
+                	$scope.getProduct(log, category, category.subMenu_lv1.name);
+                    $scope.getProduct(log, category, category.subMenu_lv1.name);
+                    $scope.getProduct(log, category, category.subMenu_lv1.name);
+                    $scope.getProduct(log, category, category.subMenu_lv1.name);
+                    $scope.getProduct(log, category, category.subMenu_lv1.name);
+                } else {
+                	// open all process
+                	for (var i = 0; i < res.length; i++) {
+                		$scope.getProduct(log, category, category.subMenu_lv1.name);
+                	}
+                }
+                
                 
             }).error(function(xhr) {
                 console.log(xhr);
@@ -205,6 +215,7 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
             });
             
         } else {
+        	//$scope.prepareProductsListing();
             console.log('State empty');
         }
     }

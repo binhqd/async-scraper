@@ -29,7 +29,7 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
     
     var req = {
         method : 'GET',
-        url : './api.php?round=getCategories'
+        url : './api.php?round=getAllProducts'
     }
 
     $scope.state = {
@@ -39,181 +39,81 @@ MiningCtrls.controller('MiningCtrl', function($scope, $rootScope, $http,
     $scope.done = false;
 
     $scope.global.logs.push(new MiningLog({
-        "title" : "Getting list of categories"
+        "title" : "Getting all product index files"
     }));
     $http(req).success(function(res) {
         var log = $scope.global.logs[0];
-        log.title = 'List of categories';
+        log.title = 'Getting list';
         log.data = res.items;
-        log.lines.push({content: res.length + " categories found"});
+        log.lines.push({content: res.length + " products found"});
         log.finish();
 
         // Processing round 2
         // New log
         log = new MiningLog({
-            "title" : "Indexing products of each category ..."
+            "title" : "Importing products"
         });
         
         // save cache for later use
-        $scope.global.cacheCategories = angular.copy(res);
+        $scope.global.cacheProducts = angular.copy(res);
 //        
-        $scope.global.categories = res;
+        $scope.global.products = res;
 //
         $scope.global.logs.push(log);
-        $scope.global.round2_remaining = $scope.global.categories.length;
+        $scope.global.round2_remaining = $scope.global.products.length;
 //        
 //        // Open 5 threads
-        $scope.indexProducts(log);
-        $scope.indexProducts(log);
-        $scope.indexProducts(log);
-        $scope.indexProducts(log);
-        $scope.indexProducts(log);
+        $scope.importProduct(log);
+        $scope.importProduct(log);
+        $scope.importProduct(log);
+        $scope.importProduct(log);
+        $scope.importProduct(log);
 
     }).error(function(xhr) {
         console.log(xhr);
     });
 
-    $scope.indexProducts = function(log, callback) {
-        if ($scope.global.categories.length > 0) {
+    $scope.importProduct = function(log, callback) {
+        if ($scope.global.products.length > 0) {
             
-            var category = $scope.global.categories[0];
-            $scope.global.categories.shift();
+            var product = $scope.global.products[0];
+            $scope.global.products.shift();
             
             var req = {
                 method : 'GET',
-                url : './api.php?round=getProducts&menu=' + category.menu.name + '&subMenu='+category.subMenu.name 
-                + '&subMenu_lv1='+category.subMenu_lv1.name + '&url=' + encodeURIComponent(category.subMenu_lv1.href)
+                url : './api.php?round=importProduct&md5=' + product.md5
             }
             
-            var line = {content: category.subMenu_lv1.name + ': indexing ...', done : false};
+            var line = {content: 'Importing ' + product.name, done : false};
             log.lines.push(line);
             $http(req).success(function(res) {
                 $scope.global.round2_remaining--;
                 
                 // continue crawling
-                line.content = category.subMenu_lv1.name + ": INDEXED";
+                line.content = 'Product: ' + product.name + ": IMPORTED";
                 line.done = true;
                 
                 if ($scope.global.round2_remaining == 0) {
                 	log.finish();
                     
                     // processing parse states
-                    $scope.global.categories = angular.copy($scope.global.cacheCategories);
+                    $scope.global.products = angular.copy($scope.global.cacheProducts);
                     
-                    $scope.prepareProductsListing();
+                    //$scope.prepareProductsListing();
                     
                 } else {
-                    $scope.indexProducts(log);
+                    $scope.importProduct(log);
                 }
             }).error(function(xhr) {
                 console.log(xhr);
-                log.errors.push("Error crawling " + category.subMenu_lv1.name);
+                log.errors.push("Error importing " + product.name);
+                
+                $scope.importProduct(log);
             });
         } else {
             //stateLog.finish();
             
             // crawling cities of states
-        }
-    }
-
-    $scope.prepareProductsListing = function() {
-        if ($scope.global.categories.length > 0) {
-            
-            var category = $scope.global.categories[0];
-            
-            $scope.global.categories.shift();
-            var log = new MiningLog({
-                "title" : "Crawling products of " + category.subMenu_lv1.name
-            });
-            
-            
-            var line = {content: 'Getting product index', done : false};
-            log.lines.push(line);
-            
-            var req = {
-                method : 'GET',
-                url : './api.php?round=getProducts&menu=' + category.menu.name + '&subMenu='+category.subMenu.name 
-                + '&subMenu_lv1='+category.subMenu_lv1.name + '&url=' + encodeURIComponent(category.subMenu_lv1.href)
-            }
-            $http(req).success(function(res) {
-                
-                // continue crawling
-                line.content = 'Getting product index : DONE';
-                line.done = true;
-                
-                // assign to global variable
-                $scope.global.category[category.subMenu_lv1.name] = {
-                    products : res,
-                    name : category.subMenu_lv1.name
-                };
-                
-                $scope.global.products_remaining = res.length;
-                
-                // 5x running
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-                
-            }).error(function(xhr) {
-                //console.log(category);
-                console.log(category.subMenu_lv1.name);
-                log.errors.push("Error preparing info for " + category.subMenu_lv1.name);
-                
-                $scope.getProduct(log, category, category.subMenu_lv1.name);
-            });
-        } else {
-            //stateLog.finish();
-            
-            // crawling cities of states
-        }
-    }
-    
-    $scope.getProduct = function(log, info, categoryIndex) {
-        if ($scope.global.category[categoryIndex].products.length > 0) {
-        	console.log('crawling ' + categoryIndex);
-            var category = $scope.global.category[categoryIndex];
-            
-            var product = category.products[0];
-            
-            category.products.shift();
-            
-            var line = {content: 'Getting product information of ' + product.name, done : false};
-            log.lines.push(line);
-            
-            var req = {
-                method : 'GET',
-                url : './api.php?round=importProduct&menu=' + info.menu.name + '&subMenu='+info.subMenu.name 
-                + '&subMenu_lv1='+info.subMenu_lv1.name + '&productName='+ product.name + '&url=' + encodeURIComponent(product.href)
-            }
-            
-            $http(req).success(function(res) {
-                $scope.global.products_remaining--;
-                
-                // continue crawling
-                line.content = 'Getting product information of ' + product.name + ' : DONE';
-                line.done = true;
-                
-                if ($scope.global.products_remaining == 0) {
-                    log.finish();
-                    
-                    // crawling cities of other countries
-                    $scope.prepareProductsListing();
-                    
-                } else {
-                    //$scope.crawlingState(stateLog);
-                    $scope.getProduct(log, info, categoryIndex);
-                }
-            }).error(function(xhr) {
-                console.log(xhr);
-                log.errors.push("Error getting product information of " + product.name);
-                
-                $scope.getProduct(log, category, categoryIndex);
-            });
-            
-        } else {
-            console.log('State empty');
         }
     }
 });
