@@ -103,9 +103,9 @@ function importProduct($product)
         }
     }
     
-    foreach ($lines as $item) {
-        file_put_contents(TMP_DIR . "/output.csv", $item . "\n", FILE_APPEND);
-    }
+//     foreach ($lines as $item) {
+//         file_put_contents(TMP_DIR . "/output.csv", $item . "\n", FILE_APPEND);
+//     }
 }
 
 importProduct($product);
